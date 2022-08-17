@@ -1,6 +1,6 @@
 <!-- Design and Development MD.ROBIUL AWAL- CALL :01748-340718-->
 @extends('frontEnd.layouts.master') 
-@section('title','Zuri Express || always on time') 
+@section('title','Zidrop Logistics') 
 @section('content')
 
 <!-- Hero Section -->
@@ -89,9 +89,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-xs-12" >
-                <div class="cta-text mb-3 text-center">
-                    <h4 style="color: #ff0000">Zuri Express </h4>
-                    <p>always on time</p>
+                <div class="cta-text text-center">
+                    <h4 style="color: #af251b">Zidrop Logistics </h4>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-xs-12">
@@ -101,7 +100,7 @@
                         <div class="col-lg-8 col-md-4 col-xs-12">
                             <input type="text" name="trackparcel" class="form-control" placeholder="Stay Updated!" required="" data-error="Please enter your tracking number">
                         </div>
-                        <div class="col-lg-2 col-md-4 col-xs-12 mt-3 text-center">
+                        <div class="col-lg-2 col-md-4 col-xs-12  text-center">
                             <button type="submit" class="btn btn-common">TRACK PARCEL</button>
                         </div>
                     </div>
@@ -125,7 +124,7 @@
                                 <div data-toggle="collapse" data-target="#collapse{{$key+1}}" aria-expanded="false" aria-controls="collapse{{$key+1}}" class="cursor-pointer py-3 d-flex justify-content-between align-items-center collapsed">
                                     <div class="d-block">
                                         <span>
-                                            <i class="fa {{$value->icon}}" style="color: #e96007; font-size: 20px;"></i>
+                                            <i class="fa {{$value->icon}}" style="color: #af261c; font-size: 20px;"></i>
                                         </span>
                                         <span class="pl-2 font-18 font-h-md-16 font-medium">{{$value->title}}</span>
                                     </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-    <title>Zuri Express | @yield('title','always on time')</title>
+    <title>Zidrop Logistics | @yield('title','always on time')</title>
     <!-- Meta tag Keywords -->
      <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0, minimum-scale=1.0">
     <meta charset="UTF-8" />

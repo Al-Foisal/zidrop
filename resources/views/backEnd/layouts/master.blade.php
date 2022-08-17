@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Zuri Express || @yield('title','Dashbaord')</title>
+  <title>Zidrop Logistics || @yield('title','Dashbaord')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -227,7 +227,7 @@ echo " " . date("h:i:sa");
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{url('/superadmin/dashboard')}}" class="brand-link">
-      <span class="brand-text font-weight-light">Zuri Express</span>
+      <span class="brand-text font-weight-light">Zidrop Logistics</span>
     </a>
 
     <!-- Sidebar -->
@@ -556,7 +556,53 @@ echo " " . date("h:i:sa");
           @endif
           <!-- nav item end -->
           
-          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+            <i class="fas fa-user-tie"></i>
+              <p>
+                Merchant Payment
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" class="nav-link">&nbsp;&nbsp;
+                <i class="fa fa-plus"></i>&nbsp;
+                    <p> Add</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">&nbsp;&nbsp;
+                 <i class="fa fa-gears"></i>&nbsp;
+                    <p>Manage</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+            <i class="fas fa-user-tie"></i>
+              <p>
+                Top Up
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" class="nav-link">&nbsp;&nbsp;
+                <i class="fa fa-plus"></i>&nbsp;
+                    <p> Add</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">&nbsp;&nbsp;
+                 <i class="fa fa-gears"></i>&nbsp;
+                    <p>Manage</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           
            @if(Auth::user()->role_id <= 4 )
           <li class="nav-item has-treeview">
@@ -686,7 +732,7 @@ echo " " . date("h:i:sa");
   <div class="search-product-inner" id="live_data_show"></div> 
 
   <footer class="main-footer">
-    <strong>Copyright &copy;<a href="{{url('/')}}">Zuri Express</a></strong>
+    <strong>Copyright &copy;<a href="{{url('/')}}">Zidrop Logistics</a></strong>
     All rights reserved__Design and Development(Md.Robiul Awal),Any Problem Just Call: 01748-340718 . 
   </footer>
 

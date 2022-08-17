@@ -148,7 +148,7 @@ ul li {
     display: block;
     color: #fff;
     text-transform: capitalize;
-    background: #125c2f;
+    background: #af251b;
     padding: 10px;
 }
 .list-icon i {
@@ -180,7 +180,7 @@ ul li {
 }
 .pik-icon {
     line-height: 45px;
-    background: #e95f06;
+    background: #af251b;
     text-align: center;
     margin-left: 30px;
     margin-top: 15px;
@@ -1062,7 +1062,7 @@ ul li {
     width: 30%;
     float: left;
     border: 0;
-    background: #e95f06;
+    background: #af251b;
     color: #fff;
     height: 48px;
 }

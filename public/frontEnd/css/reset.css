@@ -187,11 +187,11 @@ th {
 	-moz-transition: all 500ms ease;
 	transition: all 500ms ease;
 	display: block;
-	color: #ee5f01;
+	color: #af261c;
 	border-radius: 100%;
 }
 #scrollUp i:hover{
-	background:#ee5f01;
+	background:#af261c;
 	color:#fff;
 }
 .section-padding {
@@ -301,7 +301,7 @@ big {
 	padding:100px 0;
 }
 .section-bg{
-	background:#ee5f010a;
+	background:#af261c0a;
 }
 .section-title {
     margin-bottom: 30px;
@@ -327,7 +327,7 @@ big {
     padding: 5px 15px;
     line-height: initial;
     font-size: 13px;
-    background: #ee5f01;
+    background: #af261c;
     margin-bottom: 15px;
 }
 .section-title h1 span:before {
@@ -335,7 +335,7 @@ big {
     position: absolute;
     left: 50%;
     bottom: -8px;
-    border-top: 8px solid #ee5f01;
+    border-top: 8px solid #af261c;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     margin-left: -8px;
@@ -409,7 +409,7 @@ big {
 	z-index: 1;
 }
 .overlay.primary:before{
-	background:#ee5f01;
+	background:#af261c;
 }
 .custom-shadow{
 	box-shadow: 0px 20px 60px #00000024;
@@ -423,7 +423,7 @@ big {
     text-transform: capitalize;
     transition: all 0.4s ease;
     display: inline-block;
-    border: 1px solid #ee5f01;
+    border: 1px solid #af261c;
     margin-right: 4px;
 }
 .quickTech-btn:last-child{
@@ -441,8 +441,8 @@ big {
 }
 .quickTech-btn:hover,
 .quickTech-btn.theme-2:hover{
-	color: #ee5f01;
-	box-shadow:0 10px 10px -8px #ee5f01;
+	color: #af261c;
+	box-shadow:0 10px 10px -8px #af261c;
 }
 .vc_wp_custommenu.wpb_content_element{
 	margin:0 !important;

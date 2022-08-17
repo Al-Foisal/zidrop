@@ -41,7 +41,7 @@ Version: 62.0.0
 	font-size:14px;
 }
 .topbar .single-contact i {
-	color: #ee5f01;
+	color: #af261c;
 	margin-right: 10px;
 	font-size: 18px;
 	position: relative;
@@ -67,7 +67,7 @@ Version: 62.0.0
     line-height: initial;
     background: #fff;
 	font-size:14px;
-    color: #ee5f01;
+    color: #af261c;
     border: 1px solid transparent;
 }
 .topbar-right .button .quickTech-btn:hover{
@@ -92,7 +92,7 @@ Version: 62.0.0
 	color: #ccc;
 }
 .topbar .social-icons li a:hover{
-	color:#ee5f01;
+	color:#af261c;
 }
 
 /* Middle header */
@@ -172,7 +172,7 @@ Version: 62.0.0
 	position: absolute;
 	width: 0;
 	height: 4px;
-	background: #ee5f01;
+	background: #af261c;
 	bottom: -2px;
 	opacity: 0;
 	visibility: hidden;
@@ -348,7 +348,7 @@ Version: 62.0.0
     width: 118px;
     height: 101%;
     transform: skew(-26deg);
-    background: #ee5f01;
+    background: #af261c;
     z-index: -1;
 }
 .right-bar ul li {
@@ -371,7 +371,7 @@ Version: 62.0.0
     border-radius: 100%;
 }
 .right-bar .right-nav li a:hover {
-    color: #ee5f01;
+    color: #af261c;
     border-color: transparent;
     background: #fff;
 }
@@ -449,7 +449,7 @@ Version: 62.0.0
 }
 .search-top .search-form button:hover{
 	color:#fff;
-	background:#ee5f01;
+	background:#af261c;
 }
 .search-top .search-top.active .search i:before{
 	content:"\f00d";
@@ -466,7 +466,7 @@ Version: 62.0.0
     overflow: auto;
     transform: translateX(100%);
     top: 0;
-	border-left:3px solid #ee5f01;
+	border-left:3px solid #af261c;
     background: #fff;
     /* z-index: 6000; */
     -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
@@ -504,7 +504,7 @@ Version: 62.0.0
 	background: #000;
 }
 .sidebar-popup .cross .btn:hover{
-	background:#ee5f01;
+	background:#af261c;
 	color:#fff;
 }
 .sidebar-popup .logo {
@@ -617,7 +617,7 @@ Version: 62.0.0
 	color:#000;
 }
 .header.style2 .topbar .social-icons li:hover a{
-	color:#ee5f01;
+	color:#af261c;
 }
 .header.style2 .img-logo {
     margin-top: 0px;
@@ -647,7 +647,7 @@ Version: 62.0.0
 	color:#E7A014;
 }
 .header.style2 .nav li a::before{
-	background:#ee5f01;
+	background:#af261c;
 }
 .header.style2 .nav li .sub-menu li a{
 	color:#666;
@@ -772,7 +772,7 @@ Version: 62.0.0
 }
 .single-news .news-meta li i {
     margin-right: 5px;
-    color: #ee5f01;
+    color: #af261c;
 }
 .single-news .news-meta .author span{
 	display:inline-block;
@@ -785,7 +785,7 @@ Version: 62.0.0
     font-size: 20px;
 }
 .single-news .news-title:hover a{
-	color:#ee5f01;
+	color:#af261c;
 }
 .single-news .news-text {
     margin-top: 18px;
@@ -803,7 +803,7 @@ Version: 62.0.0
 	border:1px solid transparent;
 }
 .single-news .more:hover{
-	background:#ee5f01;
+	background:#af261c;
 	color:#fff;
 }
 .single-news .more i {
@@ -848,7 +848,7 @@ Version: 62.0.0
     padding: 0;
 }
 .blog-detail .news-meta li i {
-    color: #ee5f01;
+    color: #af261c;
     margin-right:5px;
 }
 .blog-single h5,
@@ -895,7 +895,7 @@ Version: 62.0.0
 	z-index:-1;
 }
 .blog-single .blog-detail blockquote a {
-    background: #ee5f01;
+    background: #af261c;
     color: #fff;
     padding: 4px 20px;
     margin-top: 16px;
@@ -972,7 +972,7 @@ Version: 62.0.0
 }
 .posts_nav a:hover{
 	border-color:transparent;
-	background:#ee5f01;
+	background:#af261c;
 }
 .posts_nav .post-left i {
 	padding-right: 5px;
@@ -1108,7 +1108,7 @@ blockquote {
     width: 40px;
     height: 2px;
     bottom: 0;
-    background: #ee5f01;
+    background: #af261c;
 	display: block;
 }
 
@@ -1247,7 +1247,7 @@ blockquote {
 	border-radius:0px;
 }
 .blog-sidebar .subscribe-form form button {
-	background: #ee5f01;
+	background: #af261c;
 	position: relative;
 	border: none;
 	box-shadow: none;
@@ -1312,7 +1312,7 @@ blockquote {
 .error-inner h4 {
     font-size: 110px;
     line-height: 100px;
-    color: #ee5f01;
+    color: #af261c;
 }
 .error .error-image{
 	margin-bottom:30px;
@@ -1330,7 +1330,7 @@ blockquote {
     margin: 15px 0;
 }
 .error .error-inner h2 span{
-	color:#ee5f01;
+	color:#af261c;
 }
 .error .error-inner p {
     font-size: 15px;
@@ -1444,7 +1444,7 @@ blockquote {
 	display: inline-block;
 }
 .breadcrumbs .bread-menu li a:hover{
-	color:#ee5f01;
+	color:#af261c;
 }
 .breadcrumbs .bread-menu li:last-child{
 	margin:0;
@@ -1479,7 +1479,7 @@ blockquote {
     font-size: 0px;
     height: 12px;
     left: auto;
-    background: #ee5f01;
+    background: #af261c;
     top: 6px;
     border-radius: 100%;
     border: 2px solid #fff;
@@ -1495,7 +1495,7 @@ blockquote {
     position: relative;
 }
 .breadcrumbs.bread-blog .bread-menu ul li a:hover{
-	color:#ee5f01 !important;
+	color:#af261c !important;
 }
 /*====================================
 	End BreadCrumbs CSS
@@ -1570,7 +1570,7 @@ blockquote {
 .preloader-spinner {
     -webkit-animation: 1s ease-out 0s normal none infinite running pulsate;
     animation: 1s ease-out 0s normal none infinite running pulsate;
-    border: 10px solid #ee5f01;
+    border: 10px solid #af261c;
     border-radius: 40px;
     display: block;
     height: 40px;
@@ -1709,7 +1709,7 @@ blockquote {
     width: auto;
 }
 .page-links span.current,.page-links a:hover {
-    background: #ee5f01;
+    background: #af261c;
     color: #fff;
 }
 .blog-single ul li {
@@ -1724,7 +1724,7 @@ blockquote {
     top: 50%;
     width: 8px;
     height: 8px;
-    background: #ee5f01;
+    background: #af261c;
     border-radius: 100%;
     margin-top: -4px;
 }
@@ -1748,13 +1748,13 @@ p.has-large-font-size {
 	margin-top: 30px;
 }
 .footer .single-widget h3 {
-    color: #fff;
+    color: #0a0603;
     font-size: 20px;
     text-transform: uppercase;
     margin-bottom: 12px;
 }
 .footer p {
-	color: #fff;
+	color: #0a0603;
 	font-size: 16px;
 }
 .footer-about {
@@ -1764,7 +1764,7 @@ p.has-large-font-size {
     margin-bottom: 15px;
 }
 .footer-about .text-logo a {
-    color: #fff;
+    color: #0a0603;
     font-size: 20px;
     font-weight: 700;
 }
@@ -1774,10 +1774,10 @@ p.has-large-font-size {
 .footer-about .button .quickTech-btn {
     background: #000;
     margin-top: 20px;
-    color: #fff;
+    color: #0a0603;
 }
 .footer-about .button .quickTech-btn:hover{
-	background:#fff;
+	background:#0a0603;
 	color:#000
 }
 /* Footer Link */
@@ -1792,7 +1792,7 @@ p.has-large-font-size {
 }
 .footer .f-link ul li a {
     display: inline-block;
-    color: #fff;
+    color: #0a0603;
     padding: 0;
     margin: 0;
     background: transparent;
@@ -1803,7 +1803,7 @@ p.has-large-font-size {
 .footer .f-link ul li a::after {
     content: '';
     position: absolute;
-    background: #fff;
+    background: #0a0603;
     width: 0;
     height: 2px;
     bottom: 5px;
@@ -1823,7 +1823,7 @@ p.has-large-font-size {
 }
 /* Footer Newsletter */
 .footer .footer-newsletter form {
-    background: #fff;
+    background: #0a0603;
     padding: 15px;
     line-height: initial;
 	position:relative;
@@ -1840,7 +1840,7 @@ p.has-large-font-size {
 	border-radius:0px;
 }
 .footer .footer-newsletter form button {
-	background: #ee5f01;
+	background: #af261c;
 	background-color: ;
 	position: absolute;
 	right: 0;
@@ -1885,7 +1885,7 @@ p.has-large-font-size {
 	margin-bottom: 20px;
 }
 .footer .single-f-news .post-meta i {
-    color: #ee5f01;
+    color: #af261c;
 }
 .footer .address-widget-list li {
     display: block;
@@ -1916,7 +1916,7 @@ p.has-large-font-size {
 }
 .social-widget-list li i {
     background-color: #fff;
-    color: #ed1e26;
+    color: #af251b;
     width: 50px;
     height: 50px;
     line-height: 50px;
@@ -1978,7 +1978,7 @@ p.has-large-font-size {
 	text-transform:uppercase;
 }
 .footer .copyright-content a:hover{
-	color:#ee5f01;
+	color:#af261c;
 }
 .newsletter {
     border-width: 2px;
@@ -2036,7 +2036,7 @@ p.has-large-font-size {
     margin-bottom: 10px;
     font-weight: 400;
     display: inline-block;
-    background: #ee5f01;
+    background: #af261c;
     padding: 8px 20px;
     font-size: 16px;
 }
@@ -2045,7 +2045,7 @@ p.has-large-font-size {
     position: absolute;
     left: 0;
     bottom: -8px;
-    border-top: 8px solid #ee5f01;
+    border-top: 8px solid #af261c;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
 }
@@ -2063,7 +2063,7 @@ p.has-large-font-size {
     left: 0;
     width: 50px;
     height: 6px;
-    background: #ee5f01;
+    background: #af261c;
     bottom: -3px;
 }
 .hero-slider .hero-text .p-text{
@@ -2099,7 +2099,7 @@ p.has-large-font-size {
     width: 50px;
     height: 60px;
     line-height: 60px;
-    background: #ee5f01;
+    background: #af261c;
     color: #fff;
     position: absolute;
     margin: 0;
@@ -2177,7 +2177,7 @@ p.has-large-font-size {
     line-height: 65px;
 }
 .hero-agency .hero-text h1 span {
-    color: #ee5f01;
+    color: #af261c;
 }
 .hero-agency .hero-text h4 {
     font-weight: 500;
@@ -2297,7 +2297,7 @@ p.has-large-font-size {
     transition: all 0.3s ease;
 }
 .hero-agency .a-feature:hover{
-	border-top-color:#ee5f01;
+	border-top-color:#af261c;
 	-webkit-transform:scale(1.05);
 	-moz-transform:scale(1.05);
 	transform:scale(1.05);
@@ -2311,7 +2311,7 @@ p.has-large-font-size {
     font-size: 40px;
     top: -30px;
     background: #fff;
-    color: #ee5f01;
+    color: #af261c;
     left: 50%;
 }
 .hero-agency .a-feature h4 {
@@ -2351,7 +2351,7 @@ p.has-large-font-size {
 }
 .single-feature:hover,
 .single-feature.active{
-	border-top-color:#ee5f01;
+	border-top-color:#af261c;
 }
 .single-feature:hover{
 	transform:scale(1.03);
@@ -2360,7 +2360,7 @@ p.has-large-font-size {
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
 }
 .single-feature .icon-head i{
-	color:#ee5f01;
+	color:#af261c;
 	width:90px;
 	height:90px;
 	line-height:90px;
@@ -2375,7 +2375,7 @@ p.has-large-font-size {
 }
 .single-feature.active .icon-head i,
 .single-feature:hover .icon-head i {
-    background: #ee5f01;
+    background: #af261c;
     color: #fff;
     border-color: transparent;
 }
@@ -2386,7 +2386,7 @@ p.has-large-font-size {
     z-index: 3;
     opacity: 1;
     line-height: 20px;
-    background: #ee5f01;
+    background: #af261c;
     border-radius: 25px;
     left: 50%;
     bottom: 19px;
@@ -2412,7 +2412,7 @@ p.has-large-font-size {
 .single-feature p{
 	font-size: 14px;
 }.quickTech-btn.theme-2 {
-    background: #ee5f01;
+    background: #af261c;
     color: #fff;
     padding: 15px 32px;
 }
@@ -2421,7 +2421,7 @@ p.has-large-font-size {
 }
 .single-feature .button .quickTech-btn {
     background: transparent;
-    color: #ee5f01;
+    color: #af261c;
     padding: 0;
     height: auto;
     box-shadow: none;
@@ -2445,7 +2445,7 @@ p.has-large-font-size {
 .single-feature.active .quickTech-btn i,
 .single-feature:hover .quickTech-btn  i{
 	color:#fff;
-	background:#ee5f01;
+	background:#af261c;
 }
 /*======================================
 	End Features CSS
@@ -2542,7 +2542,7 @@ p.has-large-font-size {
     height: 52px;
     line-height: 52px;
     background: #fff;
-    color: #ee5f01;
+    color: #af261c;
     display: block;
     border-radius: 0px;
     -webkit-transition: all 0.4s ease;
@@ -2563,7 +2563,7 @@ p.has-large-font-size {
     top: 0;
     width: 100%;
     height: 100%;
-    background: #ee5f01;
+    background: #af261c;
     content: "";
     border-radius: 100%;
     -webkit-transition: all 0.4s ease;
@@ -2602,7 +2602,7 @@ p.has-large-font-size {
 }
 .features-main .quickTech-btn.theme-2:hover {
     background: #fff;
-    color: #ee5f01;
+    color: #af261c;
 }
 /*======================================
 	End Features Main CSS
@@ -2656,7 +2656,7 @@ p.has-large-font-size {
     visibility: visible;
 }
 .single-quickTech-price:hover .icon-bg{
-	background:#ee5f01;
+	background:#af261c;
 	color:#fff;
 }
 .single-quickTech-price .quickTech-price-content{
@@ -2676,7 +2676,7 @@ p.has-large-font-size {
 	font-size: 20px;
 }
 .single-quickTech-price h4:hover a{
-	color:#ee5f01;
+	color:#af261c;
 }
 .single-quickTech-price p {
 	font-size: 15px;
@@ -2698,7 +2698,7 @@ p.has-large-font-size {
 	transition:all 0.3s ease;
 }
 .single-quickTech-price:hover .btn{
-	color:#ee5f01;
+	color:#af261c;
 }
 .single-quickTech-price .btn i{
 	margin-right:5px;
@@ -2728,7 +2728,7 @@ p.has-large-font-size {
 	width: 40px;
 	height: 2px;
 	bottom: 0;
-	background: #ee5f01;
+	background: #af261c;
 	display: block;
 }
 .quickTech-price-sidebar .widget ul li {
@@ -2757,7 +2757,7 @@ p.has-large-font-size {
 	font-weight: 400;
 }
 .quickTech-price-sidebar .widget a:hover{
-	color:#ee5f01;
+	color:#af261c;
 }
 /* quickTech-price Details */
 .quickTech-price-content h2 {
@@ -2833,13 +2833,13 @@ p.has-large-font-size {
     margin-top: 5px;
 }
 .call-action .quickTech-btn {
-    background: #ee5f01;
+    background: #af261c;
     color: #fff;
 	box-shadow:0 10px 10px -8px rgba(0, 0, 0, 0.5);
 }
 .call-action .quickTech-btn:hover{
 	background:#fff;
-	color:#ee5f01;
+	color:#af261c;
 }
 .call-action .call-text {
     z-index: 35;
@@ -2861,7 +2861,7 @@ p.has-large-font-size {
     color: #fff;
     height: 80px;
     line-height: 80px;
-    background: #ee5f01;
+    background: #af261c;
     font-size: 30px;
     margin-top: 40px;
     border: 3px solid #fff;
@@ -2919,7 +2919,7 @@ p.has-large-font-size {
 }
 #portfolio-nav li.active, 
 #portfolio-nav li:hover {
-    color: #ee5f01;
+    color: #af261c;
 }
 .single-portfolio .portfolio-head.overlay::before {
 	opacity: 0;
@@ -3000,7 +3000,7 @@ p.has-large-font-size {
     line-height: 51px;
     text-align: center;
     color: #fff;
-    background: #ee5f01;
+    background: #af261c;
     display: block;
     position: absolute;
     top: 50%;
@@ -3017,7 +3017,7 @@ p.has-large-font-size {
 }
 .single-portfolio .more:hover{
 	background:#fff;
-	color:#ee5f01;
+	color:#af261c;
 }
 .single-portfolio:hover .more{
 	opacity:1;
@@ -3090,7 +3090,7 @@ p.has-large-font-size {
 .pf-details .portfolio-meta ul li i {
 	position: absolute;
 	left: 20px;
-	color: #ee5f01;
+	color: #af261c;
 	font-size: 25px;
 	top: 50%;
 	margin-top: -12.5px;
@@ -3180,7 +3180,7 @@ p.has-large-font-size {
     width: 50px;
     height: 60px;
     line-height: 60px;
-    background: #ee5f01;
+    background: #af261c;
     color: #fff;
     position: absolute;
     margin: 0;
@@ -3301,7 +3301,7 @@ p.has-large-font-size {
 	font-weight:400;
 }
 .testimonial-inner .t-right .quote {
-    color: #ee5f01;
+    color: #af261c;
     float: right;
     z-index: 3;
     line-height: initial;
@@ -3320,7 +3320,7 @@ p.has-large-font-size {
 }
 .testimonial-slider .owl-controls .owl-dot span {
     background: transparent;
-    border: 4px solid #ee5f01;
+    border: 4px solid #af261c;
     width: 13px;
     height: 13px;
     margin: 0;
@@ -3332,7 +3332,7 @@ p.has-large-font-size {
 .testimonial-slider .owl-controls .owl-dot.active span {
     background: transparent;
     border-color: transparent;
-    background: #ee5f01;
+    background: #af261c;
 }
 /*======================================
 	End Testimonial CSS
@@ -3378,7 +3378,7 @@ p.has-large-font-size {
 	transition:all 0.3s ease;
 }
 .single-counter:hover .icon:before{
-	background:#ee5f01;
+	background:#af261c;
 	left:0;
 	top:0;
 	opacity:0;
@@ -3400,7 +3400,7 @@ p.has-large-font-size {
 	transition:all 0.3s ease;
 }
 .single-counter:hover .icon i{
-	background:#ee5f01;
+	background:#af261c;
 	color:#fff;
 }
 .single-counter h3 {
@@ -3413,7 +3413,7 @@ p.has-large-font-size {
 }
 .single-counter h3 span {
     display: inline-block;
-    color: #ee5f01;
+    color: #af261c;
     margin-left: 5px;
 }
 .single-counter p {
@@ -3472,7 +3472,7 @@ p.has-large-font-size {
     box-shadow: 0px 0px 10px #0000001a;
 }
 .single-team .team-arrow a:hover {
-	background:#ee5f01;
+	background:#af261c;
 	color:#fff !important;
 }
 .single-team .t-content {
@@ -3506,7 +3506,7 @@ p.has-large-font-size {
     height: 2px;
     width: 50px;
     margin-left: -25px;
-    background: #ee5f01;
+    background: #af261c;
 }
 .single-team .t-content .text {
 	font-size: 14px;
@@ -3559,7 +3559,7 @@ p.has-large-font-size {
     display: inline-block;
 }
 .single-team .team-social li a:hover{
-	color:#ee5f01;
+	color:#af261c;
 }
 .team-grid .single-team{
 	margin-top:30px;
@@ -3584,7 +3584,7 @@ p.has-large-font-size {
 }
 .team-slider .owl-controls .owl-dot span {
     background: transparent;
-    border: 4px solid #ee5f01;
+    border: 4px solid #af261c;
     width: 13px;
     height: 13px;
     margin: 0;
@@ -3596,7 +3596,7 @@ p.has-large-font-size {
 .team-slider .owl-controls .owl-dot.active span {
     background: transparent;
     border-color: transparent;
-    background: #ee5f01;
+    background: #af261c;
 }
 
 .team-archive .single-team {
@@ -3631,7 +3631,7 @@ p.has-large-font-size {
     width: 45px;
     height: 45px;
     line-height: 45px;
-    background: #ee5f01;
+    background: #af261c;
     color: #fff;
     margin: 0;
     padding: inherit;
@@ -3673,7 +3673,7 @@ p.has-large-font-size {
 .blog-latest .single-news .quickTech-btn {
     z-index: 333;
     position: absolute;
-    background: #ee5f01;
+    background: #af261c;
     padding: 12px 20px;
     color: #fff;
     opacity: 0;
@@ -3752,7 +3752,7 @@ p.has-large-font-size {
     width: 50px;
     height: 60px;
     line-height: 60px;
-    background: #ee5f01;
+    background: #af261c;
     color: #fff;
     position: absolute;
     margin: 0;
@@ -3838,7 +3838,7 @@ p.has-large-font-size {
     width: 100%;
 }
 .partner-slider.owl-carousel .owl-nav div {
-    color: #ee5f01 !important;
+    color: #af261c !important;
     position: absolute;
     background: transparent !important;
     margin: 0;
@@ -3896,7 +3896,7 @@ p.has-large-font-size {
 	font-size: 12px;
 	position: absolute;
 	right: -45px;
-	background: #ee5f01;
+	background: #af261c;
 	font-weight: 600;
 	padding: 1px 5px;
 	border-radius: 100%;
@@ -3913,7 +3913,7 @@ p.has-large-font-size {
 	content: "";
 	border-left: 0px solid transparent;
 	border-right: 20px solid transparent;
-	border-top: 10px solid #ee5f01;
+	border-top: 10px solid #af261c;
 	margin-left: -13px;
 }
 .single-skill .progress {
@@ -3973,7 +3973,7 @@ p.has-large-font-size {
     transition: all 0.4s ease;
     text-align: center;
     margin-bottom: 0px;
-    color: #ee5f01;
+    color: #af261c;
     border-radius: 100%;
     background: #fff;
     margin-top: 10px;
@@ -4002,7 +4002,7 @@ p.has-large-font-size {
 .single-pricing .price span {
     font-size: 48px;
     font-weight: 700;
-    color: #ee5f01;
+    color: #af261c;
 }
 .single-pricing .price span b {
     font-size: 25px;
@@ -4247,7 +4247,7 @@ p.has-large-font-size {
     position: absolute;
     right: 15px;
     z-index: 33;
-    color: #ee5f01;
+    color: #af261c;
     top: 12px;
 }
 .contact-form-area .form-group.button {
@@ -4313,7 +4313,7 @@ p.has-large-font-size {
 }
 .contact-form-area.faq-form .form-group.button .quickTech-btn:hover{
 	background:#fff;
-	color:#ee5f01;
+	color:#af261c;
 }
 /* Servic Form  */
 .contact-form-area.quickTech-price {
@@ -4547,7 +4547,7 @@ p.has-large-font-size {
 	width: 80px;
 	z-index: 333;
 	height: 80px;
-	color: #ee5f01;
+	color: #af261c;
 	font-size: 30px;
 	text-align: center;
 	line-height: 80px;
@@ -4557,7 +4557,7 @@ p.has-large-font-size {
 	border-radius: 100%;
 }
 .modern-img-feature .video-play:hover a{
-	background:#ee5f01;
+	background:#af261c;
 	color:#fff;
 }
 .side.overlay:before {
@@ -4587,7 +4587,7 @@ p.has-large-font-size {
     line-height: 35px;
 }
 .small-list-feature ul li i {
-    color: #ee5f01;
+    color: #af261c;
     margin-right: 10px;
     border: 1px solid;
     width: 25px;
@@ -4600,7 +4600,7 @@ p.has-large-font-size {
 }
 .small-list-feature ul li:hover i{
 	border-radius:100%;
-	background:#ee5f01;
+	background:#af261c;
 	color:#fff;
 	border-color:transparent;
 }
@@ -4650,7 +4650,7 @@ p.has-large-font-size {
 	margin-bottom: 10px;
 }
 .success .mail h2 span {
-	color: #ee5f01;
+	color: #af261c;
 }
 .success .mail .quickTech-btn {
 	margin-top: 20px;
@@ -4706,7 +4706,7 @@ p.has-large-font-size {
 
 input.trackBtn {
     width: 10%;
-    background: #ee5f01;
+    background: #af261c;
     border: none;
     color: #fff;
     padding: 17px;
@@ -4772,17 +4772,17 @@ input.trackBtn {
 .tracking-btn-box input[type="text"] {
     width: 80%;
     padding-left: 15px;
-    border: 1px solid #ee5f01;
+    border: 1px solid #af261c;
     height: 45px;
 }
 .tracking-btn-box input[type="text"]:focus {
-    border-color: #ee5f01;
+    border-color: #af261c;
     outline: 0;
-    box-shadow: 0 0 0 .2rem #ee5f0152;
+    box-shadow: 0 0 0 .2rem #af261c52;
 }
 input.trackBtn {
     width: 19%;
-    background: #ee5f01;
+    background: #af261c;
     border: none;
     color: #fff;
     padding: 15px;
@@ -4802,7 +4802,7 @@ input.trackBtn {
     line-height: 1.5;
     border-radius: 5px;
     box-shadow: 0 0 8px 0 #00000030 !important;
-    color: #ee5f01;
+    color: #af261c;
     font-weight: 600;
     margin-top: 25px;
 }
@@ -4823,7 +4823,7 @@ input.trackBtn {
     color: #979797;
 }
 .quickTech-btn.login {
-    background-color: #ed1e26;
+    background-color: #af251b;
     color: #fff;
     font-size: 18px;
 }
@@ -4847,7 +4847,7 @@ input.trackBtn {
 }
 .bg-rl {
     min-height: 650px;
-    background-color: #ed1e26;
+    background-color: #af251b;
 }
 .login-panel .form-group .form-control, 
 .mbl-register-panel .form-group .form-control, 
@@ -4886,7 +4886,7 @@ a.text-red {
     box-shadow: 1px 1px 10px #ddd;
 }
 .login-btn {
-    background-color: #ed1e26;
+    background-color: #af251b;
 }
 
 .footer_logo {
@@ -4928,7 +4928,7 @@ a.text-red {
     transition: all 0.3s ease-in-out;
 }
 .custom-dropdown-menu li:hover {
-    background-color: #ed1c24;
+    background-color: #af251b;
 }
 .custom-dropdown-menu li a {
     padding: 8px 25px !important;
@@ -4952,18 +4952,18 @@ a.text-red {
 .form-group .login-btn {
     width: 100%;
     padding: 10px 0px;
-    background: #ed2027;
+    background: #af251b;
     color: #fff;
     font-size: 16px;
     font-weight: 600;
     border: none;
     transition: all 0.3s ease-out;
-    border: 1px solid #ed2027;
+    border: 1px solid #af251b;
 }
 .form-group .submit {
     width: auto;
     padding: 10px 20px;
-    background: #ed1e26;
+    background: #af251b;
     color: #fff;
     text-transform: uppercase;
     font-size: 16px;
@@ -4974,7 +4974,7 @@ a.text-red {
 }
 .form-group button:hover {
     background: #ffffff;
-    color: #ed2027;
+    color: #af251b;
 }
 .mobile-login-area input {
     padding: 5px 10px;
@@ -5046,19 +5046,19 @@ a.text-red {
     top: 25px;
     right: 29px;
     z-index: 9;
-    background-color: #495057;
+    background-color: #090502;
     padding: 20px;
     border-radius: 10px;
     width: 350px;
 }
 .mobile-login .nav-link {
-    color: #ed2027;
+    color: #af251b;
     border-bottom-color: #fff;
 }
 .mobile-login .nav-item.show .nav-link, 
 .mobile-login .nav-link.active {
     color: #fff;
-    background-color: #495057;
+    background-color: #090502;
     border-color: #ddd #ddd transparent #fff;
 }
 .home-container {
@@ -5146,21 +5146,21 @@ a.text-red {
     padding: 7px 15px;
 }
 .btn-border {
-    color: #ed1c24;
+    color: #af251b;
     background-color: transparent;
-    border: 1px solid #ed1c24;
+    border: 1px solid #af251b;
     border-radius: 30px;
     text-transform: uppercase;
 }
 .btn-common {
-    background-color: #ed1c24;
+    background-color: #af251b;
     position: relative;
     z-index: 1;
     text-transform: uppercase;
     border-radius: 50px;
     color: #fff;
     padding: 12px 25px;
-    border: 1px dashed #ed1c24;
+    border: 1px dashed #af251b;
 }
 .quicktech-traking {
     background: lightblue !important;
@@ -5172,7 +5172,7 @@ a.text-red {
     height: 0;
 }
 .btn-common:hover {
-    color: #ed1c24;
+    color: #af251b;
     background-color: #fff;
 }
 .info-text p {

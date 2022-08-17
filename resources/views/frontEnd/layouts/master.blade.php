@@ -160,12 +160,12 @@
                             <div class="single-widget footer_contact widget">
                                 <h3 class="widget-title">Contact</h3>
                                 <p>Don’t miss any updates of our Offer</p>
-                                <div class="newsletter">
+                                <div class="newsletter"  style="border-color: #0a0603;">
                                     <form action="" class="d-flex flex-nowrap">
                                         <div class="form-group h-100 m-0 p-2 w-100">
-                                            <input type="email" placeholder="Email Address" class="form-control px-1 bg-transparent h-100 border-0 without-focus" />
+                                            <input type="email" placeholder="Email Address" class="form-control px-1 bg-transparent h-100 border-0 without-focus"/>
                                         </div>
-                                        <button type="button" class="bg-white btn font-20 font-light m-1">Subscribe</button>
+                                        <button type="button" class=" btn font-20 font-light m-1" style="background-color: #0a0603;color:white">Subscribe</button>
                                     </form>
                                 </div>
                             </div>
@@ -197,10 +197,10 @@
                                 
                                 
                                 <ul class="address-widget-list">
-                                    <li class="footer-mobile-number"><i class="fa fa-phone"></i>+8809611677587</li>
-                                    <li class="footer-mobile-number"><i class="fa fa-mobile-phone"></i></i>+8801711132240</li>
-                                    <li class="footer-mobile-number"><i class="fa fa-envelope"></i> info@zuri.express</li>
-                                    <li class="footer-mobile-number"><i class="fa fa-map-marker"></i>Shanti Bhaban House No. 156, 1st Floor, Begum Rokeya Soroni,Senpara Parbata, Mirpur-10, Dhaka-1216</li>
+                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-phone" style="color: #0a0603;"></i>+8809611677587</li>
+                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-mobile-phone" style="color: #0a0603;"></i></i>+8801711132240</li>
+                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-envelope" style="color: #0a0603;"></i> info@zuri.express</li>
+                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-map-marker" style="color: #0a0603;"></i>Shanti Bhaban House No. 156, 1st Floor, Begum Rokeya Soroni,Senpara Parbata, Mirpur-10, Dhaka-1216</li>
                                 </ul>
                                 
                                 
@@ -210,7 +210,7 @@
                         <div class="col-sm-5">
                             <div class="align-items-center copyright-content d-flex justify-content-center">
                                 <!-- Copyright Text -->
-                                <p>© Copyright Zuri Express 2021.</p>
+                                <p style="color: #0a0603;">© Copyright Zidrop Logistics 2021.</p>
                             </div>
                         </div>
                
@@ -227,23 +227,6 @@
                             </div>
                         </div>
                     </div>
-
-<br>
-<p>Merchant App
-<a href="/Zuri Express.apk" download="Zuri Express">
-  <img src="/google_app.png" alt="Zuri Express Marchant" width="180" height="142">
-</p>
-
-<p>Rider App--->
-<a href="/Zuri Express Rider.apk" download="Zuri Express Rider">
-  <img src="/google_app.png" alt="Zuri Express Rider" width="180" height="142">
-</p>  
-</a>  
-<br>
-<br>
-<br>
-<br>
-                    
                 </div>
 
             </div>

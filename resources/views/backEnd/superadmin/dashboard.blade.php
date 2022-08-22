@@ -28,7 +28,7 @@
                     <div class="manage-button">
                       <div class="body-title">
                         <h5><b>Parcel Overall Status</b></h5>
-                        <a href="{{url('https://zuri.express/editor/parcel/all')}}">   <div class="card p-2" style="width: -moz-fit-content;
+                        <a href="{{url('editor/parcel/all')}}">   <div class="card p-2" style="width: -moz-fit-content;
                                         width: fit-content;"><b>All Parcel</b></div></a>
                       </div>
                     </div>

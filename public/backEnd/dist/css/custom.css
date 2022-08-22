@@ -852,12 +852,12 @@
 }
 
 [class*=sidebar-dark-] {
-    background-color: #135d30;
+    background-color: #514A44;
 }
 
 .navbar-white {
     margin-left: 190px;
-    background: rgb(19 93 48);
+    background: #514A44;
     padding: 0;
 }
 ul.nav.nav-treeview {
@@ -872,7 +872,7 @@ td ul {
     padding: 0;
 }
 thead tr th {
-    background-color: #135d30;
+    background-color: #514A44;
     border: 1px solid;
     color: #fff;
 }

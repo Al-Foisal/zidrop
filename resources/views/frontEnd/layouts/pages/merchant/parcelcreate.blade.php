@@ -120,6 +120,18 @@
 											</div>
 										</div>
 
+									    <div class="col-sm-6">
+											<select type="text"  class="select2 form-control{{ $errors->has('payment_option') ? ' is-invalid' : '' }}" value="{{ old('payment_option') }}" name="payment_option" placeholder="Delivery Area" required="required">
+											    <option value="">Payment Option</option>
+												<option value="1">Prepaid</option>
+												<option value="2">Pay on Delivery</option>
+											</select>    
+											 @if ($errors->has('payment_option'))
+					                            <span class="invalid-feedback">
+					                              <strong>{{ $errors->first('payment_option') }}</strong>
+					                            </span>
+					                          @endif
+										</div>
 										<div class="col-sm-6">
 										    <div class="form-group">
 												<input type="number"  class="calculate cod form-control{{ $errors->has('cod') ? ' is-invalid' : '' }}" value="{{ old('cod') }}" name="cod" min="0" placeholder="Cash Collection Amount">

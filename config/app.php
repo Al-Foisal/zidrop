@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'Asia/Dhaka',
+    'timezone' => 'Africa/Lagos',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,6 +166,7 @@ return [
         Milon\Barcode\BarcodeServiceProvider::class,
         Riskihajar\Terbilang\TerbilangServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Unicodeveloper\Paystack\PaystackServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -237,7 +238,7 @@ return [
         "BanglaConverter"=> App\Converter\enandbn\BanglaConverter::class,
         'Terbilang' => Riskihajar\Terbilang\Facades\Terbilang::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-
+        'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
     ],
 
 ];

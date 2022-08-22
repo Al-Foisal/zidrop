@@ -131,6 +131,13 @@ Route::group(['namespace' => 'FrontEnd', 'middleware' => ['merchantauth']], func
     // password change routes
     Route::get('merchant/password/change', 'MerchantController@index');
     Route::post('auth/merchant/password/change','MerchantController@changepassword');
+    
+    // top up
+    Route::get('merchant/get/topup', 'PaymentController@topup');
+    Route::get('merchant/get/verify-payment/{reference}', 'PaymentController@verifypayment');
+    Route::post('merchant/get/store-payment', 'PaymentController@storePayment');
+    // Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
+    // Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 });
 
 Route::group(['as' => 'superadmin.', 'prefix' => 'superadmin', 'namespace' => 'Superadmin', 'middleware' => ['auth', 'superadmin']], function () {
@@ -152,7 +159,7 @@ Route::group(['as' => 'superadmin.', 'prefix' => 'superadmin', 'namespace' => 'S
 Route::get('search_data/{keyword}', 'search\liveSearchController@SearchData');
 Route::get('search_data', 'search\liveSearchController@SearchWithoutData');
 // Ajax Route
-Route::get('/ajax-product-subcategory', 'editor\productController@getSubcategory');
+// Route::get('/ajax-product-subcategory', 'editor\productController@getSubcategory');
 
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'author']], function () {
@@ -284,6 +291,9 @@ Route::group(['as' => 'editor.', 'prefix' => 'editor', 'namespace' => 'Editor', 
 
     Route::post('/parcel/update', 'ParcelManageController@parcelupdate');
     
+    //merchant payment
+    Route::get('merchant/payment','ParcelManageController@merchantpaymentlist');
+    Route::post('merchant/confirm-payment','ParcelManageController@merchantconfirmpayment');
     // parcel Manage
     Route::get('/new/pickup', 'PickupManageController@newpickup');
     Route::get('/pending/pickup', 'PickupManageController@pendingpickup');

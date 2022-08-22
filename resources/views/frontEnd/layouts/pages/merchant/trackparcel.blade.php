@@ -16,7 +16,8 @@
 									<p>{{date('M d, Y', strtotime($trackInfo->created_at))}}</p>
 								</div>
 								<div class="tracking-step-right">
-									<p>{{$trackInfo->notes? $trackInfo->notes->title: ''}}</p>
+									<p>{{$trackInfo->note}}</p>
+									<p>{{$trackInfo->note}}</p>
 								</div>
 							</div>
 							@endforeach

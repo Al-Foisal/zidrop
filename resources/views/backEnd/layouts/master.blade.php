@@ -70,7 +70,7 @@
       
          <!-- nav item end -->
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{url('https://zuri.express/superadmin/dashboard')}}" class="nav-link" title="Dashboard">
+          <a href="{{url('superadmin/dashboard')}}" class="nav-link" title="Dashboard">
            <i class="fa fa-home" style="font-size:27px"></i>
           </a>
         </li>
@@ -80,7 +80,7 @@
       
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{url('/')}}"  class="nav-link"> <i class="fas fa-calendar-alt"></i> <?php echo "" . date("l"); ?>,  <i class=""></i>  <?php echo date("d M Y"); ?> ,  <?php
-date_default_timezone_set("Asia/Dhaka");
+date_default_timezone_set("Africa/Lagos");
 echo " " . date("h:i:sa");
 ?> <span id="time" class="time"></span></a>
       </li>
@@ -95,7 +95,7 @@ echo " " . date("h:i:sa");
       
       
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{url('https://zuri.express/editor/parcel/all')}}" class="nav-link" title="Dashboard">
+          <a href="{{url('editor/parcel/all')}}" class="nav-link" title="Dashboard">
            <i class="fas fa-gift" style="font-size:17px"> All Parcel</i>
           </a>
         </li>
@@ -139,7 +139,7 @@ echo " " . date("h:i:sa");
        <!-- nav item end -->
         <li class="nav-item d-none d-sm-inline-block">
 
-         <a href="{{url('https://zuri.express/webmail')}}" title=" Open Web Mail" target="_blank"  class="nav-link" ><i class="fa fa-envelope"></i></a>
+         <a href="{{url('webmail')}}" title=" Open Web Mail" target="_blank"  class="nav-link" ><i class="fa fa-envelope"></i></a>
            
         </li>          
 
@@ -566,15 +566,9 @@ echo " " . date("h:i:sa");
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link">&nbsp;&nbsp;
-                <i class="fa fa-plus"></i>&nbsp;
-                    <p> Add</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="nav-link">&nbsp;&nbsp;
+                <a href="{{ url('editor/merchant/payment') }}" class="nav-link">&nbsp;&nbsp;
                  <i class="fa fa-gears"></i>&nbsp;
-                    <p>Manage</p>
+                    <p>Manage Payment</p>
                 </a>
               </li>
             </ul>
@@ -832,13 +826,22 @@ echo " " . date("h:i:sa");
 </script>
 <script>
   function percelDelivery(that) {
+    if (that.value == "6") {
+            $('.partialpayment').show();
+        } else {
+          $('.partialpayment').hide();
+        }
+    }
+</script>
+{{-- <script>
+  function percelDelivery(that) {
     if (that.value == "4") {
             document.getElementsByClassName("customerpaid").style.display = "block";
         } else {
             document.getElementsByClassName("customerpaid").style.display = "none";
         }
     }
-</script>
+</script> --}}
 <script>
     function myPrintFunction() {
         window.print();

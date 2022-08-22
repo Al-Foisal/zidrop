@@ -343,6 +343,11 @@
                                                       <input type="text" class="form-control" value="{{old('customerpay')}}" id="customerpay" name="customerpay"  placeholder="customer pay" /><br />
                                                   </div>
                                                 </div>
+                                                <div class="form-group">
+                                                  <div class="partialpayment" style="display: none;">
+                                                      <input type="text" class="form-control" value="{{old('partial_payment')}}" id="partial_payments" name="partial_payment"  placeholder="Partial pay" /><br />
+                                                  </div>
+                                                </div>
                                                 <!-- form group end -->
                                                 <div class="form-group">
                                                   <button class="btn btn-success">Update</button>

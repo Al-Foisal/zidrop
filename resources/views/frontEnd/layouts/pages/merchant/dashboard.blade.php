@@ -117,7 +117,7 @@
         </div>
     </section>
 
-
+{{-- 
 
     <form id="paymentForm">
         <div class="form-group">
@@ -168,5 +168,5 @@
 
             handler.openIframe();
         }
-    </script>
+    </script> --}}
 @endsection

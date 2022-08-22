@@ -156,6 +156,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{url('merchant/get/topup')}}">
+                           <i class="fa fa-credit-card"></i>
+                            Topup my Wallet
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{url('/merchant/parcel/create')}}">
                            <i class="fas fa-pen-square"></i>
                             Create Parcel
@@ -179,12 +185,6 @@
                         </a>
                     </li>
                     @endforeach
-                    <li>
-                        <a href="{{url('merchant/get/topup')}}">
-                           <i class="fa fa-credit-card"></i>
-                            Topup my Wallet
-                        </a>
-                    </li>
                     <li>
                         <a href="{{url('merchant/get/payments')}}">
                            <i class="fa fa-credit-card"></i>

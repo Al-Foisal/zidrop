@@ -672,6 +672,7 @@ class ComposerStaticInit66cbe054e3811c4277d2e542015effa8
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\RemainTopup' => __DIR__ . '/../..' . '/app/RemainTopup.php',
         'App\\Role' => __DIR__ . '/../..' . '/app/Role.php',
         'App\\Service' => __DIR__ . '/../..' . '/app/Service.php',
         'App\\Socialmedia' => __DIR__ . '/../..' . '/app/Socialmedia.php',

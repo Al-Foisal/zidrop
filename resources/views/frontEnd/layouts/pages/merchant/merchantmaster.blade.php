@@ -3,6 +3,7 @@
 <head>
     <title>Zidrop Logistics | @yield('title','always on time')</title>
     <!-- Meta tag Keywords -->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
      <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0, minimum-scale=1.0">
     <meta charset="UTF-8" />
     <meta name="keywords" content="Startup Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />

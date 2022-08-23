@@ -12,6 +12,7 @@ use App\Merchantcharge;
 use App\Parcel;
 use App\Parcelnote;
 use App\Parceltype;
+use App\RemainTopup;
 use Auth;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
@@ -466,6 +467,29 @@ class ParcelManageController extends Controller {
         ]);
         $parcel         = Parcel::find($request->hidden_id);
         $parcel->status = $request->status;
+
+        if (($request->status == 4 && $parcel->payment_option == 1) || ($request->status == 6 && $parcel->payment_option == 1)) {
+            $validMerchant = Merchant::find($parcel->merchantId);
+            $remain        = $validMerchant->balance - $parcel->deliveryCharge;
+
+            if ($remain > 0) {
+                $validMerchant->balance = $remain;
+                $validMerchant->save();
+
+                RemainTopup::create([
+                    'parcel_id'     => $parcel->id,
+                    'parcel_status' => $request->status,
+                    'merchant_id'   => $validMerchant->id,
+                    'amount'        => $parcel->deliveryCharge,
+                ]);
+            } else {
+                Toastr::success('message', 'Insufficient wallet balance!');
+
+                return redirect()->back();
+            }
+
+        }
+
         $parcel->save();
 
         if ($request->note) {
@@ -578,7 +602,7 @@ class ParcelManageController extends Controller {
             $parcel->merchantAmount = ($parcel->merchantAmount) - ($codcharge);
             $parcel->merchantDue    = ($parcel->merchantAmount) - ($codcharge);
             $parcel->codCharge      = $codcharge;
-            $parcel->cod      = $parcel->cod+$request->partial_payment;
+            $parcel->cod            = $parcel->cod + $request->partial_payment;
             $parcel->save();
             $validMerchant = Merchant::find($parcel->merchantId);
             $url           = "http://premium.mdlsms.com/smsapi";

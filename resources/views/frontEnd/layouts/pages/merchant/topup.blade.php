@@ -1,7 +1,7 @@
 @extends('frontEnd.layouts.pages.merchant.merchantmaster')
 @section('title', 'Topup')
 @section('content')
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <section class="section-padding">
         <div class="container-fluid">
             <div class="row">
@@ -17,35 +17,25 @@
                             <div class="fraud-search">
                                 <form id="paymentForm">
                                     <div class="row">
-                                        <input type="hidden" id="merchant_id" value="{{ $merchant->id }}">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text"
                                                     class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                                     value="{{ $merchant->companyName }}" readonly>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text"
                                                     class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                                    value="{{ old('email') }}" id="email" placeholder="Customer Email"
-                                                    required>
+                                                    value="a@a.com" id="email" placeholder="Customer Email" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text"
-                                                    class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}"
-                                                    value="Top-up" id="message" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text"
                                                     class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}"
-                                                    value="{{ old('amount') }}" id="amount" placeholder="Amount"
-                                                    required>
+                                                    value="222" id="amount" placeholder="Amount" required>
                                             </div>
                                         </div>
                                         <button type="submit" onclick="payWithPaystack(event)">Submit</button>
@@ -68,7 +58,6 @@
                     <tr>
                         <th>Id</th>
                         <th>Transaction Date</th>
-                        <th>Transaction Description</th>
                         <th>Transaction Amount</th>
                         <th>Payment Reference</th>
                         <th>Payment Status</th>
@@ -76,12 +65,13 @@
                 </thead>
                 <tbody>
                     @foreach ($topup as $key => $item)
-                        <td>{{ ++$key }}</td>
-                        <td>{{ $item->created_at }}</td>
-                        <td>{{ $item->message }}</td>
-                        <td>{{ $item->amount }}</td>
-                        <td>{{ $item->reference }}</td>
-                        <td>{{ $item->status }}</td>
+                        <tr>
+                            <td>{{ ++$key }}</td>
+                            <td>{{ $item->created_at }}</td>
+                            <td>{{ $item->amount }}</td>
+                            <td>{{ $item->reference }}</td>
+                            <td>{{ $item->status }}</td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -93,15 +83,14 @@
         const paymentForm = document.getElementById('paymentForm');
         paymentForm.addEventListener("submit", payWithPaystack, false);
 
+
         function payWithPaystack(e) {
             e.preventDefault();
 
             let handler = PaystackPop.setup({
-                key: 'pk_live_a0b1cc8fdd4c9e71e02cafbdb3b0bca575dd92fe', // Replace with your public key
+                key: 'pk_test_e0681589da7d4b5c05d4a4f6f736600ae01d0362', // Replace with your public key
                 email: document.getElementById("email").value,
                 amount: document.getElementById("amount").value * 100,
-                merchant_id: document.getElementById("merchant_id").value,
-                message: document.getElementById("message").value,
                 ref: 'Zi_' + Math.floor(Math.random() * 9999) + '_' + Math.floor(Math.random() * 99999999) + '_' +
                     Math.floor(Math.random() * 99999),
 
@@ -114,23 +103,37 @@
                         type: "GET",
                         url: "{{ URL::to('merchant/get/verify-payment/') }}/" + reference,
                         success: function(response) {
+                            console.log(response[0])
                             if (response[0].status === true) {
+                                $.ajaxSetup({
+                                    headers: {
+                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                            'content')
+                                    }
+                                });
                                 $.ajax({
                                     type: "post",
                                     url: "{{ URL::to('merchant/get/store-payment') }}",
                                     data: {
-                                        email: response[0].customer.email,
-                                        message: response[0].data.message,
+                                        email: response[0].data.customer.email,
                                         reference: response[0].data.reference,
                                         amount: response[0].data.amount,
                                         status: response[0].data.status,
                                         channel: response[0].data.channel,
                                         currency: response[0].data.currency,
-                                        created_at: response[0].data.created_at,
                                     },
                                     success: function(res) {
                                         if (res.status == true) {
 
+                                            $('tbody').prepend(`
+                                                <tr>
+                                                    <td>##</td>
+                                                    <td>${res.top.created_at} </td>   
+                                                    <td>${res.top.amount} </td>   
+                                                    <td>${res.top.reference} </td>   
+                                                    <td>${res.top.status} </td>   
+                                                </tr>
+                                            `);
 
                                             const Toast = Swal.mixin({
                                                 toast: true,

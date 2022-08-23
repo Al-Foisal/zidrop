@@ -451,6 +451,7 @@ Route::group(['as' => 'author.', 'prefix' => 'author', 'namespace' => 'Author', 
     // merchant operation
     Route::get('/merchant-request/manage', 'MerchantOperationController@merchantrequest');
     Route::get('/merchant/manage', 'MerchantOperationController@manage');
+    Route::get('/topup/history', 'MerchantOperationController@topuphistory');
     Route::get('/merchant/edit/{id}', 'MerchantOperationController@profileedit');
     Route::post('merchant/profile/edit', 'MerchantOperationController@profileUpdate');
     Route::post('merchant/inactive', 'MerchantOperationController@inactive');

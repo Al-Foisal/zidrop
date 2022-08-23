@@ -16,6 +16,7 @@ use App\Parcel;
 use App\Parcelnote;
 use App\Parceltype;
 use App\Pickup;
+use App\RemainTopup;
 use Brian2694\Toastr\Facades\Toastr;
 use DB;
 use File;
@@ -205,22 +206,24 @@ class MerchantController extends Controller {
     public function dashboard() {
         $data = [];
         //this month
-        $data['m_pending']    = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('created_at', now())->where('status', 1)->count();
-        $data['m_pick']    = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('created_at', now())->where('status', 2)->count();
-        $data['m_await']   = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('created_at', now())->where('status', 3)->count();
-        $data['m_deliver'] = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('created_at', now())->where('status', 4)->count();
-        $data['m_return']  = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('created_at', now())->where('status', 8)->count();
-        $data['m_wallet']  = 55;
+        $data['m_pending']    = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 1)->count();
+        $data['m_pick']    = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 2)->count();
+        $data['m_await']   = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 3)->count();
+        $data['m_deliver'] = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 4)->count();
+        $data['m_partial_deliver'] = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 6)->count();
+        $data['m_return']  = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 8)->count();
+        $data['m_wallet']  = RemainTopup::where('merchant_id',Session::get('merchantId'))->sum('amount');
 
         //total
         $data['t_pending']    = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 1)->count();
         $data['t_pick']    = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 2)->count();
         $data['t_await']   = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 3)->count();
         $data['t_deliver'] = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 4)->count();
+        $data['t_partial_deliver'] = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 6)->count();
         $data['t_return']  = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 8)->count();
-        // $data['t_wallet']  = 99989;
+        
 
-        $data['parcels'] = Parcel::where('merchantId', Session::get('merchantId'))->orderBy('id', 'DESC')->limit(10)->with('merchant', 'parceltype')
+        $data['parcels'] = Parcel::where('merchantId', Session::get('merchantId'))->orderBy('updated_at', 'DESC')->limit(50)->with('merchant', 'parcelnote')
             ->get();
 
         $data['merchant'] = Merchant::find(Session::get('merchantId'));
@@ -483,13 +486,24 @@ class MerchantController extends Controller {
 
     public function parcelstatus($slug) {
         $parceltype = Parceltype::where('slug', $slug)->first();
-        $allparcel  = DB::table('parcels')
+        if(request()->month){
+            $allparcel  = DB::table('parcels')
+            ->join('merchants', 'merchants.id', '=', 'parcels.merchantId')
+            ->where('parcels.merchantId', Session::get('merchantId'))
+            ->where('parcels.status', $parceltype->id)
+            ->whereMonth('parcels.updated_at', now())
+            ->select('parcels.*', 'merchants.firstName', 'merchants.lastName', 'merchants.phoneNumber', 'merchants.emailAddress', 'merchants.companyName', 'merchants.status as mstatus', 'merchants.id as mid')
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+        } else {
+            $allparcel  = DB::table('parcels')
             ->join('merchants', 'merchants.id', '=', 'parcels.merchantId')
             ->where('parcels.merchantId', Session::get('merchantId'))
             ->where('parcels.status', $parceltype->id)
             ->select('parcels.*', 'merchants.firstName', 'merchants.lastName', 'merchants.phoneNumber', 'merchants.emailAddress', 'merchants.companyName', 'merchants.status as mstatus', 'merchants.id as mid')
             ->orderBy('id', 'DESC')
             ->get();
+        }
 
         return view('frontEnd.layouts.pages.merchant.allparcel', compact('allparcel'));
     }

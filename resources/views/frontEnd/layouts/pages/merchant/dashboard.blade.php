@@ -5,30 +5,40 @@
         <b style="text-decoration: underline;text-transform:uppercase;">Transaction count for august, 2022</b>
         <div class="container-fluid">
             <div class="d-flex justify-content-between">
-                <div class="col-md-2 p-3 m-1" style="background-color:#1d2941">
+                <a href="{{ url('/merchant/parcel/pending?month=' . true) }}" class="p-3 m-1"
+                    style="width:15%;text-transform:uppercase;background-color:#1d2941">
                     <p class="text-center text-light">Pending</p>
-                    <p class="text-center text-light">{{ $m_pending == 0 ? null : $m_pending }}</p>
-                </div>
-                <div class="col-md-2 p-3 m-1" style="background-color:#5f45da">
+                    <p class="text-center text-light"><b>{{ $m_pending == 0 ? null : $m_pending }}</b></p>
+                </a>
+                <a href="{{ url('/merchant/parcel/picked?month=' . true) }}" class="p-3 m-1"
+                    style="width:15%;text-transform:uppercase;background-color:#5f45da">
                     <p class="text-center text-light">Picked Up</p>
-                    <p class="text-center text-light">{{ $m_pick == 0 ? null : $m_pick }}</p>
-                </div>
-                <div class="col-md-2 p-3 m-1" style="background-color:#670a91">
+                    <p class="text-center text-light"><b>{{ $m_pick == 0 ? null : $m_pick }}</b></p>
+                </a>
+                <a href="{{ url('/merchant/parcel/in-transit?month=' . true) }}" class="p-3 m-1"
+                    style="width:15%;text-transform:uppercase;background-color:#670a91">
                     <p class="text-center text-light">Awaiting</p>
-                    <p class="text-center text-light">{{ $m_await == 0 ? null : $m_await }}</p>
-                </div>
-                <div class="col-md-2 p-3 m-1" style="background-color:#096709">
+                    <p class="text-center text-light"><b>{{ $m_await == 0 ? null : $m_await }}</b></p>
+                </a>
+                <a href="{{ url('/merchant/parcel/deliverd?month=' . true) }}" class="p-3 m-1"
+                    style="width:15%;text-transform:uppercase;background-color:#096709">
                     <p class="text-center text-light">Delivered</p>
-                    <p class="text-center text-light">{{ $m_deliver == 0 ? null : $m_deliver }}</p>
-                </div>
-                <div class="col-md-2 p-3 m-1" style="background-color:#9a8309">
+                    <p class="text-center text-light"><b>{{ $m_deliver == 0 ? null : $m_deliver }}</b></p>
+                </a>
+                <a href="{{ url('/merchant/parcel/partial-delivery?month=' . true) }}" class="p-3 m-1"
+                    style="width:15%;text-transform:uppercase;background-color:#212529;">
+                    <p class="text-center text-light">Partial Delivery</p>
+                    <p class="text-center text-light"><b>{{ $m_partial_deliver == 0 ? null : $m_partial_deliver }}</b></p>
+                </a>
+                <a href="{{ url('/merchant/parcel/return-to-merchant?month=' . true) }}" class="p-3 m-1"
+                    style="width:15%;text-transform:uppercase;background-color:#9a8309">
                     <p class="text-center text-light">Returned</p>
-                    <p class="text-center text-light">{{ $m_return == 0 ? null : $m_return }}</p>
-                </div>
-                <div class="col-md-2 p-3 m-1 bg-secondary">
-                    <p class="text-center text-light">WALLET BALANCE</p>
-                    <p class="text-center text-light">{{ $m_wallet == 0 ? null : $m_wallet }}</p>
-                </div>
+                    <p class="text-center text-light"><b>{{ $m_return == 0 ? null : $m_return }}</b></p>
+                </a>
+                <a class="p-3 m-1" style="width:15%;text-transform:uppercase;background-color:#f012be">
+                    <p class="text-center text-light">Wallet Usage</p>
+                    <p class="text-center text-light"><b>N{{ number_format($m_wallet ?? 0, 2) }}</b></p>
+                </a>
             </div>
         </div>
     </section>
@@ -37,30 +47,40 @@
         <b style="text-decoration: underline">TRANSACTION COUNT FROM INCEPTION</b>
         <div class="container-fluid">
             <div class="d-flex justify-content-between">
-                <div class="col-md-2 p-3 m-1" style="background-color:#1d2941;">
+                <a href="{{ url('/merchant/parcel/pending') }}" class="p-3 m-1"
+                    style="width:15%;text-transform:uppercase;background-color:#1d2941;">
                     <p class="text-center text-light">Pending</p>
-                    <p class="text-center text-light">{{ $t_pending == 0 ? null : $t_pending }}</p>
-                </div>
-                <div class="col-md-2 p-3 m-1" style="background-color:#5f45da;">
+                    <p class="text-center text-light"><b>{{ $t_pending == 0 ? null : $t_pending }}</b></p>
+                </a>
+                <a href="{{ url('/merchant/parcel/picked') }}" class="p-3 m-1"
+                    style="width:15%;text-transform:uppercase;background-color:#5f45da;">
                     <p class="text-center text-light">Picked Up</p>
-                    <p class="text-center text-light">{{ $t_pick == 0 ? null : $t_pick }}</p>
-                </div>
-                <div class="col-md-2 p-3 m-1" style="background-color:#670a91;">
+                    <p class="text-center text-light"><b>{{ $t_pick == 0 ? null : $t_pick }}</b></p>
+                </a>
+                <a href="{{ url('/merchant/parcel/in-transit') }}" class="p-3 m-1"
+                    style="width:15%;text-transform:uppercase;background-color:#670a91;">
                     <p class="text-center text-light">Awaiting</p>
-                    <p class="text-center text-light">{{ $t_await == 0 ? null : $t_await }}</p>
-                </div>
-                <div class="col-md-2 p-3 m-1" style="background-color:#096709;">
+                    <p class="text-center text-light"><b>{{ $t_await == 0 ? null : $t_await }}</b></p>
+                </a>
+                <a href="{{ url('/merchant/parcel/deliverd') }}" class="p-3 m-1"
+                    style="width:15%;text-transform:uppercase;background-color:#096709;">
                     <p class="text-center text-light">Delivered</p>
-                    <p class="text-center text-light">{{ $t_deliver == 0 ? null : $t_deliver }}</p>
-                </div>
-                <div class="col-md-2 p-3 m-1" style="background-color:#9a8309;">
+                    <p class="text-center text-light"><b>{{ $t_deliver == 0 ? null : $t_deliver }}</b></p>
+                </a>
+                <a href="{{ url('/merchant/parcel/partial-delivery') }}" class="p-3 m-1"
+                    style="width:15%;text-transform:uppercase;background-color:#212529;">
+                    <p class="text-center text-light">Partial Delivery</p>
+                    <p class="text-center text-light"><b>{{ $t_partial_deliver == 0 ? null : $t_partial_deliver }}</b></p>
+                </a>
+                <a href="{{ url('/merchant/parcel/return-to-merchant') }}" class="p-3 m-1"
+                    style="width:15%;text-transform:uppercase;background-color:#9a8309;">
                     <p class="text-center text-light">Returned</p>
-                    <p class="text-center text-light">{{ $t_return == 0 ? null : $t_return }}</p>
-                </div>
-                <div class="col-md-2 p-3 m-1 bg-secondary" style="background-color:#1d2941;">
-                    <p class="text-center text-light">WALLET BALANCE</p>
-                    <p class="text-center text-light">{{ $merchant->balance ?? 0 }}</p>
-                </div>
+                    <p class="text-center text-light"><b>{{ $t_return == 0 ? null : $t_return }}</b></p>
+                </a>
+                <a class="p-3 m-1" style="width:15%;text-transform:uppercase;background-color:#f012be;">
+                    <p class="text-center text-light">Available Wallet</p>
+                    <p class="text-center text-light"><b>N{{ number_format($merchant->balance ?? 0, 2) }}</b></p>
+                </a>
             </div>
         </div>
     </section>
@@ -68,9 +88,9 @@
     <section class="section-padding">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12" style="margin-left: 0;">
                     <div class="stats-all-top">
-                        <h2>All Reports</h2>
+                        <h6>RECENT SHIPMENT STATUS UPDATES</h6>
                     </div>
                 </div>
                 <!-- column end -->
@@ -81,30 +101,117 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col">S.N.</th>
+                                        <th scope="col">S/N</th>
+                                        <th scope="col">View</th>
                                         <th scope="col">Recipient Name</th>
                                         <th scope="col">Recipient Address</th>
                                         <th scope="col">Tracking Code</th>
                                         <th scope="col">Parcel Weight</th>
-                                        <th scope="col">Total</th>
-                                        <th scope="col">Delivery Charge</th>
-                                        <th scope="col">Payment Option</th>
-                                        <th scope="col">Parcel Status</th>
+                                        <th scope="col">Admin Status Note</th>
+                                        <th scope="col">Status Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($parcels as $key => $parcel)
                                         <tr>
-                                            <th scope="row">{{ ++$key }}</th>
+                                            <th>{{ ++$key }}</th>
+                                            <td scope="row">
+                                                <button class="edit_icon" href="#" data-toggle="modal"
+                                                    data-target="#merchantParcel{{ $parcel->id }}" title="View"><i
+                                                        class="fa fa-eye"></i></button>
+                                                <div id="merchantParcel{{ $parcel->id }}" class="modal fade"
+                                                    role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Parcel Details</h5>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <table class="table table-bordered">
+                                                                    <tr>
+                                                                        <td>Merchant Name</td>
+                                                                        <td>{{ $parcel->merchant->firstName }}
+                                                                            {{ $parcel->merchant->lastName }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Merchant Phone</td>
+                                                                        <td>{{ $parcel->merchant->phoneNumber }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Merchant Email</td>
+                                                                        <td>{{ $parcel->merchant->emailAddress }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Company</td>
+                                                                        <td>{{ $parcel->merchant->companyName }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Recipient Name</td>
+                                                                        <td>{{ $parcel->recipientName }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Recipient Address</td>
+                                                                        <td>{{ $parcel->recipientAddress }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>COD</td>
+                                                                        <td>{{ $parcel->cod }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>C. Charge</td>
+                                                                        <td>{{ $parcel->codCharge }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>D. Charge</td>
+                                                                        <td>{{ $parcel->deliveryCharge }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Sub Total</td>
+                                                                        <td>{{ $parcel->merchantAmount }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Paid</td>
+                                                                        <td>{{ $parcel->merchantPaid }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Due</td>
+                                                                        <td>{{ $parcel->merchantDue }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Create Date</td>
+                                                                        <td>{{ $parcel->created_at }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Last Update</td>
+                                                                        <td>{{ date('F d, Y', strtotime($parcel->updated_at)) }}
+                                                                            <br>
+                                                                            {{ date('g:i a', strtotime($parcel->updated_at)) }}
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td>{{ $parcel->recipientName }}</td>
                                             <td>{{ $parcel->recipientAddress }}</td>
                                             <td>{{ $parcel->trackingCode }}</td>
                                             <td>{{ $parcel->productWeight }}</td>
-                                            <td>{{ $parcel->cod }}</td>
-                                            <td>{{ $parcel->deliveryCharge }}</td>
-                                            <td>{{ $parcel->payment_option == 1 ? 'Prepaid':'Pay on Delivery' }}</td>
-                                            <td>{{ $parcel->parceltype->title }}</td>
+                                            <td>{{ $parcel->parcelnote->note ?? 'Empty Note' }}</td>
+                                            <td>{{ $parcel->updated_at->format('d/m/Y') }}<br>{{ $parcel->updated_at->format('H:i:s') }}
+
+                                            </td>
+
                                         </tr>
+
+
+                                        <!-- Modal end -->
                                     @endforeach
                                 </tbody>
                             </table>
@@ -116,57 +223,4 @@
             </div>
         </div>
     </section>
-
-{{-- 
-
-    <form id="paymentForm">
-        <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" value="al@al.com" id="email-address" required />
-        </div>
-        <div class="form-group">
-            <label for="amount">Amount</label>
-            <input type="tel" value="9999" id="amount" required />
-        </div>
-        <div class="form-group">
-            <label for="first-name">First Name</label>
-            <input type="text" value="Al" id="first-name" />
-        </div>
-        <div class="form-group">
-            <label for="last-name">Last Name</label>
-            <input type="text" value="Foisal" id="last-name" />
-        </div>
-        <div class="form-submit">
-            <button type="submit" onclick="payWithPaystack(event)"> Pay </button>
-        </div>
-    </form>
-    <script src="https://js.paystack.co/v1/inline.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        const paymentForm = document.getElementById('paymentForm');
-        paymentForm.addEventListener("submit", payWithPaystack, false);
-
-        function payWithPaystack(e) {
-            e.preventDefault();
-
-            let handler = PaystackPop.setup({
-                key: 'pk_test_6527a8b7ab7c95b81c381662f70f7423842f83b5', // Replace with your public key
-                email: document.getElementById("email-address").value,
-                amount: document.getElementById("amount").value * 100,
-                currency: 'NGN',
-                ref: '' + Math.floor((Math.random() * 1000000000) +
-                1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
-                // label: "Optional string that replaces customer email"
-                onClose: function() {
-                    alert('Window closed.');
-                },
-                callback: function(response) {
-                    let message = response.reference;
-                    alert(message);
-                }
-            });
-
-            handler.openIframe();
-        }
-    </script> --}}
 @endsection

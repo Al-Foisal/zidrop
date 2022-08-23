@@ -33,6 +33,8 @@
                         <th>Email</th>
                         <th>Register Date</th>
                         <th>Time</th>
+                        <th>Wallet Uses</th>
+                        <th>Available Wallet</th>
                         <th>Total Due</th>
                         <th>UnPaid Delivered Amt</th>
 
@@ -52,7 +54,11 @@
                           <td>{{$value->emailAddress}}</td>
                           <td>{{date('M-d-Y', strtotime($value->created_at))}}</td>                         
                           <td>{{date("g:i a", strtotime($value->created_at))}}</td>
-                          
+                          @php
+                              $use = App\RemainTopup::where('merchant_id', $value->id)->sum('amount');
+                          @endphp
+                          <td>{{ $use }}</td>
+                          <td>{{ $value->balance }}</td>
                           <td> 
                        @php   
                         $totaldue = DB::table('parcels')

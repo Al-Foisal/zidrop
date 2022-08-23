@@ -35,4 +35,8 @@ class Parcel extends Model {
         return $this->belongsTo(Nearestzone::class, 'reciveZone', 'id');
     }
 
+    public function parcelnote() {
+        return $this->hasOne(Parcelnote::class, 'parcelId')->orderBy('id','desc');
+    }
+
 }

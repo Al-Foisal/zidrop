@@ -7,12 +7,11 @@ use App\Merchant;
 use App\Topup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Paystack;
 
 class PaymentController extends Controller {
     public function topup() {
         $merchant = Merchant::find(Session::get('merchantId'));
-        $topup    = Topup::where('merchant_id', $merchant->id)->get();
+        $topup    = Topup::where('merchant_id', $merchant->id)->orderBy('id','desc')->get();
 
         return view('frontEnd.layouts.pages.merchant.topup', compact('merchant', 'topup'));
     }
@@ -25,13 +24,13 @@ class PaymentController extends Controller {
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING       => "",
             CURLOPT_MAXREDIRS      => 10,
-            CURLOTP_SSL_VERIFYHOST => 0,
-            CURLOTP_SSL_VERIFYPEER => 0,
+            // CURLOTP_SSL_VERIFYHOST => 0,
+            // CURLOTP_SSL_VERIFYPEER => 0,
             CURLOPT_TIMEOUT        => 30,
             CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST  => "GET",
             CURLOPT_HTTPHEADER     => [
-                "Authorization: Bearer sk_live_c642c426956ec639d11d0c7bcbdf6f0bb41a1871",
+                "Authorization: Bearer sk_test_c4ba69de2d85d25cb43ea25f6a69a29eb52d43d2",
                 "Cache-Control: no-cache",
             ],
         ]);
@@ -41,48 +40,28 @@ class PaymentController extends Controller {
 
         curl_close($curl);
         $new_data = json_decode($response);
+        $new_data = [$new_data];
 
-        return [$new_data];
+        return $new_data;
     }
 
     public function storePayment(Request $request) {
-        Topup::create([
+        $topup = Topup::create([
             'merchant_id' => Session::get('merchantId'),
             'email'       => $request->email,
-            'message'     => $request->message,
             'amount'      => $request->amount,
             'reference'   => $request->reference,
             'status'      => $request->status,
             'channel'     => $request->channel,
             'currency'    => $request->currency,
-            'created_at'  => $request->created_at,
         ]);
 
         $merchant          = Merchant::find(Session::get('merchantId'));
         $merchant->balance = $merchant->balance + $request->amount;
         $merchant->save();
 
-        return response()->json(['status' => true]);
+        $count = Topup::where('merchant_id', Session::get('merchantId'))->count();
+
+        return response()->json(['status' => true, 'top' => $topup, 'count' => $count]);
     }
-
-    public function redirectToGateway(Request $request) {
-        $data              = [];
-        $data['amount']    = 9999 * 100;
-        $data['reference'] = 999;
-        $data['email']     = 'a@a.com';
-        $data['currency']  = 'NGN';
-        $data['orderID']   = 22;
-
-        return paystack()->getAuthorizationUrl()->redirectNow();
-
-    }
-
-    /**
-     * Obtain Paystack payment information
-     * @return void
-     */
-    public function handleGatewayCallback() {
-        dd(paystack()->getPaymentData());
-    }
-
 }

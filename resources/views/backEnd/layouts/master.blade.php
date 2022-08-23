@@ -584,15 +584,9 @@ echo " " . date("h:i:sa");
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link">&nbsp;&nbsp;
-                <i class="fa fa-plus"></i>&nbsp;
-                    <p> Add</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="nav-link">&nbsp;&nbsp;
+                <a href="{{ url('author/topup/history') }}" class="nav-link">&nbsp;&nbsp;
                  <i class="fa fa-gears"></i>&nbsp;
-                    <p>Manage</p>
+                    <p>Topup History</p>
                 </a>
               </li>
             </ul>

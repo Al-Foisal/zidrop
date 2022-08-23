@@ -26,8 +26,8 @@
     
 <div class="login-box">
   <div class="login-logo">
-      <img src="https://zuri.express/uploads/logo/zuri-logo-removebg-preview.png" alt="www.zuri.express" style="width:250px;height:75px;"><br>
-    <a href="{{url('https://zuri.express/login')}}" target="_blank"><h1 style="font-size:150%;">Admin Login</h1></a>
+      <img src="{{ asset('uploads/logo/logo.png') }}" alt="www.zidrop.com" style="width:250px;height:75px;"><br>
+    <a href="{{url('login')}}" target="_blank"><h1 style="font-size:150%;">Admin Login</h1></a>
   </div>
   
   
@@ -92,10 +92,10 @@
   </div>
   
 
-  <button class="btn btn-success" onclick=" window.open('https://zuri.express/merchant/login','_blank')">Merchant</button>
-  <button class="btn btn-success" onclick=" window.open('https://zuri.express/deliveryman/login','_blank')">Deliveryman</button>
-  <button class="btn btn-success" onclick=" window.open('https://zuri.express/agent/login')"> &nbsp;Agent&nbsp; </button>
-  <button class="btn btn-success" onclick=" window.open('https://zuri.express/webmail','_blank')"> _Mail_ &nbsp;</button>
+  <button class="btn" style="background-color: #af251b;color:#fff" onclick=" window.open('https://zidrop.com/merchant/login','_blank')">Merchant</button>
+  <button class="btn" style="background-color: #af251b;color:#fff" onclick=" window.open('https://zidrop.com/deliveryman/login','_blank')">Deliveryman</button>
+  <button class="btn" style="background-color: #af251b;color:#fff" onclick=" window.open('https://zidrop.com/agent/login')"> &nbsp;Agent&nbsp; </button>
+  <button class="btn" style="background-color: #af251b;color:#fff" onclick=" window.open('https://zidrop.com/webmail','_blank')"> _Mail_ &nbsp;</button>
 
 
 
@@ -122,7 +122,7 @@
 .button {
   display: inline-block;
   border-radius: 12px;
-  background-color: #125c2f;
+  background-color: #af251b;
   border: none;
   color: #FFFFFF;
   text-align: center;
@@ -189,7 +189,7 @@
 #myBar {
   width: 10%;
   height: 30px;
-  background-color: #125c2f;
+  background-color: #af251b;
   text-align: center;
   line-height: 30px;
   color: white;
@@ -245,7 +245,7 @@ function move() {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body {margin:0;height:2000px;}
+body {margin:0;}
 
 .icon-bar {
   position: fixed;
@@ -265,7 +265,7 @@ body {margin:0;height:2000px;}
 }
 
 .icon-bar a:hover {
-  background-color: #125c2f;
+  background-color: #af251b;
 }
 
 .facebook {

@@ -27,15 +27,13 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text"
-                                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                                    value="a@a.com" id="email" placeholder="Customer Email" required>
+                                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" placeholder="Customer Email" required>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text"
-                                                    class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}"
-                                                    value="222" id="amount" placeholder="Amount" required>
+                                                    class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" id="amount" placeholder="Amount" required>
                                             </div>
                                         </div>
                                         <button type="submit" onclick="payWithPaystack(event)">Submit</button>
@@ -88,7 +86,7 @@
             e.preventDefault();
 
             let handler = PaystackPop.setup({
-                key: 'pk_test_e0681589da7d4b5c05d4a4f6f736600ae01d0362', // Replace with your public key
+                key: 'pk_live_a0b1cc8fdd4c9e71e02cafbdb3b0bca575dd92fe', // Replace with your public key
                 email: document.getElementById("email").value,
                 amount: document.getElementById("amount").value * 100,
                 ref: 'Zi_' + Math.floor(Math.random() * 9999) + '_' + Math.floor(Math.random() * 99999999) + '_' +

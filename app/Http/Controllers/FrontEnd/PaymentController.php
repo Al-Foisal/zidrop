@@ -12,9 +12,9 @@ use Paystack;
 class PaymentController extends Controller {
     public function topup() {
         $merchant = Merchant::find(Session::get('merchantId'));
-        $topup = Topup::where('merchant_id',$merchant->id)->get();
+        $topup    = Topup::where('merchant_id', $merchant->id)->get();
 
-        return view('frontEnd.layouts.pages.merchant.topup', compact('merchant','topup'));
+        return view('frontEnd.layouts.pages.merchant.topup', compact('merchant', 'topup'));
     }
 
     public function verifypayment($reference) {
@@ -41,24 +41,28 @@ class PaymentController extends Controller {
 
         curl_close($curl);
         $new_data = json_decode($response);
+
         return [$new_data];
     }
 
-    public function storePayment(Request $request)
-    {
+    public function storePayment(Request $request) {
         Topup::create([
-            'merchant_id'=>Session::get('merchantId'),
-            'email'=>$request->email,
-            'message'=>$request->message,
-            'amount'=>$request->amount,
-            'reference'=>$request->reference,
-            'status'=>$request->status,
-            'channel'=>$request->channel,
-            'currency'=>$request->currency,
-            'created_at'=>$request->created_at,
+            'merchant_id' => Session::get('merchantId'),
+            'email'       => $request->email,
+            'message'     => $request->message,
+            'amount'      => $request->amount,
+            'reference'   => $request->reference,
+            'status'      => $request->status,
+            'channel'     => $request->channel,
+            'currency'    => $request->currency,
+            'created_at'  => $request->created_at,
         ]);
 
-        return response()->json(['status'=>true]);
+        $merchant          = Merchant::find(Session::get('merchantId'));
+        $merchant->balance = $merchant->balance + $request->amount;
+        $merchant->save();
+
+        return response()->json(['status' => true]);
     }
 
     public function redirectToGateway(Request $request) {

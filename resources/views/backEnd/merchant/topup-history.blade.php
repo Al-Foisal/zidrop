@@ -39,7 +39,7 @@
                                         @foreach ($topup as $key => $value)
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ $value->merchant->firstName . ' ' . $value->merchant->lastName }}</td>
+                                                <td>{{ $value->merchant->firstName ?? '' }}</td>
                                                 <td>{{ $value->merchant->companyName }}</td>
                                                 <td>{{ $value->email }}</td>
                                                 <td>{{ $value->amount }}</td>

@@ -40,7 +40,7 @@
                                             <tr>
                                                 <td>{{ ++$key }}</td>
                                                 <td>{{ $value->merchant->firstName ?? '' }}</td>
-                                                <td>{{ $value->merchant->companyName }}</td>
+                                                <td>{{ $value->merchant->companyName ?? '' }}</td>
                                                 <td>{{ $value->email }}</td>
                                                 <td>{{ $value->amount }}</td>
                                                 <td>{{ $value->reference }}</td>

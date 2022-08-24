@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use App\Codcharge;
 use App\Deliverycharge;
 use App\Deliveryman;
+use App\Disclamer;
 use App\Exports\ParcelExport;
 use App\Http\Controllers\Controller;
 use App\Imports\ParcelImport;
@@ -225,6 +226,8 @@ class MerchantController extends Controller {
 
         $data['parcels'] = Parcel::where('merchantId', Session::get('merchantId'))->orderBy('updated_at', 'DESC')->limit(50)->with('merchant', 'parcelnote')
             ->get();
+
+        $data['notice']=Disclamer::find(1);
 
         $data['merchant'] = Merchant::find(Session::get('merchantId'));
 

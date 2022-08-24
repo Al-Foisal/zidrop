@@ -148,7 +148,7 @@ ul li {
     display: block;
     color: #fff;
     text-transform: capitalize;
-    background: #af251b;
+    background: #212529;
     padding: 10px;
 }
 .list-icon i {
@@ -180,7 +180,7 @@ ul li {
 }
 .pik-icon {
     line-height: 45px;
-    background: #af251b;
+    background: #212529;
     text-align: center;
     margin-left: 30px;
     margin-top: 15px;
@@ -1062,7 +1062,7 @@ ul li {
     width: 30%;
     float: left;
     border: 0;
-    background: #af251b;
+    background: #212529;
     color: #fff;
     height: 48px;
 }
@@ -1300,12 +1300,12 @@ span#select2-reciveZone-2t-container {
 }
 
 thead tr th {
-    background-color: #514A44;
+    background-color: #212529;
     border-left: 1px solid #fff;
     color: #fff;
 }
 .pickup-req-btn {
-    background-color: #514A44;
+    background-color: #212529;
     color: #fff;
 }
 

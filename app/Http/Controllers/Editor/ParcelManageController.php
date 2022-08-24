@@ -509,7 +509,8 @@ class ParcelManageController extends Controller {
                 "type"     => "text",
                 "contacts" => "0$parcel->recipientPhone",
                 "senderid" => "8809612440738",
-                "msg"      => "Dear $parcel->recipientName, We have received your parcel from $merchantinfo->companyName. Your Tracking ID is $parcel->trackingCode. Please click the link to track your parcel:" . url('track/parcel/') . '/' . $parcel->trackingCode . " Thanks for being with Zuri Express.",
+                "msg"      => "message",
+                // "msg"      => "Dear $parcel->recipientName, We have received your parcel from $merchantinfo->companyName. Your Tracking ID is $parcel->trackingCode. Please click the link to track your parcel:" . url('track/parcel/') . '/' . $parcel->trackingCode . " Thanks for being with Zuri Express.",
             ];
             //   return $data;
             $ch = curl_init();
@@ -538,7 +539,8 @@ class ParcelManageController extends Controller {
                 "type"     => "text",
                 "contacts" => "0$parcel->recipientPhone",
                 "senderid" => "8809612440738",
-                "msg"      => "Dear $parcel->recipientName \r\n your parcel is being delivered by $deliveryMan->name phone number 0$deliveryMan->phone.  Please get ready with the cash amount of $readytaka. \r\n Thanks for being with Zuri Express.",
+                // "msg"      => "Dear $parcel->recipientName \r\n your parcel is being delivered by $deliveryMan->name phone number 0$deliveryMan->phone.  Please get ready with the cash amount of $readytaka. \r\n Thanks for being with Zuri Express.",
+                "msg"      => "message",
             ];
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
@@ -562,7 +564,8 @@ class ParcelManageController extends Controller {
                 "type"     => "text",
                 "contacts" => "0$validMerchant->phoneNumber",
                 "senderid" => "8809612440738",
-                "msg"      => "Dear $validMerchant->firstName, Your Parcel ID $parcel->trackingCode has been delivered successfully to the customer.\r\n Thanks for being with Zuri Express",
+                // "msg"      => "Dear $validMerchant->firstName, Your Parcel ID $parcel->trackingCode has been delivered successfully to the customer.\r\n Thanks for being with Zuri Express",
+                "msg"      => "message",
             ];
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
@@ -586,7 +589,8 @@ class ParcelManageController extends Controller {
                 "type"     => "text",
                 "contacts" => "0$validMerchant->phoneNumber",
                 "senderid" => "8809612440738",
-                "msg"      => "Dear $validMerchant->firstName, Your Parcel ID $parcel->trackingCode is on hold. Another attempt will be taken the next day. \r\n Thanks for being with Zuri Express.",
+                // "msg"      => "Dear $validMerchant->firstName, Your Parcel ID $parcel->trackingCode is on hold. Another attempt will be taken the next day. \r\n Thanks for being with Zuri Express.",
+                "msg"      => "message",
             ];
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
@@ -611,7 +615,8 @@ class ParcelManageController extends Controller {
                 "type"     => "text",
                 "contacts" => "0$validMerchant->phoneNumber",
                 "senderid" => "8809612440738",
-                "msg"      => "Dear $validMerchant->firstName, Your Parcel ID $parcel->trackingCode will be return within 48 hours. \r\n Thanks for being with Zuri Express",
+                // "msg"      => "Dear $validMerchant->firstName, Your Parcel ID $parcel->trackingCode will be return within 48 hours. \r\n Thanks for being with Zuri Express",
+                "msg"      => "message",
             ];
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);

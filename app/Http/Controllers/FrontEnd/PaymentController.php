@@ -30,7 +30,7 @@ class PaymentController extends Controller {
             CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST  => "GET",
             CURLOPT_HTTPHEADER     => [
-                "Authorization: Bearer sk_test_c4ba69de2d85d25cb43ea25f6a69a29eb52d43d2",
+                "Authorization: Bearer sk_live_c642c426956ec639d11d0c7bcbdf6f0bb41a1871",
                 "Cache-Control: no-cache",
             ],
         ]);
@@ -49,7 +49,7 @@ class PaymentController extends Controller {
         $topup = Topup::create([
             'merchant_id' => Session::get('merchantId'),
             'email'       => $request->email,
-            'amount'      => $request->amount,
+            'amount'      => $request->amount/100,
             'reference'   => $request->reference,
             'status'      => $request->status,
             'channel'     => $request->channel,
@@ -57,7 +57,7 @@ class PaymentController extends Controller {
         ]);
 
         $merchant          = Merchant::find(Session::get('merchantId'));
-        $merchant->balance = $merchant->balance + $request->amount;
+        $merchant->balance = $merchant->balance + ($request->amount/100);
         $merchant->save();
 
         $count = Topup::where('merchant_id', Session::get('merchantId'))->count();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Author;
 
 use App\Deliverycharge;
+use App\Disclamer;
 use App\Http\Controllers\Controller;
 use App\Merchant;
 use App\Merchantcharge;
@@ -15,13 +16,31 @@ use DB;
 use Illuminate\Http\Request;
 
 class MerchantOperationController extends Controller {
+    public function notice() {
+        $notice = Disclamer::find(1);
+
+        return view('backEnd.merchant.notice', compact('notice'));
+    }
+
+    public function noticestore(Request $request) {
+        Disclamer::updateOrCreate(
+            [
+                'id'=>1
+            ],[
+                'title'=>$request->title
+            ]
+            );
+
+        return back();
+    }
+
     public function topuphistory() {
         $topup = Topup::with(['merchant' => function ($query) {
             return $query->select(['id', 'firstName', 'lastName', 'companyName'])->first();
         },
         ])->orderBy('id', 'desc')->paginate(200);
 
-        return view('backEnd.merchant.topup-history',compact('topup'));
+        return view('backEnd.merchant.topup-history', compact('topup'));
     }
 
     public function manage() {

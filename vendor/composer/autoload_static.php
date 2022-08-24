@@ -597,6 +597,7 @@ class ComposerStaticInit66cbe054e3811c4277d2e542015effa8
         'App\\Deliveryman' => __DIR__ . '/../..' . '/app/Deliveryman.php',
         'App\\Deliverymanpayment' => __DIR__ . '/../..' . '/app/Deliverymanpayment.php',
         'App\\Department' => __DIR__ . '/../..' . '/app/Department.php',
+        'App\\Disclamer' => __DIR__ . '/../..' . '/app/Disclamer.php',
         'App\\District' => __DIR__ . '/../..' . '/app/District.php',
         'App\\Employee' => __DIR__ . '/../..' . '/app/Employee.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',

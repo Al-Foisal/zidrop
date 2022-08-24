@@ -20,6 +20,7 @@ return array(
     'App\\Deliveryman' => $baseDir . '/app/Deliveryman.php',
     'App\\Deliverymanpayment' => $baseDir . '/app/Deliverymanpayment.php',
     'App\\Department' => $baseDir . '/app/Department.php',
+    'App\\Disclamer' => $baseDir . '/app/Disclamer.php',
     'App\\District' => $baseDir . '/app/District.php',
     'App\\Employee' => $baseDir . '/app/Employee.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',

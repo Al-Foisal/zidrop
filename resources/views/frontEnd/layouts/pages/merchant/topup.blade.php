@@ -27,13 +27,15 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text"
-                                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" placeholder="Customer Email" required>
+                                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                                    id="email" placeholder="Customer Email" required>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text"
-                                                    class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" id="amount" placeholder="Amount" required>
+                                                    class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}"
+                                                    id="amount" placeholder="Amount" required>
                                             </div>
                                         </div>
                                         <button type="submit" onclick="payWithPaystack(event)">Submit</button>
@@ -51,7 +53,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="tab-inner">
             <h5>Wallet History</h5>
-            <table id="" class="table  table-striped">
+            <table id="" class="table table-responsive table-striped">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -66,7 +68,7 @@
                         <tr>
                             <td>{{ ++$key }}</td>
                             <td>{{ $item->created_at }}</td>
-                            <td>{{ $item->amount }}</td>
+                            <td>N{{ number_format($item->amount, 2) }}</td>
                             <td>{{ $item->reference }}</td>
                             <td>{{ $item->status }}</td>
                         </tr>
@@ -86,7 +88,8 @@
             e.preventDefault();
 
             let handler = PaystackPop.setup({
-                key: 'pk_live_a0b1cc8fdd4c9e71e02cafbdb3b0bca575dd92fe', // Replace with your public key
+                key: 'pk_live_a0b1cc8fdd4c9e71e02cafbdb3b0bca575dd92fe',
+                // key: 'pk_test_e0681589da7d4b5c05d4a4f6f736600ae01d0362',
                 email: document.getElementById("email").value,
                 amount: document.getElementById("amount").value * 100,
                 ref: 'Zi_' + Math.floor(Math.random() * 9999) + '_' + Math.floor(Math.random() * 99999999) + '_' +
@@ -127,7 +130,7 @@
                                                 <tr>
                                                     <td>##</td>
                                                     <td>${res.top.created_at} </td>   
-                                                    <td>${res.top.amount} </td>   
+                                                    <td>N${res.top.amount.toFixed(2)} </td>   
                                                     <td>${res.top.reference} </td>   
                                                     <td>${res.top.status} </td>   
                                                 </tr>
@@ -149,6 +152,11 @@
                                                     )
                                                 }
                                             })
+
+
+                                            document.getElementById("email").value = '';
+                                            document.getElementById("amount")
+                                                .value = '';
 
                                             Toast.fire({
                                                 icon: 'success',
@@ -184,7 +192,8 @@
                             }
                         }
                     });
-                }
+                },
+
             });
 
             handler.openIframe();

@@ -7,7 +7,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-   <link rel="icon" type="image/png" sizes="96x96" href="{{asset('frontEnd/')}}/images/faveicon.png">
+   <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon.png') }}">
     <!-- fabeicon css -->
   <link rel="stylesheet" href="{{asset('backEnd/')}}/plugins/fontawesome-free/css/all.min.css">
   
@@ -393,6 +393,14 @@ echo " " . date("h:i:sa");
                  <i class="fas fa-cog"></i>&nbsp;
                     <p>Merchant charge manage</p>
                 </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{url('/author/merchant/notice')}}" class="nav-link">&nbsp;&nbsp;
+                 <i class="fas fa-cog"></i>&nbsp;
+                    <p>Notice</p>
+                </a>
+                
               </li>
             </ul>
           </li>

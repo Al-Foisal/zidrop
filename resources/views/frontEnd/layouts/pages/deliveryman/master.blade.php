@@ -16,7 +16,7 @@
         }
     </script>
     <!-- //Meta tag Keywords -->
-    <link rel="shortcut icon" type="image/jpg" href="{{asset('frontEnd')}}/images/fav.png"/>
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon.png') }}">
     <!-- Custom-Files -->
     <link rel="stylesheet" href="{{asset('frontEnd')}}/css/bootstrap4.min.css">
     <!-- Bootstrap-Core-CSS -->

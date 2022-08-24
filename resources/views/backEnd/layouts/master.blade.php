@@ -398,7 +398,7 @@ echo " " . date("h:i:sa");
               <li class="nav-item">
                 <a href="{{url('/author/merchant/notice')}}" class="nav-link">&nbsp;&nbsp;
                  <i class="fas fa-cog"></i>&nbsp;
-                    <p>Notice</p>
+                    <p>Merchant Notice</p>
                 </a>
                 
               </li>

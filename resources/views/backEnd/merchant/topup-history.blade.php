@@ -28,6 +28,7 @@
                                             <th>Merchant Name</th>
                                             <th>Merchant Company</th>
                                             <th>Email</th>
+                                            <th>Mobile</th>
                                             <th>Amount</th>
                                             <th>Transaction Reference</th>
                                             <th>Transaction Channel</th>
@@ -42,6 +43,7 @@
                                                 <td>{{ $value->merchant->firstName ?? '' }}</td>
                                                 <td>{{ $value->merchant->companyName ?? '' }}</td>
                                                 <td>{{ $value->email }}</td>
+                                                <td>{{ $value->mobile }}</td>
                                                 <td>{{ $value->amount }}</td>
                                                 <td>{{ $value->reference }}</td>
                                                 <td>{{ $value->channel }}</td>

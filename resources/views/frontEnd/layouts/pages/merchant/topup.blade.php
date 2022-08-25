@@ -17,23 +17,30 @@
                             <div class="fraud-search">
                                 <form id="paymentForm">
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <input type="text"
                                                     class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                                     value="{{ $merchant->companyName }}" readonly>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <input type="text"
                                                     class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                                     id="email" placeholder="Customer Email" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <input type="text"
+                                                    class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}"
+                                                    id="mobile" placeholder="Mobile" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="number"
                                                     class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}"
                                                     id="amount" placeholder="Amount" required>
                                             </div>
@@ -58,6 +65,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Transaction Date</th>
+                        <th>Mobile Number</th>
                         <th>Transaction Amount</th>
                         <th>Payment Reference</th>
                         <th>Payment Status</th>
@@ -68,6 +76,7 @@
                         <tr>
                             <td>{{ ++$key }}</td>
                             <td>{{ $item->created_at }}</td>
+                            <td>{{ $item->mobile }}</td>
                             <td>N{{ number_format($item->amount, 2) }}</td>
                             <td>{{ $item->reference }}</td>
                             <td>{{ $item->status }}</td>
@@ -91,6 +100,7 @@
                 key: 'pk_live_a0b1cc8fdd4c9e71e02cafbdb3b0bca575dd92fe',
                 // key: 'pk_test_e0681589da7d4b5c05d4a4f6f736600ae01d0362',
                 email: document.getElementById("email").value,
+                phone: document.getElementById("mobile").value,
                 amount: document.getElementById("amount").value * 100,
                 ref: 'Zi_' + Math.floor(Math.random() * 9999) + '_' + Math.floor(Math.random() * 99999999) + '_' +
                     Math.floor(Math.random() * 99999),
@@ -122,6 +132,7 @@
                                         status: response[0].data.status,
                                         channel: response[0].data.channel,
                                         currency: response[0].data.currency,
+                                        mobile: response[0].data.customer.phone,
                                     },
                                     success: function(res) {
                                         if (res.status == true) {
@@ -129,7 +140,8 @@
                                             $('tbody').prepend(`
                                                 <tr>
                                                     <td>##</td>
-                                                    <td>${res.top.created_at} </td>   
+                                                    <td>${res.top.created_at} </td>
+                                                    <td>${res.top.mobile} </td>   
                                                     <td>N${res.top.amount.toFixed(2)} </td>   
                                                     <td>${res.top.reference} </td>   
                                                     <td>${res.top.status} </td>   
@@ -156,6 +168,8 @@
 
                                             document.getElementById("email").value = '';
                                             document.getElementById("amount")
+                                                .value = '';
+                                            document.getElementById("mobile")
                                                 .value = '';
 
                                             Toast.fire({

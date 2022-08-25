@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 class PaymentController extends Controller {
     public function topup() {
         $merchant = Merchant::find(Session::get('merchantId'));
-        $topup    = Topup::where('merchant_id', $merchant->id)->orderBy('id','desc')->get();
+        $topup    = Topup::where('merchant_id', $merchant->id)->orderBy('id', 'desc')->get();
 
         return view('frontEnd.layouts.pages.merchant.topup', compact('merchant', 'topup'));
     }
@@ -49,15 +49,16 @@ class PaymentController extends Controller {
         $topup = Topup::create([
             'merchant_id' => Session::get('merchantId'),
             'email'       => $request->email,
-            'amount'      => $request->amount/100,
+            'amount'      => $request->amount / 100,
             'reference'   => $request->reference,
             'status'      => $request->status,
             'channel'     => $request->channel,
             'currency'    => $request->currency,
+            'mobile'      => $request->mobile,
         ]);
 
         $merchant          = Merchant::find(Session::get('merchantId'));
-        $merchant->balance = $merchant->balance + ($request->amount/100);
+        $merchant->balance = $merchant->balance + ($request->amount / 100);
         $merchant->save();
 
         $count = Topup::where('merchant_id', Session::get('merchantId'))->count();

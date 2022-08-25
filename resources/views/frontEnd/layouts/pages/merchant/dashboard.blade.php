@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="alert alert-danger alert-dismissible mt-3 w-100" role="alert">
+            <div class="alert alert-danger mt-3 w-100" role="alert">
                 <marquee>
-                    <p style="font-family: Impact; font-size: 15pt">{{ $notice->title }}</p>
+                    <p style="font-family: Impact; font-size: 15pt;line-height:0.9">{{ $notice->title }}</p>
                 </marquee>
             </div>
         </div>

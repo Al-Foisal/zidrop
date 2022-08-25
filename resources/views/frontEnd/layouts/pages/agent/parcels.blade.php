@@ -151,8 +151,13 @@
                                 <td>Company</td>
                                 <td>{{$value->companyName}}</td>
                               </tr>
+                              <tr>
                                 <td>Recipient Name</td>
                                 <td>{{$value->recipientName}}</td>
+                              </tr>
+                              <tr>
+                                <td>Recipient Phone</td>
+                                <td>{{$value->recipientPhone}}</td>
                               </tr>
                               <tr>
                                 <td>Recipient Address</td>
@@ -207,7 +212,7 @@
                                 <input type="hidden" name="customer_phone" value="{{$value->recipientPhone}}">
                                 <div class="form-group">
                                     <select name="status"  onchange="percelDelivery(this)" class="form-control" id="">
-                                        @foreach($aparceltypes as $key=>$ptvalue)
+                                        @foreach($parceltypes as $key=>$ptvalue)
                                           <option value="{{$ptvalue->id}}"@if($value->status==$ptvalue->id) selected="selected" @endif @if($value->status > $ptvalue->id) disabled @endif>{{$ptvalue->title}}</option>
                                           @endforeach
                                   </select>

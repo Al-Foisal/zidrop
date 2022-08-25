@@ -83,7 +83,7 @@
                         <a href="{{url('agent/parcel/picked')}}" class="agent-logout">Picked</a>
                     </li> 
                      <li>
-                        <a href="{{url('agent/parcel/in-transit')}}" class="agent-logout">In Transit</a>
+                        <a href="{{url('agent/parcel/awaiting')}}" class="agent-logout">Awaiting</a>
                     </li> 
                     
                      <li>

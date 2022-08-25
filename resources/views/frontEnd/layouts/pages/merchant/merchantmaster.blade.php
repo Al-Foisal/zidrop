@@ -259,7 +259,7 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </li>
                                 <li>
-                                    <div class="pik-icon">
+                                    <div class="pik-icon" style="background-color:red;">
                                         <a href="#" data-toggle="modal" data-target="#pickupRequest">Pickup
                                             Request</a>
                                     </div>
@@ -277,7 +277,7 @@
                                             @csrf
                                             <input class="form-control" type="text" name="trackid"
                                                 placeholder="Track your order" search>
-                                            <button>Submit</button>
+                                            <button style="background-color:red;">Submit</button>
                                         </form>
                                     </div>
 

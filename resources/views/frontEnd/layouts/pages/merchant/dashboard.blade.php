@@ -62,7 +62,7 @@
                 <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/partial-delivery?month=' . true) }}">
                     <div class="p-3 m-1"
-                    style="height:110px;text-transform:uppercase;background-color:#212529;">
+                    style="height:110px;text-transform:uppercase;background-color:#28a745;">
                         <p class="text-center text-light">Partial Delivery</p>
                     <p class="text-center text-light"><b>{{ $m_partial_deliver == 0 ? null : $m_partial_deliver }}</b></p>
                     </div>
@@ -128,7 +128,7 @@
 
                 <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/partial-delivery') }}">
-                        <div class="p-3" style="text-transform:uppercase;height: 110px;background-color:#212529;">
+                        <div class="p-3" style="text-transform:uppercase;height: 110px;background-color:#28a745;">
                             <p class="text-center text-light">Partial Delivery</p>
                             <p class="text-center text-light">
                                 <b>{{ $t_partial_deliver == 0 ? null : $t_partial_deliver }}</b>
@@ -158,13 +158,9 @@
     </section>
 
     <section class="section-padding">
+        <b style="text-decoration: underline">RECENT SHIPMENT STATUS UPDATES</b>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-12" style="margin-left: 0;">
-                    <div class="stats-all-top">
-                        <h6>RECENT SHIPMENT STATUS UPDATES</h6>
-                    </div>
-                </div>
                 <!-- column end -->
                 <div class="col-sm-12">
                     <div class="stats-reportList-inner">
@@ -180,6 +176,7 @@
                                         <th scope="col">Tracking Code</th>
                                         <th scope="col">Parcel Weight</th>
                                         <th scope="col">Admin Status Note</th>
+                                        <th>COD</th>
                                         <th scope="col">Status Date</th>
                                     </tr>
                                 </thead>
@@ -281,6 +278,7 @@
                                             <td>{{ $parcel->trackingCode }}</td>
                                             <td>{{ $parcel->productWeight }}</td>
                                             <td>{{ $parcel->parcelnote->note ?? 'Empty Note' }}</td>
+                                            <td>{{ $parcel->cod }}</td>
                                             <td>{{ $parcel->updated_at->format('d/m/Y') }}<br>{{ $parcel->updated_at->format('H:i:s') }}
 
                                             </td>

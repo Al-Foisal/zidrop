@@ -1,11 +1,19 @@
 @extends('frontEnd.layouts.pages.merchant.merchantmaster')
 @section('title', 'Dashboard')
 @section('content')
-    <div class="container">
+
+    <style>
+        @media screen and (min-width: 320px) and (max-width: 767px) {
+            .mobile-men {
+                margin-top: 52px;
+            }
+        }
+    </style>
+    <div class="container-fluide mobile-men">
         <div class="row">
-            <div class="alert alert-danger mt-3 w-100" role="alert">
-                <marquee>
-                    <p style="font-family: Impact; font-size: 15pt;line-height:0.9">{{ $notice->title }}</p>
+            <div class="col-sm-12" style="background-color:#af251b;padding-top:7px;">
+                <marquee style="font-weight: bold;color:white;">
+                    {{ $notice->title }}
                 </marquee>
             </div>
         </div>
@@ -61,27 +69,27 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/partial-delivery?month=' . true) }}">
-                    <div class="p-3 m-1"
-                    style="height:110px;text-transform:uppercase;background-color:#28a745;">
-                        <p class="text-center text-light">Partial Delivery</p>
-                    <p class="text-center text-light"><b>{{ $m_partial_deliver == 0 ? null : $m_partial_deliver }}</b></p>
-                    </div>
-                </a>
+                        <div class="p-3 m-1" style="height:110px;text-transform:uppercase;background-color:#28a745;">
+                            <p class="text-center text-light">Partial Delivery</p>
+                            <p class="text-center text-light">
+                                <b>{{ $m_partial_deliver == 0 ? null : $m_partial_deliver }}</b>
+                            </p>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/return-to-merchant?month=' . true) }}">
-                    <div class="p-3 m-1"
-                    style="height:110px;text-transform:uppercase;background-color:#9a8309">
-                        <p class="text-center text-light">Returned</p>
-                    <p class="text-center text-light"><b>{{ $m_return == 0 ? null : $m_return }}</b></p>
-                    </div>
-                </a>
+                        <div class="p-3 m-1" style="height:110px;text-transform:uppercase;background-color:#9a8309">
+                            <p class="text-center text-light">Returned</p>
+                            <p class="text-center text-light"><b>{{ $m_return == 0 ? null : $m_return }}</b></p>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4 mb-4">
                     <a>
                         <div class="p-3 m-1" style="height:110px;text-transform:uppercase;background-color:#f012be">
                             <p class="text-center text-light">Wallet Usage</p>
-                        <p class="text-center text-light"><b>N{{ number_format($m_wallet ?? 0, 2) }}</b></p>
+                            <p class="text-center text-light"><b>N{{ number_format($m_wallet ?? 0, 2) }}</b></p>
                         </div>
                     </a>
                 </div>

@@ -259,6 +259,12 @@ echo " " . date("h:i:sa");
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="{{url('/editor/contact_info/create')}}" class="nav-link">&nbsp;&nbsp;&nbsp;
+                <i class="fas fa-angle-right"></i>&nbsp;
+                    <p>Contact Info</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{url('/editor/logo/manage')}}" class="nav-link">&nbsp;&nbsp;&nbsp;
                 <i class="fas fa-angle-right"></i>&nbsp;
                     <p>Logo</p>

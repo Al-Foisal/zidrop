@@ -334,6 +334,10 @@ Route::group(['as' => 'editor.', 'prefix' => 'editor', 'namespace' => 'Editor', 
     Route::post('/service/active', 'ServiceController@active');
     Route::post('/service/delete', 'ServiceController@destroy');
 
+    // contact_info Operation
+    Route::get('/contact_info/create', 'FeatureController@create_contact_info');
+    Route::post('/contact_info/store', 'FeatureController@store_contact_info');
+
     // Feature Operation
     Route::get('/feature/create', 'FeatureController@create');
     Route::post('/feature/store', 'FeatureController@store');

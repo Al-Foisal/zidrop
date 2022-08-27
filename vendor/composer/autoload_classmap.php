@@ -15,6 +15,7 @@ return array(
     'App\\Clientfeedback' => $baseDir . '/app/Clientfeedback.php',
     'App\\Codcharge' => $baseDir . '/app/Codcharge.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Contact' => $baseDir . '/app/Contact.php',
     'App\\Counter' => $baseDir . '/app/Counter.php',
     'App\\Deliverycharge' => $baseDir . '/app/Deliverycharge.php',
     'App\\Deliveryman' => $baseDir . '/app/Deliveryman.php',

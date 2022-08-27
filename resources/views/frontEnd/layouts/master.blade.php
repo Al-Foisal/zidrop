@@ -197,10 +197,10 @@
                                 
                                 
                                 <ul class="address-widget-list">
-                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-phone" style="color: #0a0603;"></i>+8809611677587</li>
-                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-mobile-phone" style="color: #0a0603;"></i></i>+8801711132240</li>
-                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-envelope" style="color: #0a0603;"></i> info@zuri.express</li>
-                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-map-marker" style="color: #0a0603;"></i>Shanti Bhaban House No. 156, 1st Floor, Begum Rokeya Soroni,Senpara Parbata, Mirpur-10, Dhaka-1216</li>
+                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-phone" style="color: #0a0603;"></i>{{ $contact_info->phone1 }}</li>
+                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-mobile-phone" style="color: #0a0603;"></i></i>{{ $contact_info->phone2 }}</li>
+                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-envelope" style="color: #0a0603;"></i> {{ $contact_info->email }}</li>
+                                    <li class="footer-mobile-number" style="color: #0a0603;"><i class="fa fa-map-marker" style="color: #0a0603;"></i>{{ $contact_info->address }}</li>
                                 </ul>
                                 
                                 

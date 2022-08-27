@@ -6,6 +6,7 @@ use App\Logo;
 use App\Service;
 use App\Parcel;
 use App\Agent;
+use App\Contact;
 use App\Deliveryman;
 use App\Pickup;
 use App\Deliverycharge;
@@ -37,6 +38,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
+        $contact_info = Contact::find(1);
+        view()->share(['contact_info'=>$contact_info]);
+        
         $whitelogo = Logo::where('type',1)->limit(1)->get();
         view()->share('whitelogo',$whitelogo); 
         

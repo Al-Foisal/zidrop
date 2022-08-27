@@ -14,7 +14,7 @@
                             <div class="row">
                                 <div class="col-sm-6"><h4>
                                     
-                                        <a href="{{url('https://zuri.express/author/merchant/manage')}}">   <div class="card p-2" style="width: -moz-fit-content;
+                                        <a href="{{url('/author/merchant/manage')}}">   <div class="card p-2" style="width: -moz-fit-content;
                                         width: fit-content;">Back</div></a>                                    
                                     
                                     <b><p style="color:green">{{$merchantInfo->companyName}}( {{$merchantInfo->firstName}} {{$merchantInfo->lastName}} )</p></b></h4>

@@ -68,6 +68,7 @@
             <nav class="codehim-nav">
                 <ul class="menu-item">
                     <li> <a href="{{ url('/merchant/dashboard') }}">Dashborad</a> </li>
+                    <li> <a href="{{ url('merchant/get/topup') }}">Topup my Wallet</a> </li>
                     <li> <a href="{{ url('/merchant/parcel/create') }}">Add Parcel</a> </li>
                     <li> <a href="{{ url('merchant/parcels ') }}"> >> My All Parcel</a> </li>
 

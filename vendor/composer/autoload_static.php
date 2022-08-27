@@ -592,6 +592,7 @@ class ComposerStaticInit66cbe054e3811c4277d2e542015effa8
         'App\\Clientfeedback' => __DIR__ . '/../..' . '/app/Clientfeedback.php',
         'App\\Codcharge' => __DIR__ . '/../..' . '/app/Codcharge.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Contact' => __DIR__ . '/../..' . '/app/Contact.php',
         'App\\Counter' => __DIR__ . '/../..' . '/app/Counter.php',
         'App\\Deliverycharge' => __DIR__ . '/../..' . '/app/Deliverycharge.php',
         'App\\Deliveryman' => __DIR__ . '/../..' . '/app/Deliveryman.php',

@@ -213,6 +213,8 @@ class MerchantController extends Controller {
         $data['m_deliver'] = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 4)->count();
         $data['m_partial_deliver'] = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 6)->count();
         $data['m_return']  = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 8)->count();
+        $data['m_da']  = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 10)->count();
+        $data['m_paid']  = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 11)->count();
         $data['m_wallet']  = RemainTopup::where('merchant_id',Session::get('merchantId'))->sum('amount');
 
         //total
@@ -222,6 +224,8 @@ class MerchantController extends Controller {
         $data['t_deliver'] = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 4)->count();
         $data['t_partial_deliver'] = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 6)->count();
         $data['t_return']  = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 8)->count();
+        $data['t_da']  = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 10)->count();
+        $data['t_paid']  = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 11)->count();
         
 
         $data['parcels'] = Parcel::where('merchantId', Session::get('merchantId'))->orderBy('updated_at', 'DESC')->limit(50)->with('merchant', 'parcelnote')

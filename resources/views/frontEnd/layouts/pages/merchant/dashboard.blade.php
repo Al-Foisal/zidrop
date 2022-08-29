@@ -35,33 +35,33 @@
             {{ date('Y') }}</b>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/pending?month=' . true) }}">
-                        <div class="p-3 m-1" style="height:110px;text-transform:uppercase;background-color:#1d2941">
+                        <div class="p-2 m-1" style="height:90px;text-transform:uppercase;background-color:#1d2941">
                             <p class="text-center text-light">Pending</p>
                             <p class="text-center text-light"><b>{{ $m_pending == 0 ? null : $m_pending }}</b></p>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/picked?month=' . true) }}">
-                        <div class="p-3 m-1" style="height:110px;text-transform:uppercase;background-color:#5f45da">
+                        <div class="p-2 m-1" style="height:90px;text-transform:uppercase;background-color:#5f45da">
                             <p class="text-center text-light">Picked Up</p>
                             <p class="text-center text-light"><b>{{ $m_pick == 0 ? null : $m_pick }}</b></p>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/awaiting?month=' . true) }}">
-                        <div class="p-3 m-1" style="height:110px;text-transform:uppercase;background-color:#670a91">
+                        <div class="p-2 m-1" style="height:90px;text-transform:uppercase;background-color:#670a91">
                             <p class="text-center text-light">Awaiting</p>
                             <p class="text-center text-light"><b>{{ $m_await == 0 ? null : $m_await }}</b></p>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/deliverd?month=' . true) }}">
-                        <div class="p-3 m-1" style="height:110px;text-transform:uppercase;background-color:#096709">
+                        <div class="p-2 m-1" style="height:90px;text-transform:uppercase;background-color:#096709">
                             <p class="text-center text-light">Delivered</p>
                             <p class="text-center text-light"><b>{{ $m_deliver == 0 ? null : $m_deliver }}</b></p>
                         </div>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/partial-delivery?month=' . true) }}">
-                        <div class="p-3 m-1" style="height:110px;text-transform:uppercase;background-color:#28a745;">
+                        <div class="p-2 m-1" style="height:90px;text-transform:uppercase;background-color:#28a745;">
                             <p class="text-center text-light">Partial Delivery</p>
                             <p class="text-center text-light">
                                 <b>{{ $m_partial_deliver == 0 ? null : $m_partial_deliver }}</b>
@@ -79,15 +79,33 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/return-to-merchant?month=' . true) }}">
-                        <div class="p-3 m-1" style="height:110px;text-transform:uppercase;background-color:#9a8309">
+                        <div class="p-2 m-1" style="height:90px;text-transform:uppercase;background-color:#9a8309">
                             <p class="text-center text-light">Returned</p>
                             <p class="text-center text-light"><b>{{ $m_return == 0 ? null : $m_return }}</b></p>
                         </div>
                     </a>
                 </div>
+                
+                <div class="col-md-4 mb-3">
+                    <a href="{{ url('/merchant/parcel/Collected-amount-from-DA?month=' . true) }}">
+                        <div class="p-2 m-1" style="height:90px;text-transform:uppercase;background-color:#1F6E91">
+                            <p class="text-center text-light">Collected amount from DA</p>
+                            <p class="text-center text-light"><b>{{ $m_da == 0 ? null : $m_da }}</b></p>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                    <a href="{{ url('/merchant/parcel/paid?month=' . true) }}">
+                        <div class="p-2 m-1" style="height:90px;text-transform:uppercase;background-color:#DE3163">
+                            <p class="text-center text-light">Paid</p>
+                            <p class="text-center text-light"><b>{{ $m_paid == 0 ? null : $m_paid }}</b></p>
+                        </div>
+                    </a>
+                </div>
                 <div class="col-md-4 mb-4">
                     <a>
-                        <div class="p-3 m-1" style="height:110px;text-transform:uppercase;background-color:#f012be">
+                        <div class="p-2 m-1" style="height:90px;text-transform:uppercase;background-color:#f012be">
                             <p class="text-center text-light">Wallet Usage</p>
                             <p class="text-center text-light"><b>N{{ number_format($m_wallet ?? 0, 2) }}</b></p>
                         </div>
@@ -101,33 +119,33 @@
         <b style="text-decoration: underline">TRANSACTION COUNT FROM INCEPTION</b>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/pending') }}">
-                        <div class="p-3" style="text-transform:uppercase;height: 110px;background-color:#1d2941;">
+                        <div class="p-2 m-1" style="text-transform:uppercase;height: 90px;background-color:#1d2941;">
                             <p class="text-center text-light">Pending</p>
                             <p class="text-center text-light"><b>{{ $t_pending == 0 ? null : $t_pending }}</b></p>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/picked') }}">
-                        <div class="p-3" style="text-transform:uppercase;height: 110px;background-color:#5f45da;">
+                        <div class="p-2 m-1" style="text-transform:uppercase;height: 90px;background-color:#5f45da;">
                             <p class="text-center text-light">Picked Up</p>
                             <p class="text-center text-light"><b>{{ $t_pick == 0 ? null : $t_pick }}</b></p>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/awaiting') }}">
-                        <div class="p-3" style="text-transform:uppercase;height: 110px;background-color:#670a91;">
+                        <div class="p-2 m-1" style="text-transform:uppercase;height: 90px;background-color:#670a91;">
                             <p class="text-center text-light">Awaiting</p>
                             <p class="text-center text-light"><b>{{ $t_await == 0 ? null : $t_await }}</b></p>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/deliverd') }}">
-                        <div class="p-3" style="text-transform:uppercase;height: 110px;background-color:#096709;">
+                        <div class="p-2 m-1" style="text-transform:uppercase;height: 90px;background-color:#096709;">
                             <p class="text-center text-light">Delivered</p>
                             <p class="text-center text-light"><b>{{ $t_deliver == 0 ? null : $t_deliver }}</b></p>
                         </div>
@@ -136,7 +154,7 @@
 
                 <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/partial-delivery') }}">
-                        <div class="p-3" style="text-transform:uppercase;height: 110px;background-color:#28a745;">
+                        <div class="p-2 m-1" style="text-transform:uppercase;height: 90px;background-color:#28a745;">
                             <p class="text-center text-light">Partial Delivery</p>
                             <p class="text-center text-light">
                                 <b>{{ $t_partial_deliver == 0 ? null : $t_partial_deliver }}</b>
@@ -146,15 +164,34 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <a href="{{ url('/merchant/parcel/return-to-merchant') }}">
-                        <div class="p-3" style="text-transform:uppercase;height: 110px;background-color:#9a8309;">
+                        <div class="p-2 m-1" style="text-transform:uppercase;height: 90px;background-color:#9a8309;">
                             <p class="text-center text-light">Returned</p>
                             <p class="text-center text-light"><b>{{ $t_return == 0 ? null : $t_return }}</b></p>
                         </div>
                     </a>
                 </div>
+                
+                
+                <div class="col-md-4 mb-3">
+                    <a href="{{ url('/merchant/parcel/Collected-amount-from-DA') }}">
+                        <div class="p-2 m-1 m-1" style="height:90px;text-transform:uppercase;background-color:#1F6E91">
+                            <p class="text-center text-light">Collected amount from DA</p>
+                            <p class="text-center text-light"><b>{{ $t_da == 0 ? null : $t_da }}</b></p>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                    <a href="{{ url('/merchant/parcel/paid') }}">
+                        <div class="p-2 m-1 m-1" style="height:90px;text-transform:uppercase;background-color:#DE3163">
+                            <p class="text-center text-light">Paid</p>
+                            <p class="text-center text-light"><b>{{ $t_paid == 0 ? null : $t_paid }}</b></p>
+                        </div>
+                    </a>
+                </div>
                 <div class="col-md-4 mb-3">
                     <a>
-                        <div class="p-3" style="text-transform:uppercase;height: 110px;background-color:#f012be;">
+                        <div class="p-2 m-1" style="text-transform:uppercase;height: 90px;background-color:#f012be;">
                             <p class="text-center text-light">Available Wallet</p>
                             <p class="text-center text-light"><b>N{{ number_format($merchant->balance ?? 0, 2) }}</b>
                             </p>

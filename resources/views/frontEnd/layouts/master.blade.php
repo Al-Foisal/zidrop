@@ -9,9 +9,7 @@
     <!-- Title Tag  -->
     <title>@yield('title','always on time')</title>
     <!-- Favicon -->
-    @foreach($whitelogo as $value)
-    <link rel="icon" type="image/favicon.png" href="{{asset($value->image)}}">
-    @endforeach
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon.png') }}">
 
     <!-- Web Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">

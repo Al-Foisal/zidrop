@@ -16,6 +16,14 @@ use DB;
 use Illuminate\Http\Request;
 
 class MerchantOperationController extends Controller {
+    public function delete(Request $request, $id) {
+        $merchant = Merchant::findOrFail($id);
+        $merchant->delete();
+        Toastr::success('message', 'Merchant  Deleted successfully!');
+
+        return redirect()->back();
+    }
+
     public function notice() {
         $notice = Disclamer::find(1);
 
@@ -25,11 +33,11 @@ class MerchantOperationController extends Controller {
     public function noticestore(Request $request) {
         Disclamer::updateOrCreate(
             [
-                'id'=>1
-            ],[
-                'title'=>$request->title
+                'id' => 1,
+            ], [
+                'title' => $request->title,
             ]
-            );
+        );
 
         return back();
     }

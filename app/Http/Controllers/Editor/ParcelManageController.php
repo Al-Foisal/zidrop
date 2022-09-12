@@ -268,6 +268,15 @@ class ParcelManageController extends Controller {
         return view('backEnd.parcel.allparcel', compact('show_data'));
     }
 
+    public function parceldelete(Request $request, $id)
+    {
+        $parcel = Parcel::findOrFail($id);
+        $parcel->delete();
+        Toastr::success('message', 'Parcel deleted successfully!');
+
+        return redirect()->back();
+    }
+
     public function invoice($id) {
         $show_data = DB::table('parcels')
             ->join('merchants', 'merchants.id', '=', 'parcels.merchantId')

@@ -1,5 +1,7 @@
 <?php
 
+// use Illuminate\Routing\Route;
+
 Auth::routes();
 //Clear Config cache:
 Route::get('/cc', function () {
@@ -233,6 +235,7 @@ Route::group(['as' => 'editor.', 'prefix' => 'editor', 'namespace' => 'Editor', 
  
 
     Route::get('parcel/all', 'ParcelManageController@allparcel');
+    Route::delete('parcel/delete/{id}', 'ParcelManageController@parceldelete');
     Route::get('parcel/{slug}', 'ParcelManageController@parcel');
     Route::post('/dliveryman-asign/bulk-option', 'ParcelManageController@bulkdeliverymanAssign');
     Route::get('/processing/parcel', 'ParcelManageController@processing');
@@ -463,6 +466,7 @@ Route::group(['as' => 'author.', 'prefix' => 'author', 'namespace' => 'Author', 
     Route::post('merchant/inactive', 'MerchantOperationController@inactive');
     Route::post('merchant/active', 'MerchantOperationController@active');
     Route::get('merchant/view/{id}', 'MerchantOperationController@view');
+    Route::delete('merchant/delete/{id}', 'MerchantOperationController@delete');
     Route::post('merchant/get/payment', 'MerchantOperationController@payment');
     Route::get('/merchant/payment/invoice/{id}', 'MerchantOperationController@paymentinvoice');
     Route::get('/merchant/payment/invoice-details/{id}', 'MerchantOperationController@inovicedetails');

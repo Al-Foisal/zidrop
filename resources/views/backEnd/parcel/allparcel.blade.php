@@ -520,6 +520,15 @@
                                     <a class="edit_icon anchor" a href="{{url('editor/parcel/invoice/'.$value->id)}}" title="Invoice"><i class="fa fa-list"></i></a>
                                  </li>
                                 @endif
+                                <li>
+                                  <form action="{{ url('/editor/parcel/delete/'.$value->id) }}" method="post">
+                                  @csrf
+                                  @method('delete')
+                                  <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure want to delete this item?')">
+                                  <i class="fa fa-trash"></i>
+                                  </button>
+                                  </form>
+                                </li>
                               </ul>
                           </td>
                         </tr>

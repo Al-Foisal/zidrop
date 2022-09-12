@@ -197,7 +197,7 @@
 										<p>Cash Collection</p>
 									</div>
 									<div class="col-sm-4">
-										<p>@if(Session::get('codpay')) {{Session::get('codpay')}} @else 0 @endif  Tk</p>
+										<p>@if(Session::get('codpay')) {{Session::get('codpay')}} @else 0.00 @endif  N</p>
 									</div>
 								</div>
 								<!-- row end -->
@@ -206,7 +206,7 @@
 										<p>Delivery Charge</p>
 									</div>
 									<div class="col-sm-4">
-										<p>@if(Session::get('pdeliverycharge')) {{Session::get('pdeliverycharge')}} @else 0 @endif Tk</p>
+										<p>@if(Session::get('pdeliverycharge')) {{Session::get('pdeliverycharge')}} @else 0.00 @endif N</p>
 									</div>
 								</div>
 								<!-- row end -->
@@ -215,7 +215,7 @@
 										<p>Cod Charge</p>
 									</div>
 									<div class="col-sm-4">
-										<p>@if(Session::get('pcodecharge')) {{Session::get('pcodecharge')}} @else 0 @endif Tk</p>
+										<p>@if(Session::get('pcodecharge')) {{Session::get('pcodecharge')}} @else 0.00 @endif N</p>
 									</div>
 								</div>
 								<!-- row end -->
@@ -224,7 +224,7 @@
 										<p>Total Payable Amount</p>
 									</div>
 									<div class="col-sm-4">
-										<p>0 Tk</p>
+										<p>0.00 N</p>
 									</div>
 								</div>
 								<!-- row end -->

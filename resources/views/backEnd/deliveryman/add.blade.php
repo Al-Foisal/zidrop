@@ -123,16 +123,16 @@
                       <!-- column end -->
                       <div class="col-sm-6">
                         <div class="form-group">
-                          <label for="area">Area</label>
-                          <select name="area" id="area" class="select2 form-control {{ $errors->has('area') ? ' is-invalid' : '' }}" value="{{ old('area') }}">
+                          <label for="state">state</label>
+                          <select name="state" id="state" class="select2 form-control {{ $errors->has('state') ? ' is-invalid' : '' }}" value="{{ old('state') }}">
                             <option value="">Select...</option>
-                            @foreach($areas as $value)
-                            <option value="{{$value->id}}">{{$value->zonename}}</option>
+                            @foreach($states as $value)
+                            <option value="{{$value->id}}">{{$value->title}}</option>
                             @endforeach
                           </select>
-                          @if ($errors->has('area'))
+                          @if ($errors->has('state'))
                               <span class="invalid-feedback">
-                                <strong>{{ $errors->first('area') }}</strong>
+                                <strong>{{ $errors->first('state') }}</strong>
                               </span>
                             @endif
                         </div>

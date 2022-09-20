@@ -148,16 +148,17 @@
                                                                         View & Payment</a>
                                                                 </li>
 
-                                                                <li>
-                                                                  <form action="{{ url('/author/merchant/delete/'.$value->id) }}" method="post">
-                                                                  @csrf
-                                                                  @method('delete')
-                                                                  <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure want to delete this item?')">Delete</button>
-                                                                  </form>
-                                                              </li>
+                                                                
                                                             @endif
-
-
+                                                            @if(Auth::user()->role_id == 1 )
+                                                            <li>
+                                                                <form action="{{ url('/author/merchant/delete/'.$value->id) }}" method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure want to delete this item?')">Delete</button>
+                                                                </form>
+                                                            </li>
+                                                            @endif
                                                             @if (Auth::user()->role_id != 3)
                                                                 <li>
                                                                     <a class="edit_icon"

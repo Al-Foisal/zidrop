@@ -76,8 +76,8 @@
                                                                 </li>
                                                                 <li class="nav-item"><a href="{{url('price')}}">Charges</a></li>
                                                                 <!-- <li><a href="{{url('about-us')}}">About Us</a></li> -->
-                                                                <li class="nav-item"><a href="{{url('pick-drop')}}">Pick & Drop</a></li>
-                                                                <li class="nav-item"><a href="{{url('branches')}}">Branches</a></li>
+                                                                <li class="nav-item"><a href="{{url('merchant/register')}}">Pick & Drop</a></li>
+                                                                <!--<li class="nav-item"><a href="{{url('branches')}}">Branches</a></li>-->
                                                                 <li class="nav-item"><a href="{{url('gallery')}}">Gallery</a></li>
                                                                 <li class="nav-item"><a href="{{url('notice')}}">Notice</a></li>
                                                                 <li class="nav-item"><a href="{{url('contact-us')}}">Contact Us</a></li>

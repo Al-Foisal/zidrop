@@ -148,7 +148,8 @@
                       </div>
                     </div>
                     <!-- Modal end -->
-                    <button class="btn btn-danger" title="Action" data-toggle="modal" data-target="#sUpdateModal{{$value->id}}"><i class="fa fa-sync-alt"></i></button>           <!-- Modal -->
+                    <button class="btn btn-danger" title="Action" data-toggle="modal" data-target="#sUpdateModal{{$value->id}}"><i class="fa fa-sync-alt"></i></button> 
+                    <a class="btn btn-primary" a href="{{url('deliveryman/parcel/invoice/'.$value->id)}}"  title="Invoice"><i class="fas fa-list"></i></a><!-- Modal -->
                       <div id="sUpdateModal{{$value->id}}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                           <!-- Modal content-->
@@ -199,9 +200,9 @@
                         </div>
                       </div>
                       <!-- Modal end -->
-                       @if($value->status >= 2)
-                      <a class="btn btn-primary" a href="{{url('deliveryman/parcel/invoice/'.$value->id)}}"  title="Invoice"><i class="fas fa-list"></i></a>
-                        @endif
+                      <!-- @if($value->status >= 2)-->
+                      <!--<a class="btn btn-primary" a href="{{url('deliveryman/parcel/invoice/'.$value->id)}}"  title="Invoice"><i class="fas fa-list"></i></a>-->
+                      <!--  @endif-->
                   </td>
                  </tr>
                  @endforeach

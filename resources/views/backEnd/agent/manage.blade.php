@@ -28,6 +28,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>State</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
@@ -39,6 +40,7 @@
                           <td>{{$value->name}}</td>
                           <td>{{$value->email}}</td>
                           <td>{{$value->phone}}</td>
+                          <td>{{$value->title}}</td>
                           <td>{{$value->status==1? "Active":"Inactive"}}</td>
                           <td>
                             <ul class="action_buttons">
@@ -63,13 +65,15 @@
                                   <li>
                                       <a class="edit_icon" href="{{url('author/agent/view/'.$value->id)}}" title="View"><i class="fa fa-eye"></i></a>
                                   </li>
-                                  <!--<li>-->
-                                  <!--  <form action="{{url('author/agent/delete')}}" method="POST">-->
-                                  <!--    @csrf-->
-                                  <!--    <input type="hidden" name="hidden_id" value="{{$value->id}}">-->
-                                  <!--    <button type="submit" onclick="return confirm('Are you delete this this?')" class="trash_icon" title="Delete"><i class="fa fa-trash"></i></button>-->
-                                  <!--  </form>-->
-                                  <!--</li>-->
+                                  @if(auth()->user()->role_id == 1)
+                                  <li>
+                                    <form action="{{url('author/agent/delete')}}" method="POST">
+                                      @csrf
+                                      <input type="hidden" name="hidden_id" value="{{$value->id}}">
+                                      <button type="submit" onclick="return confirm('Are you delete this this?')" class="trash_icon" title="Delete"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                  </li>
+                                  @endif
                               </ul>
                           </td>
                         </tr>

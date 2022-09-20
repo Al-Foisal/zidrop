@@ -2,6 +2,8 @@
 
 // use Illuminate\Routing\Route;
 
+use App\Nearestzone;
+
 Auth::routes();
 //Clear Config cache:
 Route::get('/cc', function () {
@@ -37,7 +39,7 @@ Route::group(['namespace' => 'FrontEnd'], function () {
     Route::post('/track/parcel/', 'FrontEndController@parceltrack');
     Route::get('/track/parcel/{id}', 'FrontEndController@parceltrackget');
     Route::get('delivery/charge/{id}', 'FrontEndController@delivryCharge');
-    Route::get('/cost/calculate/{packageid}/{cod}/{weight}', 'FrontEndController@costCalculate');
+    Route::get('/cost/calculate/{packageid}/{cod}/{weight}/{reciveZone}', 'FrontEndController@costCalculate');
     Route::get('cost/calculate/result', 'FrontEndController@costCalculateResult');
 
     // Merchant Operation
@@ -85,6 +87,7 @@ Route::group(['namespace' => 'FrontEnd', 'middleware' => ['agentauth']], functio
     Route::post('agent/pickup/deliveryman/asign', 'AgentController@pickupdeliverman');
     Route::post('agent/pickup/status-update', 'AgentController@pickupstatus');
     Route::post('agent/parcel/export', 'AgentController@export');
+    Route::get('agent/profile/settings', 'AgentController@view');
 });
 
 Route::group(['namespace' => 'FrontEnd', 'middleware' => ['deliverymanauth']], function () {
@@ -170,7 +173,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::post('merchant-payment/bulk-option', 'DashboardController@bulkpayment');
     
 });  
-
+Route::get('/get-area/{id}',function($id){
+    $area = Nearestzone::where('state',$id)->where('status',1)->get();
+    return json_encode($area);
+});
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
     // admin dashboard
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

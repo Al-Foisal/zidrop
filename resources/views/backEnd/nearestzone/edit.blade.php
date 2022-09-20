@@ -32,7 +32,17 @@
                   <div class="main-body">
                     <div class="row">
                        <input type="hidden" value="{{$edit_data->id}}" name="hidden_id">
-                      <div class="col-sm-12">
+                       <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">State</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="state" required>
+                              @foreach($state as $value)
+                              <option value="{{ $value->id }}">{{ $value->title }}</option>
+                              @endforeach
+                            </select>
+                        </div>
+                    </div>
+                      <div class="col-sm-6">
                         <div class="form-group">
                           <label for="zonename">Nearestzone Name</label>
                           <input type="text" name="zonename" id="zonename" class="form-control {{ $errors->has('zonename') ? ' is-invalid' : '' }}" value="{{$edit_data->zonename}}">
@@ -45,8 +55,21 @@
                        
                       </div>
                       <!-- column end -->
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="extradeliverycharge">Extra delivery charge</label>
+                            <input type="text" name="extradeliverycharge" id="extradeliverycharge" value="{{ $edit_data->extradeliverycharge }}"
+                                class="form-control {{ $errors->has('extradeliverycharge') ? ' is-invalid' : '' }}"
+                                value="{{ old('extradeliverycharge') }}">
+                            @if ($errors->has('extradeliverycharge'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('extradeliverycharge') }}</strong>
+                                </span>
+                            @endif
+                        </div>
 
-                      <div class="col-sm-12">
+                    </div>
+                      <div class="col-sm-6">
                         <div class="form-group">
                           <div class="custom-label">
                             <label>Publication Status</label>
@@ -91,6 +114,7 @@
   </section>
 
   <script type="text/javascript">
+      document.forms['editForm'].elements['state'].value="{{$edit_data->state}}"
       document.forms['editForm'].elements['status'].value="{{$edit_data->status}}"
     </script>
 @endsection

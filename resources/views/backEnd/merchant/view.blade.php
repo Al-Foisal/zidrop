@@ -93,6 +93,7 @@
 						<div class="supplier-profile">
 							<div class="purchase">
 								<h2>Account Info</h2>
+                <p>DP = Delivered Parcels</p>
 							</div>
 							<div class="supplier-info">
 								<table class="table table-bordered table-responsive">
@@ -102,11 +103,11 @@
 										
 									</tr>
 									<tr>
-										<td>Total Amount</td>
+										<td>Total Amount (DP)</td>
 										<td>{{$totalamount}}</td>
 									</tr>
 									<tr>
-										<td>Current Due</td>
+										<td>Current Due (DP)</td>
 										<td>{{$totaldue}}</td>
 									</tr>
 									
@@ -118,10 +119,11 @@
                                             ->join('merchants', 'merchants.id','=','parcels.merchantId')
                                             ->where('parcels.merchantId', $merchantInfo->id)
                                             ->where('parcels.merchantpayStatus', null)
+                                            ->where('parcels.status', 4)
                                             ->sum('parcels.cod');
                            
                                             @endphp
-										<td>Delevered Amount</td>
+										<td>Total COD Amount (DP)</td>
 										<td>{{$totalcod}}</td>
 									</tr>
 									

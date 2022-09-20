@@ -17,7 +17,6 @@
 								</div>
 								<div class="tracking-step-right">
 									<p>{{$trackInfo->note}}</p>
-									<p>{{$trackInfo->note}}</p>
 								</div>
 							</div>
 							@endforeach

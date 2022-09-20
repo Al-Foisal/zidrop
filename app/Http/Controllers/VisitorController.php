@@ -60,7 +60,7 @@ class visitorController extends Controller
         
         $send = Mail::send('frontEnd.emails.support', $data, function($textmsg) use ($data){
          $textmsg->from('zadumia441@gmail.com');
-         $textmsg->to('support@zuri.express');
+         $textmsg->to('e-tailing@zidrop.com');
          $textmsg->subject($data['description']);
         });
 
@@ -94,7 +94,7 @@ class visitorController extends Controller
          
          $send = Mail::send('frontEnd.emails.career', $data, function($textmsg) use ($data){
          $textmsg->from($data['email']);
-         $textmsg->to('support@zuri.express');
+         $textmsg->to('e-tailing@zidrop.com');
          $textmsg->subject($data['subject']);
          
          $textmsg->attach($data['cv']->getRealPath(), array(

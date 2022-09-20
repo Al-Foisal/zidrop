@@ -169,10 +169,10 @@
                 <!--Single Feature -->
                 <div class="single-feature">
                     <div class="icon-head"><i class="fa {{$value->icon}}"></i></div>
-                    <h4><a href="{{url('/features/details/'.$value->id)}}">{{$value->title}} </a></h4>
+                    <h4><a href="{{url('our-service/'.$value->id)}}">{{$value->title}} </a></h4>
                     <p>{{str_limit($value->text,140)}}</p>
                     <div class="button">
-                        <a href="{{url('/features/details/'.$value->id)}}" class="quickTech-btn"><i class="fa fa-arrow-circle-o-right"></i>More Detail</a>
+                        <a href="{{url('our-service/'.$value->id)}}" class="quickTech-btn"><i class="fa fa-arrow-circle-o-right"></i>More Detail</a>
                     </div>
                 </div>
                 <!--/ End Single Feature -->
@@ -207,7 +207,7 @@
                 <div class="single-quickTech-price">
                     <div class="quickTech-price-head">
                         <img src="{{asset($value->image)}}" alt="#" />
-                        <div class="icon-bg">{{$value->price}} tk</div>
+                        <div class="icon-bg">{{$value->price}} N</div>
                     </div>
                     <div class="quickTech-price-content">
                         <h4><a href="#">{{$value->name}}</a></h4>

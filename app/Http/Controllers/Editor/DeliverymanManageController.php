@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Editor;
 
+use App\Deliverycharge;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
@@ -14,8 +15,8 @@ class DeliverymanManageController extends Controller
 {
     
     public function add(){
-    $areas = Nearestzone::where('status',1)->get();
-    return view('backEnd.deliveryman.add',compact('areas'));
+    $states = Deliverycharge::where('status',1)->get();
+    return view('backEnd.deliveryman.add',compact('states'));
    }
     public function save(Request $request){
     	$this->validate($request,[
@@ -23,7 +24,7 @@ class DeliverymanManageController extends Controller
     		'email'=>'required',
     		'phone'=>'required',
     		'designation'=>'required',
-    		'area'=>'required',
+    		'state'=>'required',
     		'image'=>'required',
     		'password'=>'required',
             'status'=>'required',
@@ -41,7 +42,7 @@ class DeliverymanManageController extends Controller
     	$store_data->email  		= 	$request->email;
     	$store_data->phone  		= 	$request->phone;
     	$store_data->designation 	= 	$request->designation;
-    	$store_data->area 			= 	$request->area;
+    	$store_data->state 			= 	$request->state;
     	$store_data->password 		= 	bcrypt(request('password'));
     	$store_data->image 			= 	$fileUrl;
         $store_data->commisiontype  =   $request->commisiontype;
@@ -54,8 +55,8 @@ class DeliverymanManageController extends Controller
    
    public function manage(){
     	$show_datas = DB::table('deliverymen')
-    	->join('nearestzones', 'deliverymen.area', '=', 'nearestzones.id' )
-    	->select('deliverymen.*', 'nearestzones.zonename')
+    	->join('deliverycharges', 'deliverymen.state', '=', 'deliverycharges.id' )
+    	->select('deliverymen.*', 'deliverycharges.title')
         ->orderBy('id','DESC')
     	->get();
     	return view('backEnd.deliveryman.manage',compact('show_datas'));
@@ -63,8 +64,8 @@ class DeliverymanManageController extends Controller
 
     public function edit($id){
         $edit_data = Deliveryman::find($id);
-        $areas = Nearestzone::where('status',1)->get();
-    	return view('backEnd.deliveryman.edit',compact('edit_data','areas'));
+        $states = Deliverycharge::where('status',1)->get();
+    	return view('backEnd.deliveryman.edit',compact('edit_data','states'));
     }
 
     public function update(Request $request){
@@ -73,7 +74,7 @@ class DeliverymanManageController extends Controller
     		'email'=>'required',
     		'phone'=>'required',
     		'designation'=>'required',
-    		'area'=>'required',
+    		'state'=>'required',
     		'status'=>'required',
     	]);
     	$update_data = Deliveryman::find($request->hidden_id);
@@ -92,7 +93,7 @@ class DeliverymanManageController extends Controller
     	$update_data->email  		= 	$request->email;
     	$update_data->phone  		= 	$request->phone;
     	$update_data->designation 	= 	$request->designation;
-    	$update_data->area 			= 	$request->area;
+    	$update_data->state 			= 	$request->state;
     	$update_data->password 		= 	bcrypt(request('password'));
     	$update_data->image 		= 	$fileUrl;
         $update_data->commisiontype  =   $request->commisiontype;

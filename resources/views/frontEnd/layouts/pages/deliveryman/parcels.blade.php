@@ -159,7 +159,8 @@
                       </div>
                     </div>
                     <!-- Modal end -->
-                    <button class="btn btn-danger" title="Action" data-toggle="modal" data-target="#sUpdateModal{{$value->id}}"><i class="fa fa-sync-alt"></i></button>           <!-- Modal -->
+                    <button class="btn btn-danger" title="Action" data-toggle="modal" data-target="#sUpdateModal{{$value->id}}"><i class="fa fa-sync-alt"></i></button> 
+                    <a class="btn btn-primary" a href="{{url('deliveryman/parcel/invoice/'.$value->id)}}"  title="Invoice"><i class="fas fa-list"></i></a><!-- Modal -->
                       <div id="sUpdateModal{{$value->id}}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                           <!-- Modal content-->
@@ -175,7 +176,7 @@
                                 <div class="form-group">
                                     <select name="status"  onchange="percelDelivery(this)" class="form-control" id="">
                                          @foreach($parceltypes as $key=>$ptvalue)
-                                         @if($key == 1 || $key == 3 || $key == 4 || $key == 5 || $key == 6 || $key == 7 || $key == 8) 
+                                         @if($key == 1 || $key == 3 || $key == 4 || $key == 5 ||  $key == 7 ) 
                                           <option value="{{$ptvalue->id}}"@if($value->status==$ptvalue->id) selected="selected" @endif  @if($value->status > $ptvalue->id) disabled @endif>{{$ptvalue->title}}</option>
                                           @endif
                                           @endforeach
@@ -210,9 +211,9 @@
                         </div>
                       </div>
                       <!-- Modal end -->
-                       @if($value->status >= 2)
+                       <!--@if($value->status >= 2)-->
                       <a class="btn btn-primary" a href="{{url('deliveryman/parcel/invoice/'.$value->id)}}"  title="Invoice"><i class="fas fa-list"></i></a>
-                        @endif
+                        <!--@endif-->
                   </td>
                  </tr>
                  @endforeach

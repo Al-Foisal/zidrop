@@ -77,7 +77,7 @@
                 <div class="contact-box-main m-top-30">
                     <div class="contact-title">
                         <h2>Contact with us</h2>
-                        <!--<p>euismod eu augue. Etiam vel dui arcu. Cras varius mieros pharetra, id aliquam metus venenatis. Donec sollicit</p>-->
+                        <p>{{ $contact_info->address }}</p>
                     </div>
                     
                     <!-- Single Contact -->
@@ -86,7 +86,7 @@
                         <div class="c-icon"><i class="fa fa-phone"></i></div>
                         <div class="c-text">
                             <h4>Call Us Now</h4>
-                            <p>+8809611677587<br></p>
+                            <p>{{ $contact_info->phone1 }}<br></p>
                         </div>
                     </div>                    
                     
@@ -94,7 +94,7 @@
                         <div class="c-icon"><i class="fa fa-mobile-phone"></i></div>
                         <div class="c-text">
                             <h4>Call Us Now</h4>
-                            <p>+8801711132240<br></p>
+                            <p>{{ $contact_info->phone2 }}<br></p>
                         </div>
                     </div>
                     <!--/ End Single Contact -->
@@ -103,11 +103,11 @@
                         <div class="c-icon"><i class="fa fa-envelope-o"></i></div>
                         <div class="c-text">
                             <h4>Email Us</h4>
-                            <p> info@zuri.express</p>
+                            <p> {{ $contact_info->email }}</p>
                         </div>
                     </div>
-                    <!--/ End Single Contact -->
-                    <iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=200&amp;height=400&amp;hl=en&amp;q=536, Shamim Sharani&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                    <!--/ End Single Contact 
+                    <iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=200&amp;height=400&amp;hl=en&amp;q=536, Shamim Sharani&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>-->
                 </div>
             </div>
         </div>

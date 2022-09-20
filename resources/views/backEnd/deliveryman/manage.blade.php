@@ -31,6 +31,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>State</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
@@ -43,6 +44,7 @@
                           <td>{{$value->name}}</td>
                           <td>{{$value->email}}</td>
                           <td>{{$value->phone}}</td>
+                          <td>{{$value->title}}</td>
                           <td>{{$value->status==1? "Active":"Inactive"}}</td>
                           <td>
                             <ul class="action_buttons dropdown">

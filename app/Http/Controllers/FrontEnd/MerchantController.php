@@ -10,7 +10,6 @@ use App\Exports\ParcelExport;
 use App\Http\Controllers\Controller;
 use App\Imports\ParcelImport;
 use App\Merchant;
-use App\Merchantcharge;
 use App\Merchantpayment;
 use App\Nearestzone;
 use App\Parcel;
@@ -207,31 +206,30 @@ class MerchantController extends Controller {
     public function dashboard() {
         $data = [];
         //this month
-        $data['m_pending']    = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 1)->count();
-        $data['m_pick']    = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 2)->count();
-        $data['m_await']   = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 3)->count();
-        $data['m_deliver'] = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 4)->count();
+        $data['m_pending']         = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 1)->count();
+        $data['m_pick']            = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 2)->count();
+        $data['m_await']           = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 3)->count();
+        $data['m_deliver']         = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 4)->count();
         $data['m_partial_deliver'] = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 6)->count();
-        $data['m_return']  = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 8)->count();
-        $data['m_da']  = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 10)->count();
-        $data['m_paid']  = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 11)->count();
-        $data['m_wallet']  = RemainTopup::where('merchant_id',Session::get('merchantId'))->sum('amount');
+        $data['m_return']          = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 8)->count();
+        $data['m_da']              = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 10)->count();
+        $data['m_paid']            = Parcel::where('merchantId', Session::get('merchantId'))->whereMonth('updated_at', now())->where('status', 11)->count();
+        $data['m_wallet']          = RemainTopup::where('merchant_id', Session::get('merchantId'))->sum('amount');
 
         //total
-        $data['t_pending']    = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 1)->count();
-        $data['t_pick']    = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 2)->count();
-        $data['t_await']   = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 3)->count();
-        $data['t_deliver'] = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 4)->count();
+        $data['t_pending']         = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 1)->count();
+        $data['t_pick']            = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 2)->count();
+        $data['t_await']           = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 3)->count();
+        $data['t_deliver']         = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 4)->count();
         $data['t_partial_deliver'] = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 6)->count();
-        $data['t_return']  = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 8)->count();
-        $data['t_da']  = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 10)->count();
-        $data['t_paid']  = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 11)->count();
-        
+        $data['t_return']          = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 8)->count();
+        $data['t_da']              = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 10)->count();
+        $data['t_paid']            = Parcel::where('merchantId', Session::get('merchantId'))->where('status', 11)->count();
 
         $data['parcels'] = Parcel::where('merchantId', Session::get('merchantId'))->orderBy('updated_at', 'DESC')->limit(50)->with('merchant', 'parcelnote')
             ->get();
 
-        $data['notice']=Disclamer::find(1);
+        $data['notice'] = Disclamer::find(1);
 
         $data['merchant'] = Merchant::find(Session::get('merchantId'));
 
@@ -320,37 +318,56 @@ class MerchantController extends Controller {
             'name'        => 'required',
             'address'     => 'required',
             'phonenumber' => 'required',
+            'productName' => 'required',
+            'productQty'  => 'required',
+            'cod'          => 'required',
+            'payment_option'=> 'required',
+            'weight'        => 'required',
+            'note'          => 'required',
+            'reciveZone'    => 'required',
+            'package'       => 'required'
         ]);
 
+        $state = Deliverycharge::find($request->package);
+        $area  = Nearestzone::find($request->reciveZone);
         if ($request->weight > 1 || $request->weight != NULL) {
             $extraweight    = $request->weight - 1;
-            $deliverycharge = (Session::get('deliverycharge') * 1) + ($extraweight * Session::get('extradeliverycharge'));
+            $deliverycharge = $state->deliverycharge + $area->extradeliverycharge + ($extraweight * $state->extradeliverycharge);
             $weight         = $request->weight;
         } else {
-            $deliverycharge = (Session::get('deliverycharge'));
+            $deliverycharge = $state->deliverycharge + $area->extradeliverycharge;
             $weight         = 1;
         }
 
         if ($request->payment_option == 2) {
-            $codtype = Merchantcharge::where(['merchantId' => Session::get('merchantId'), 'packageId' => $request->package])->first();
+            $state = Deliverycharge::find($request->package);
 
-            if ($codtype == NULL) {
-                $codtype = Deliverycharge::where(['id' => $request->package])->first();
+            if ($state) {
+                $codcharge = ($request->cod * $state->cod) / 100;
+            } else {
+                $codcharge = 0;
             }
 
-//   if($codtype->codpercent==1){
+            $merchantAmount = ($request->cod) - ($deliverycharge + $codcharge);
+            $merchantDue    = ($request->cod) - ($deliverycharge + $codcharge);
 
-//       $codcharge=($request->cod*$codtype->cod)/100;
-
-//      }else{
-
-//       $codcharge = $codtype->cod;
-            //     }
-
-            $codcharge = ($request->cod * $codtype->cod) / 100;
         } else {
-            $codcharge = 0;
+            $merchant = Merchant::find(Session::get('merchantId'));
+
+            if ($merchant->balance < $deliverycharge) {
+                Toastr::error('Error!', 'Wallet Balance is low. Please
+                top up.');
+
+                return redirect()->back();
+            }
+
+            $merchant->balance = $merchant->balance - $deliverycharge;
+            $merchant->save();
+            $codcharge      = 0;
+            $merchantAmount = 0;
+            $merchantDue    = 0;
         }
+        
 
         $store_parcel                   = new Parcel();
         $store_parcel->invoiceNo        = $request->invoiceno;
@@ -368,12 +385,24 @@ class MerchantController extends Controller {
         $store_parcel->codCharge        = $codcharge;
         $store_parcel->reciveZone       = $request->reciveZone;
         $store_parcel->productPrice     = $request->productPrice;
-        $store_parcel->merchantAmount   = ($request->cod) - ($deliverycharge + $codcharge);
-        $store_parcel->merchantDue      = ($request->cod) - ($deliverycharge + $codcharge);
+        $store_parcel->productName      = $request->productName;
+        $store_parcel->productQty       = $request->productQty;
+        $store_parcel->productColor     = $request->productColor;
+        $store_parcel->merchantAmount   = $merchantAmount;
+        $store_parcel->merchantDue      = $merchantDue;
         $store_parcel->orderType        = $request->package;
         $store_parcel->codType          = 1;
         $store_parcel->status           = 1;
         $store_parcel->save();
+
+        if ($request->payment_option == 1) {
+            RemainTopup::create([
+                'parcel_id'     => $store_parcel->id,
+                'parcel_status' => 1,
+                'merchant_id'   => $merchant->id,
+                'amount'        => $deliverycharge,
+            ]);
+        }
 
         $note           = new Parcelnote();
         $note->parcelId = $store_parcel->id;
@@ -493,23 +522,24 @@ class MerchantController extends Controller {
 
     public function parcelstatus($slug) {
         $parceltype = Parceltype::where('slug', $slug)->first();
-        if(request()->month){
-            $allparcel  = DB::table('parcels')
-            ->join('merchants', 'merchants.id', '=', 'parcels.merchantId')
-            ->where('parcels.merchantId', Session::get('merchantId'))
-            ->where('parcels.status', $parceltype->id)
-            ->whereMonth('parcels.updated_at', now())
-            ->select('parcels.*', 'merchants.firstName', 'merchants.lastName', 'merchants.phoneNumber', 'merchants.emailAddress', 'merchants.companyName', 'merchants.status as mstatus', 'merchants.id as mid')
-            ->orderBy('updated_at', 'DESC')
-            ->get();
+
+        if (request()->month) {
+            $allparcel = DB::table('parcels')
+                ->join('merchants', 'merchants.id', '=', 'parcels.merchantId')
+                ->where('parcels.merchantId', Session::get('merchantId'))
+                ->where('parcels.status', $parceltype->id)
+                ->whereMonth('parcels.updated_at', now())
+                ->select('parcels.*', 'merchants.firstName', 'merchants.lastName', 'merchants.phoneNumber', 'merchants.emailAddress', 'merchants.companyName', 'merchants.status as mstatus', 'merchants.id as mid')
+                ->orderBy('updated_at', 'DESC')
+                ->get();
         } else {
-            $allparcel  = DB::table('parcels')
-            ->join('merchants', 'merchants.id', '=', 'parcels.merchantId')
-            ->where('parcels.merchantId', Session::get('merchantId'))
-            ->where('parcels.status', $parceltype->id)
-            ->select('parcels.*', 'merchants.firstName', 'merchants.lastName', 'merchants.phoneNumber', 'merchants.emailAddress', 'merchants.companyName', 'merchants.status as mstatus', 'merchants.id as mid')
-            ->orderBy('id', 'DESC')
-            ->get();
+            $allparcel = DB::table('parcels')
+                ->join('merchants', 'merchants.id', '=', 'parcels.merchantId')
+                ->where('parcels.merchantId', Session::get('merchantId'))
+                ->where('parcels.status', $parceltype->id)
+                ->select('parcels.*', 'merchants.firstName', 'merchants.lastName', 'merchants.phoneNumber', 'merchants.emailAddress', 'merchants.companyName', 'merchants.status as mstatus', 'merchants.id as mid')
+                ->orderBy('id', 'DESC')
+                ->get();
         }
 
         return view('frontEnd.layouts.pages.merchant.allparcel', compact('allparcel'));
@@ -532,7 +562,8 @@ class MerchantController extends Controller {
             ->where(['parcels.merchantId' => Session::get('merchantId'), 'parcels.id' => $id])
             ->join('nearestzones', 'parcels.reciveZone', '=', 'nearestzones.id')
             ->where('parcels.id', $id)
-            ->select('parcels.*', 'nearestzones.zonename', 'merchants.companyName', 'merchants.phoneNumber', 'merchants.emailAddress')
+            ->join('deliverycharges', 'deliverycharges.id', '=', 'nearestzones.state')
+            ->select('parcels.*','deliverycharges.title', 'nearestzones.zonename','nearestzones.state', 'merchants.firstName', 'merchants.lastName', 'merchants.phoneNumber', 'merchants.emailAddress', 'merchants.companyName', 'merchants.status as mstatus', 'merchants.id as mid')
             ->first();
 
         if ($show_data != NULL) {
@@ -567,28 +598,50 @@ class MerchantController extends Controller {
 
     public function parcelupdate(Request $request) {
         $this->validate($request, [
-            'cod'         => 'required',
+            'percelType'  => 'required',
             'name'        => 'required',
             'address'     => 'required',
             'phonenumber' => 'required',
+            'productName' => 'required',
+            'productQty'  => 'required',
+            'cod'          => 'required',
+            'payment_option'=> 'required',
+            'weight'        => 'required',
+            'note'          => 'required',
+            'reciveZone'    => 'required',
+            'package'       => 'required'
         ]);
 
 // fixed delivery charge
+        $extradeliverycharge = Nearestzone::find($request->reciveZone);
+
         if ($request->weight > 1 || $request->weight != NULL) {
             $extraweight    = $request->weight - 1;
-            $deliverycharge = (Session::get('deliverycharge') * 1) + ($extraweight * Session::get('extradeliverycharge'));
+            $deliverycharge = (Session::get('deliverycharge') * 1) + ($extraweight * Session::get('extradeliverycharge')) + $extradeliverycharge->extradeliverycharge;
             $weight         = $request->weight;
         } else {
-            $deliverycharge = (Session::get('deliverycharge'));
+            $deliverycharge = (Session::get('deliverycharge')) + $extradeliverycharge->extradeliverycharge;
             $weight         = 1;
         }
 
-        $codtype = Merchantcharge::where(['merchantId' => Session::get('merchantId'), 'packageId' => $request->package])->first();
-        if ($codtype->codpercent == 1) {
-            $codcharge = ($request->cod * $codtype->cod) / 100;
+        $state = Deliverycharge::find($request->package);
+
+        if ($state) {
+            $codcharge = ($request->cod * $state->cod) / 100;
         } else {
-            $codcharge = $codtype->cod;
+            $codcharge = 0;
         }
+
+// $codtype = Merchantcharge::where(['merchantId' => Session::get('merchantId'), 'packageId' => $request->package])->first();
+
+// if ($codtype->codpercent == 1) {
+
+//     $codcharge = ($request->cod * $codtype->cod) / 100;
+
+// } else {
+
+//     $codcharge = $codtype->cod;
+        // }
 
         $update_parcel                   = Parcel::find($request->hidden_id);
         $update_parcel->invoiceNo        = $request->invoiceno;
@@ -653,6 +706,7 @@ class MerchantController extends Controller {
         ]);
         $validMerchant = Merchant::Where('phoneNumber', $request->phoneNumber)
             ->first();
+
         if ($validMerchant) {
 
             $verifyToken                  = rand(111111, 999999);

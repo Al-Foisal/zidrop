@@ -635,11 +635,13 @@
                 var packageid = $('.package').val();
                 var cod = $('.cod').val();
                 var weight = $('.weight').val();
-                if (packageid, cod, weight) {
+                var reciveZone = $('.reciveZone').val();
+                // console.log(reciveZone)
+                if (packageid, cod, weight, reciveZone) {
                     $.ajax({
                         cache: false,
                         type: "GET",
-                        url: "{{ url('cost/calculate') }}/" + packageid + '/' + cod + '/' + weight,
+                        url: "{{ url('cost/calculate') }}/" + packageid + '/' + cod + '/' + weight + '/' + reciveZone,
                         dataType: "json",
                         success: function(deliverycharge) {
                             return calculate_result();

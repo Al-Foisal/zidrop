@@ -46,8 +46,8 @@
           <div class="col-lg-4 colo-md-4 col-sm-4 col-6">
             <div class="stats-reportList bg-info">
               <div class="stats-per-item">
-                <h5>Return Pending</h5>
-                <h3>{{$returnpendin}}</h3>
+                <h5>Return To Hub</h5>
+                <h3>{{$returntohub}}</h3>
               </div>
             </div>
           </div>

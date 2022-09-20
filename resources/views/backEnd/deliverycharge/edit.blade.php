@@ -1,5 +1,5 @@
 @extends('backEnd.layouts.master')
-@section('title','Delivery Charge Edit')
+@section('title','State Edit')
 @section('content')
   <!-- Main content -->
   <section class="content">
@@ -11,7 +11,7 @@
               <div class="col-sm-12">
                   <div class="manage-button">
                     <div class="body-title">
-                      <h5>Delivery Charge Edit</h5>
+                      <h5>State Edit</h5>
                     </div>
                     <div class="quick-button">
                       <a href="{{url('admin/deliverycharge/manage')}}" class="btn btn-primary btn-actions btn-create">
@@ -23,7 +23,7 @@
               <div class="col-lg-12 col-md-12 col-sm-12">
                   <div class="card card-primary">
                     <div class="card-header">
-                      <h3 class="card-title">Delivery Charge Edit</h3>
+                      <h3 class="card-title">State Edit</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -34,7 +34,7 @@
                        <input type="hidden" value="{{$edit_data->id}}" name="hidden_id">
                         <div class="col-sm-6">
                         <div class="form-group">
-                          <label for="title">Title</label>
+                          <label for="title">State Title</label>
                           <input type="text" name="title" id="title" class="form-control {{ $errors->has('title') ? ' is-invalid' : '' }}" value="{{ $edit_data->title }}">
                            @if ($errors->has('title'))
                             <span class="invalid-feedback">
@@ -59,7 +59,7 @@
                       <!-- column end -->
                       <div class="col-sm-6">
                         <div class="form-group">
-                          <label for="extradeliverycharge">Extra delivery charge</label>
+                          <label for="extradeliverycharge">Extra delivery charge more than 1 kg</label>
                           <input type="text" name="extradeliverycharge" id="extradeliverycharge" class="form-control {{ $errors->has('extradeliverycharge') ? ' is-invalid' : '' }}" value="{{ $edit_data->extradeliverycharge }}">
                            @if ($errors->has('extradeliverycharge'))
                             <span class="invalid-feedback">

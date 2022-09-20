@@ -2,7 +2,7 @@
 @section('title','Track Parcel')
 @section('content')
 
-
+<link href="{{ asset('frontEnd') }}/css/fontawesome-all.min.css" rel="stylesheet">
 <!--/ End Tracking -->
     <div class =" container">
             <div class="col-sm-12 ">
@@ -17,7 +17,7 @@
 									<p>{{date('M d, Y', strtotime($trackInfo->created_at))}}</p>
 								</div>
 								<div class="tracking-step-right"  style = "margin-top:19px;">
-									<b>{{$trackInfo->notes? $trackInfo->notes->title: ''}}<b>
+									<b>{{$trackInfo->note}}<b>
 								</div>
 							</div>
 							@endforeach

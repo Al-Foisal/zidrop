@@ -491,7 +491,7 @@ echo " " . date("h:i:sa");
             <a href="#" class="nav-link">
             <i class="fas fa-map-marker"></i>
               <p>
-               Service/Delivery Area
+               State/Delivery Area
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
@@ -499,14 +499,14 @@ echo " " . date("h:i:sa");
                 <li class="nav-item">
                 <a href="{{url('/admin/deliverycharge/add')}}" class="nav-link">&nbsp;&nbsp;
                 <i class="fa fa-plus"></i>&nbsp;
-                    <p>Service Type Add</p>
+                    <p>State Add</p>
                 </a>
               </li>                
                 
               <li class="nav-item">
                 <a href="{{url('/admin/deliverycharge/manage')}}" class="nav-link">&nbsp;&nbsp;
                 <i class="fas fa-cog"></i>&nbsp;
-                    <p>Service Type Manage</p>
+                    <p>State Manage</p>
                 </a>
               </li>                
                 

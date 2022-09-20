@@ -83,17 +83,17 @@
                       <!-- column end -->
                       <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Area</label>
-                              <select name="area" class="form-control select2 {{ $errors->has('area') ? ' is-invalid' : '' }}" value="{{ $edit_data->area}}">
+                            <label>State</label>
+                              <select name="state" class="form-control select2 {{ $errors->has('state') ? ' is-invalid' : '' }}" value="{{ $edit_data->state}}">
                                 <option value="">Select...</option>
-                                @foreach($areas as $key=>$value)
-                                <option value="{{$value->id}}">{{$value->zonename}}</option>
+                                @foreach($state as $key=>$value)
+                                <option value="{{$value->id}}">{{$value->title}}</option>
                                 @endforeach
                               </select>
 
-                              @if ($errors->has('area'))
+                              @if ($errors->has('state'))
                               <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('area') }}</strong>
+                                <strong>{{ $errors->first('state') }}</strong>
                               </span>
                               @endif
                         </div>
@@ -198,7 +198,7 @@
   </section>
 
   <script type="text/javascript">
-      document.forms['editForm'].elements['area'].value="{{$edit_data->id}}"
+      document.forms['editForm'].elements['state'].value="{{$edit_data->state}}"
       document.forms['editForm'].elements['commisiontype'].value="{{$edit_data->commisiontype}}"
       document.forms['editForm'].elements['status'].value="{{$edit_data->status}}"
     </script>

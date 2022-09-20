@@ -93,18 +93,21 @@
                         @endif
                     </td>
                    <td>
-                    <li>
-                      <a href="{{url('merchant/parcel/in-details/'.$value->id)}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                      @if($value->status < 1)
-                      <a href="{{url('merchant/parcel/edit/'.$value->id)}}" class="btn btn-danger"><i class="fa fa-edit"></i></a>
-                      @endif
-                    </li>
-                      @if($value->status >= 2)         
-                      <li>
-                      <a class="btn btn-primary" a href="{{url('merchant/parcel/invoice/'.$value->id)}}"  title="Invoice"><i class="fas fa-list"></i></a>
-                      </li>
-                      @endif
-                   </td>
+                        <li>
+                          <a href="{{url('merchant/parcel/in-details/'.$value->id)}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                          @if($value->status < 1)
+                          <a href="{{url('merchant/parcel/edit/'.$value->id)}}" class="btn btn-danger"><i class="fa fa-edit"></i></a>
+                          @endif
+                        </li>
+                        <li>
+                            <a class="btn btn-primary" a href="{{url('merchant/parcel/invoice/'.$value->id)}}"  title="Invoice"><i class="fas fa-list"></i></a>
+                        </li>
+                        <!--@if($value->status >= 2)         -->
+                        <!--<li>-->
+                        <!--    <a class="btn btn-primary" a href="{{url('merchant/parcel/invoice/'.$value->id)}}"  title="Invoice"><i class="fas fa-list"></i></a>-->
+                        <!--</li>-->
+                        <!--@endif-->
+                    </td>
                  </tr>
                  @endforeach
                 </tbody>

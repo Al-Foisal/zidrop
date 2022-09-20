@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
 use App\Merchant;
+use App\RemainTopup;
 use App\Topup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -13,7 +14,9 @@ class PaymentController extends Controller {
         $merchant = Merchant::find(Session::get('merchantId'));
         $topup    = Topup::where('merchant_id', $merchant->id)->orderBy('id', 'desc')->get();
 
-        return view('frontEnd.layouts.pages.merchant.topup', compact('merchant', 'topup'));
+        $usedtopup = RemainTopup::where('merchant_id',Session::get('merchantId'))->with('parcel')->get();
+
+        return view('frontEnd.layouts.pages.merchant.topup', compact('merchant', 'topup', 'usedtopup'));
     }
 
     public function verifypayment($reference) {

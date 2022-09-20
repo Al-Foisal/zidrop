@@ -294,6 +294,9 @@
                               @if(Auth::user()->role_id <= 2 )
 
                                  <li><a href="{{url('editor/parcel/edit/'.$value->id)}}" class="edit_icon"><i class="fa fa-edit"></i></a></li>
+                                 <li>
+                                    <a class="edit_icon anchor" a href="{{url('editor/parcel/invoice/'.$value->id)}}" title="Invoice"><i class="fa fa-list"></i></a>
+                                 </li> 
                               @endif
 
                                   <li>
@@ -432,11 +435,11 @@
                                       </div>
                                       <!-- Modal end -->
                                 </li>
-                                @if($value->status > 1)
-                                  <li>
-                                    <a class="edit_icon anchor" a href="{{url('editor/parcel/invoice/'.$value->id)}}" title="Invoice"><i class="fa fa-list"></i></a>
-                                 </li> 
-                                @endif
+                                <!--@if($value->status > 1)-->
+                                 <!-- <li>-->
+                                 <!--   <a class="edit_icon anchor" a href="{{url('editor/parcel/invoice/'.$value->id)}}" title="Invoice"><i class="fa fa-list"></i></a>-->
+                                 <!--</li> -->
+                                <!--@endif-->
                               </ul>
                           </td>
                         </tr>

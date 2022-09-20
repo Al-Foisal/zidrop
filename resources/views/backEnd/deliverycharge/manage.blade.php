@@ -1,5 +1,5 @@
 @extends('backEnd.layouts.master')
-@section('title','Manage Delivery Charge')
+@section('title','Manage State')
 @section('content')
   <!-- Main content -->
   <section class="content">
@@ -11,7 +11,7 @@
                     <div class="col-sm-12">
                       <div class="manage-button">
                         <div class="body-title">
-                          <h5>Manage Delivery Charge</h5>
+                          <h5>Manage State</h5>
                         </div>
                         <div class="quick-button">
                           <a href="{{url('admin/deliverycharge/add')}}" class="btn btn-primary btn-actions btn-create">
@@ -27,7 +27,7 @@
                         <th>Id</th>
                         <th>Title</th>
                         <th>Delivery Charge</th>
-                        <th>Extra Delivery Charge</th>
+                        <th>Extra Delivery Charge > 1kg</th>
                         <th>Cod Charge</th>
                         <th>Status</th>
                         <th>Action</th>

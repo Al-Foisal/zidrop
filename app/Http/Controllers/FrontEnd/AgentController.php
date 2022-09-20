@@ -20,6 +20,22 @@ use Session;
 use DB;
 class AgentController extends Controller
 {
+  public function view(){
+    $id = Session::get('agentId');
+    $agentInfo = Agent::find($id);
+     $parcels = DB::table('parcels')
+         ->join('merchants', 'merchants.id','=','parcels.merchantId')
+         ->join('agents', 'parcels.agentId','=','agents.id')
+         ->where('parcels.agentId', $id)
+         ->orderBy('parcels.id','DESC')
+         ->select('parcels.*','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
+         ->get();
+     $totalamount=Parcel::where(['agentId'=>$id,'status'=>4])
+     ->sum('merchantDue');
+     $unpaidamount=Parcel::where(['agentId'=>$id,'status'=>4])
+     ->sum('merchantDue');
+     return view('frontEnd.layouts.pages.agent.view',compact('agentInfo','parcels','totalamount','unpaidamount'));
+ }
     public function loginform(){
         return view('frontEnd.layouts.pages.agent.login');
     }
@@ -57,13 +73,13 @@ class AgentController extends Controller
           $totaldelivery=Parcel::where(['agentId'=>Session::get('agentId'),'status'=>4])->count();
           $totalhold=Parcel::where(['agentId'=>Session::get('agentId'),'status'=>5])->count();
           $totalcancel=Parcel::where(['agentId'=>Session::get('agentId'),'status'=>9])->count();
-          $returnpendin=Parcel::where(['agentId'=>Session::get('agentId'),'status'=>6])->count();
+          $returntohub=Parcel::where(['agentId'=>Session::get('agentId'),'status'=>7])->count();
           $returnmerchant=Parcel::where(['agentId'=>Session::get('agentId'),'status'=>8])->count();
           $totalamount=Parcel::where(['agentId'=>Session::get('agentId'),'status'=>4])
             ->sum('cod');
         
             
-          return view('frontEnd.layouts.pages.agent.dashboard',compact('totalparcel','totaldelivery','totalhold','totalcancel','returnpendin','returnmerchant','totalamount'));
+          return view('frontEnd.layouts.pages.agent.dashboard',compact('totalparcel','totaldelivery','totalhold','totalcancel','returntohub','returnmerchant','totalamount'));
     }
     public function parcels(Request $request){
        $filter = $request->filter_id;
@@ -117,6 +133,7 @@ class AgentController extends Controller
       $allparcel = DB::table('parcels')
         ->join('merchants', 'merchants.id','=','parcels.merchantId')
         ->where('parcels.agentId',Session::get('agentId'))
+        ->where('parcels.status',$parceltype->id)
         ->select('parcels.*','merchants.companyName','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress')
         ->orderBy('parcels.id','DESC')
         ->get();
@@ -129,7 +146,8 @@ class AgentController extends Controller
     ->where('parcels.agentId',Session::get('agentId'))
     ->join('nearestzones', 'parcels.reciveZone','=','nearestzones.id')
     ->where('parcels.id',$id)
-    ->select('parcels.*','nearestzones.zonename','merchants.companyName','merchants.phoneNumber','merchants.emailAddress')
+    ->join('deliverycharges', 'deliverycharges.id', '=', 'nearestzones.state')
+    ->select('parcels.*','deliverycharges.title', 'nearestzones.zonename','nearestzones.state', 'merchants.firstName', 'merchants.lastName', 'merchants.phoneNumber', 'merchants.emailAddress', 'merchants.companyName', 'merchants.status as mstatus', 'merchants.id as mid')
     ->first();
         if($show_data!=NULL){
         	return view('frontEnd.layouts.pages.agent.invoice',compact('show_data'));
@@ -198,7 +216,8 @@ class AgentController extends Controller
        $pnote = Parceltype::find($request->status);
         $note = new Parcelnote();
         $note->parcelId = $request->hidden_id;
-        $note->note = "Your parcel ".$pnote->title;
+        $note->note = $request->note;
+        // $note->note = "Your parcel ".$pnote->title;
         $note->save();
     
     

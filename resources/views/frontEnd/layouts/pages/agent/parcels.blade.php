@@ -197,6 +197,7 @@
                     </div>
                     <!-- Modal end -->
                     <li><button class="btn btn-danger" title="Action" data-toggle="modal" data-target="#sUpdateModal{{$value->id}}"><i class="fa fa-sync-alt"></i></button></li>
+                    <li><a class="btn btn-primary" a href="{{url('agent/parcel/invoice/'.$value->id)}}"  title="Invoice"><i class="fas fa-list"></i></a></li>
                     <!-- Modal -->
                       <div id="sUpdateModal{{$value->id}}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
@@ -213,18 +214,29 @@
                                 <div class="form-group">
                                     <select name="status"  onchange="percelDelivery(this)" class="form-control" id="">
                                         @foreach($parceltypes as $key=>$ptvalue)
+                                        @php
+                                            if($ptvalue->id == 9)
+                                            {
+                                              continue;
+                                            }
+                                        @endphp
                                           <option value="{{$ptvalue->id}}"@if($value->status==$ptvalue->id) selected="selected" @endif @if($value->status > $ptvalue->id) disabled @endif>{{$ptvalue->title}}</option>
                                           @endforeach
                                   </select>
-                                </div>                                    
+                                </div>        
+                                <style>
+                                .partialpayment{
+                                  display: none;
+                                }  
+                                </style>                            
                                 <!-- form group end -->
-                                <!--<div class="form-group mrt-15">-->
-                                <!--  <textarea name="note" class="form-control" cols="30" placeholder="Note" ></textarea>-->
-                                <!--</div>-->
+                                <div class="form-group mrt-15">
+                                  <textarea name="note" class="form-control" cols="30" placeholder="Note" ></textarea>
+                                </div>
                                  <!-- form group end -->
                                 <div class="form-group">
-                                  <div id="customerpaid" style="display: none;">
-                                      <input type="text" class="form-control" value="{{old('customerpay')}}" id="customerpay" name="customerpay"  placeholder="customer pay" /><br />
+                                  <div id="customerpaid" class="partialpayment">
+                                      <input type="text" class=" form-control" value="{{old('customerpay')}}" id="customerpay" name="customerpay"  placeholder="customer pay" /><br />
                                   </div>
                                 </div>
                                 <!-- form group end -->
@@ -241,9 +253,9 @@
                         </div>
                       </div>
                       <!-- Modal end -->
-                      @if($value->status >= 2) 
-                      <li><a class="btn btn-primary" a href="{{url('agent/parcel/invoice/'.$value->id)}}"  title="Invoice"><i class="fas fa-list"></i></a></li>
-                      @endif
+                      <!--@if($value->status >= 2) -->
+                      <!--<li><a class="btn btn-primary" a href="{{url('agent/parcel/invoice/'.$value->id)}}"  title="Invoice"><i class="fas fa-list"></i></a></li>-->
+                      <!--@endif-->
                   </td>
                  </tr>
                  @endforeach

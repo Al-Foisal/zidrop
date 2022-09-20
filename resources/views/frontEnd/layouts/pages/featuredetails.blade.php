@@ -35,7 +35,7 @@
             </div>
             <div class="section-bottom">
                 <div class="text">
-                    <p>{{$feature->subtitle}}</p>
+                    <p>{{$feature->text}}</p>
                 </div>
 
             </div>

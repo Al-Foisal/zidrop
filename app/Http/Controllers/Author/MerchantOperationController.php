@@ -181,11 +181,14 @@ class MerchantOperationController extends Controller {
         $totalamount = DB::table('parcels')
             ->join('merchants', 'merchants.id', '=', 'parcels.merchantId')
             ->where('parcels.merchantId', $id)
+            ->where('parcels.merchantpayStatus', null)
+            ->where('parcels.status', 4)
             ->sum('parcels.merchantAmount');
 
         $totaldue = DB::table('parcels')
             ->join('merchants', 'merchants.id', '=', 'parcels.merchantId')
             ->where('parcels.merchantId', $id)
+            ->Where('parcels.status', 4)
             ->sum('parcels.merchantDue');
 
         $parcels = DB::table('parcels')

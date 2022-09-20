@@ -25,7 +25,9 @@
                       <thead>
                       <tr>
                         <th>Id</th>
+                        <th>State Name</th>
                         <th>Nearestzone Name</th>
+                        <th>Extra delivery charge</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
@@ -34,7 +36,12 @@
                         @foreach($show_data as $key=>$value)
                         <tr>
                           <td>{{$loop->iteration}}</td>
+                          @php
+                              $state = App\Deliverycharge::find($value->state);
+                          @endphp
+                          <td>{{$state->title??''}}</td>
                           <td>{{$value->zonename}}</td>
+                          <td>{{$value->extradeliverycharge}}</td>
                           <td>{{$value->status==1? "Active":"Inactive"}}</td>
                            <td>
                             <ul class="action_buttons">
@@ -56,13 +63,15 @@
                                   <li>
                                       <a class="edit_icon" href="{{url('admin/nearestzone/edit/'.$value->id)}}" title="Edit"><i class="fa fa-edit"></i></a>
                                   </li>
-                                  <!--<li>-->
-                                  <!--  <form action="{{url('admin/nearestzone/delete')}}" method="POST">-->
-                                  <!--    @csrf-->
-                                  <!--    <input type="hidden" name="hidden_id" value="{{$value->id}}">-->
-                                  <!--    <button type="submit" onclick="return confirm('Are you delete this this?')" class="trash_icon" title="Delete"><i class="fa fa-trash"></i></button>-->
-                                  <!--  </form>-->
-                                  <!--</li>-->
+                                  @if(auth()->user()->role_id == 1)
+                                  <li>
+                                    <form action="{{url('admin/nearestzone/delete')}}" method="POST">
+                                      @csrf
+                                      <input type="hidden" name="hidden_id" value="{{$value->id}}">
+                                      <button type="submit" onclick="return confirm('Are you delete this this?')" class="trash_icon" title="Delete"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                  </li>
+                                  @endif
                               </ul>
                           </td>
                         </tr>

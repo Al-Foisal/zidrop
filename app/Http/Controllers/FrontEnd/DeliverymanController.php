@@ -166,7 +166,8 @@ class DeliverymanController extends Controller
     ->where('parcels.deliverymanId',Session::get('deliverymanId'))
     ->join('nearestzones', 'parcels.reciveZone','=','nearestzones.id')
     ->where('parcels.id',$id)
-    ->select('parcels.*','nearestzones.zonename','merchants.companyName','merchants.phoneNumber','merchants.emailAddress')
+    ->join('deliverycharges', 'deliverycharges.id', '=', 'nearestzones.state')
+    ->select('parcels.*','deliverycharges.title', 'nearestzones.zonename','nearestzones.state', 'merchants.firstName', 'merchants.lastName', 'merchants.phoneNumber', 'merchants.emailAddress', 'merchants.companyName', 'merchants.status as mstatus', 'merchants.id as mid')
     ->first();
         if($show_data!=NULL){
         	return view('frontEnd.layouts.pages.deliveryman.invoice',compact('show_data'));

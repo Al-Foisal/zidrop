@@ -40,14 +40,18 @@
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <select class="custom-select form-control" name="area">
-                                    <option selected="">Select Delivery Area</option>
-                                    <option value="6">Outside Dhaka</option>
-                                    <option value="7">Sub-Dhaka</option>
-                                    <option value="8">Adabar</option>
-                                    <option value="9">Azampur</option>
+                                <select class="form-control" name="state">
+                                    <option selected="">Select State</option>
+                                    @foreach($state as $item)
+                                    <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                    @endforeach
                                 </select>
                             </div>
+                            {{-- <div class="col-md-12 mb-3">
+                                <select class="form-control" name="area">
+                                    
+                                </select>
+                            </div> --}}
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="text" name="note" placeholder="Note (Optional)" class="form-control" />
@@ -80,5 +84,29 @@
         </div>
     </div>
 </section>
-
+{{-- <script type="text/javascript">
+	$(document).ready(function() {
+		$('select[name="state"]').on('change', function() {
+			var state = $(this).val();
+            alert(state)
+			if (state) {
+				$.ajax({
+					url: "{{ url('/get-area/') }}/" + state,
+					type: "GET",
+					dataType: "json",
+					success: function(data) {
+						var d = $('select[name="area"]').empty();
+						$.each(data, function(key, value) {
+							$('select[name="area"]').append(
+								'<option value="' + value.id + '">' + value
+								.zonename + '</option>');
+						});
+					},
+				});
+			} else {
+				alert('danger');
+			}
+		});
+	});
+</script> --}}
 @endsection

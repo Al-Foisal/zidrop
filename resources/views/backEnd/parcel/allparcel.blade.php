@@ -515,11 +515,12 @@
                                       </div>
                                       <!-- Modal end -->
                                 </li>
-                                @if($value->status > 1)
+                                <!--@if($value->status > 1)-->
                                   <li>
                                     <a class="edit_icon anchor" a href="{{url('editor/parcel/invoice/'.$value->id)}}" title="Invoice"><i class="fa fa-list"></i></a>
                                  </li>
-                                @endif
+                                <!--@endif-->
+                                @if(Auth::user()->role_id == 1 )
                                 <li>
                                   <form action="{{ url('/editor/parcel/delete/'.$value->id) }}" method="post">
                                   @csrf
@@ -529,6 +530,7 @@
                                   </button>
                                   </form>
                                 </li>
+                                @endif
                               </ul>
                           </td>
                         </tr>

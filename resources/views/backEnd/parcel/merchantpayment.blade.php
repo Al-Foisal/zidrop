@@ -38,6 +38,7 @@
                         </div>
                       </div>
                     </div>
+                    <small>The merchant, who have parcels with status delivered and partially delivered having merchant due will show here.</small>
                     <div class="col-lg-12 col-md-12 col-sm-12">
                       <form action="{{url('editor/merchant/payment')}}" class="filte-form">
                         {{-- @csrf --}}
@@ -84,7 +85,7 @@
                         @php
                               $due = 0;
                               foreach ($value->parcels as $parcel) {
-                                  if ($parcel->status == 4) {
+                                  if ($parcel->status == 4 || $parcel->status == 6) {
                                       // $due = $due + ($parcel->codCharge + $parcel->deliveryCharge - $parcel->cod);
                                       $due=$due+$parcel->merchantDue;
                                   }

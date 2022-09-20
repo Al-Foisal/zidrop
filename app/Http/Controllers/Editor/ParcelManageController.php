@@ -8,7 +8,7 @@ use App\Deliveryman;
 use App\History;
 use App\Http\Controllers\Controller;
 use App\Merchant;
-use App\Merchantcharge;
+use App\Nearestzone;
 use App\Parcel;
 use App\Parcelnote;
 use App\Parceltype;
@@ -42,7 +42,7 @@ class ParcelManageController extends Controller {
     public function merchantconfirmpayment(Request $request) {
 
         if ($request->startDate && $request->endDate) {
-            $parcels = Parcel::whereIn('merchantId', $request->parcel_id)->whereDate('updated_at', '>=', request()->startDate)->whereDate('updated_at', '<=', request()->endDate)->get();
+            $parcels = Parcel::whereIn('merchantId', $request->parcel_id)->whereDate('updated_at', '>=', request()->startDate)->whereDate('updated_at', '<=', request()->endDate)->where('status', 4)->get();
 
             foreach ($parcels as $parcel) {
                 $due                       = $parcel->merchantDue;
@@ -54,7 +54,7 @@ class ParcelManageController extends Controller {
             }
 
         } else {
-            $parcels = Parcel::whereIn('merchantId', $request->parcel_id)->get();
+            $parcels = Parcel::whereIn('merchantId', $request->parcel_id)->where('status', 4)->get();
 
             foreach ($parcels as $parcel) {
                 $due                       = $parcel->merchantDue;
@@ -268,8 +268,7 @@ class ParcelManageController extends Controller {
         return view('backEnd.parcel.allparcel', compact('show_data'));
     }
 
-    public function parceldelete(Request $request, $id)
-    {
+    public function parceldelete(Request $request, $id) {
         $parcel = Parcel::findOrFail($id);
         $parcel->delete();
         Toastr::success('message', 'Parcel deleted successfully!');
@@ -282,7 +281,8 @@ class ParcelManageController extends Controller {
             ->join('merchants', 'merchants.id', '=', 'parcels.merchantId')
             ->join('nearestzones', 'parcels.reciveZone', '=', 'nearestzones.id')
             ->where('parcels.id', $id)
-            ->select('parcels.*', 'nearestzones.zonename', 'merchants.companyName', 'merchants.phoneNumber', 'merchants.emailAddress')
+            ->join('deliverycharges', 'deliverycharges.id', '=', 'nearestzones.state')
+            ->select('parcels.*', 'deliverycharges.title', 'nearestzones.zonename', 'nearestzones.state', 'merchants.firstName', 'merchants.lastName', 'merchants.phoneNumber', 'merchants.emailAddress', 'merchants.companyName', 'merchants.status as mstatus', 'merchants.id as mid')
             ->first();
 
         return view('backEnd.parcel.invoice', compact('show_data'));
@@ -477,27 +477,39 @@ class ParcelManageController extends Controller {
         $parcel         = Parcel::find($request->hidden_id);
         $parcel->status = $request->status;
 
-        if (($request->status == 4 && $parcel->payment_option == 1) || ($request->status == 6 && $parcel->payment_option == 1)) {
-            $validMerchant = Merchant::find($parcel->merchantId);
-            $remain        = $validMerchant->balance - $parcel->deliveryCharge;
+// if (($request->status == 4 && $parcel->payment_option == 1) || ($request->status == 6 && $parcel->payment_option == 1)) {
 
-            if ($remain > 0) {
-                $validMerchant->balance = $remain;
-                $validMerchant->save();
+//     $validMerchant = Merchant::find($parcel->merchantId);
 
-                RemainTopup::create([
-                    'parcel_id'     => $parcel->id,
-                    'parcel_status' => $request->status,
-                    'merchant_id'   => $validMerchant->id,
-                    'amount'        => $parcel->deliveryCharge,
-                ]);
-            } else {
-                Toastr::success('message', 'Insufficient wallet balance!');
+//     $remain        = $validMerchant->balance - $parcel->deliveryCharge;
 
-                return redirect()->back();
-            }
+//     if ($remain > 0) {
 
-        }
+//         $validMerchant->balance = $remain;
+
+//         $validMerchant->save();
+
+//         RemainTopup::create([
+
+//             'parcel_id'     => $parcel->id,
+
+//             'parcel_status' => $request->status,
+
+//             'merchant_id'   => $validMerchant->id,
+
+//             'amount'        => $parcel->deliveryCharge,
+
+//         ]);
+
+//     } else {
+
+//         Toastr::success('message', 'Insufficient wallet balance!');
+
+//         return redirect()->back();
+
+//     }
+
+        // }
 
         $parcel->save();
 
@@ -657,12 +669,11 @@ class ParcelManageController extends Controller {
 
             // $merchantinfo =Merchant::find($parcel->merchantId);
 
-            $codcharge              = 0;
-            $parcel->merchantAmount = $codcharge;
-            $parcel->merchantDue    = $codcharge;
-            $parcel->codCharge      = $codcharge;
-            $parcel->cod            = $codcharge;
-            $parcel->deliveryCharge = $codcharge;
+            $codcharge                 = 0;
+            $parcel->merchantAmount    = $parcel->merchantAmount + $parcel->codCharge;
+            $parcel->merchantDue       = $codcharge;
+            $parcel->merchantpayStatus = 1;
+            $parcel->merchantPaid      = $parcel->merchantAmount + $parcel->codCharge;
             $parcel->save();
 
 //  $data = array(
@@ -706,60 +717,102 @@ class ParcelManageController extends Controller {
     public function create() {
         $merchants = Merchant::orderBy('id', 'DESC')->get();
         $delivery  = Deliverycharge::where('status', 1)->get();
+        // $packages = Deliverycharge::where('status', 1)->get();
 
-        return view('backEnd.addparcel.create', compact('merchants', 'delivery'));
+        return view('backEnd.addparcel.create_new', compact('merchants', 'delivery'));
     }
 
     public function parcelstore(Request $request) {
+        // return $request->all();
         $this->validate($request, [
-            'cod'         => 'required',
-            'name'        => 'required',
-            'address'     => 'required',
-            'phonenumber' => 'required',
+            'percelType'     => 'required',
+            'name'           => 'required',
+            'address'        => 'required',
+            'phonenumber'    => 'required',
+            'productName'    => 'required',
+            'productQty'     => 'required',
+            'cod'            => 'required',
+            'payment_option' => 'required',
+            'weight'         => 'required',
+            'note'           => 'required',
+            'reciveZone'     => 'required',
+            'package'        => 'required',
         ]);
 
-        $charge = Merchantcharge::where(['merchantId' => $request->merchantId, 'packageId' => $request->orderType])->first();
+        $charge = Deliverycharge::find($request->package);
+        $area   = Nearestzone::find($request->reciveZone);
 
         if ($request->weight > 1 || $request->weight != NULL) {
             $extraweight    = $request->weight - 1;
-            $deliverycharge = ($charge->delivery * 1) + ($extraweight * $charge->extradelivery);
+            $deliverycharge = ($charge->deliverycharge + $area->extradeliverycharge) + ($extraweight * $charge->extradeliverycharge);
             $weight         = $request->weight;
         } else {
-            $deliverycharge = $charge->delivery;
+            $deliverycharge = $charge->deliverycharge + $area->extradeliverycharge;
             $weight         = 1;
         }
 
-// if($charge->codpercent==1){
+        if ($request->payment_option == 2) {
+            $state = Deliverycharge::find($request->package);
 
-//   $codcharge=($request->cod*$charge->cod)/100;
+            if ($state) {
+                $codcharge = ($request->cod * $state->cod) / 100;
+            } else {
+                $codcharge = 0;
+            }
 
-//  }else{
+            $merchantAmount = ($request->cod) - ($deliverycharge + $codcharge);
+            $merchantDue    = ($request->cod) - ($deliverycharge + $codcharge);
 
-//   $codcharge = $charge->cod;
-        // }
+        } else {
+            $merchant = Merchant::find($request->merchantId);
 
-        $codcharge = ($request->cod * $charge->cod) / 100;
+            if ($merchant->balance < $deliverycharge) {
+                Toastr::error('Error!', 'Wallet Balance is low. Please
+                top up.');
+
+                return redirect()->back();
+            }
+
+            $merchant->balance = $merchant->balance - $deliverycharge;
+            $merchant->save();
+            $codcharge      = 0;
+            $merchantAmount = 0;
+            $merchantDue    = 0;
+        }
 
         $store_parcel                   = new Parcel();
         $store_parcel->invoiceNo        = $request->invoiceno;
         $store_parcel->merchantId       = $request->merchantId;
-        $store_parcel->percelType       = $request->parcelType;
+        $store_parcel->payment_option   = $request->payment_option;
+        $store_parcel->percelType       = $request->percelType;
         $store_parcel->cod              = $request->cod;
         $store_parcel->recipientName    = $request->name;
         $store_parcel->recipientAddress = $request->address;
         $store_parcel->recipientPhone   = $request->phonenumber;
         $store_parcel->productWeight    = $weight;
-        $store_parcel->trackingCode     = 'ZURI' . mt_rand(11111111, 99999999);
+        $store_parcel->productName      = $request->productName;
+        $store_parcel->productQty       = $request->productQty;
+        $store_parcel->productColor     = $request->productColor;
+        $store_parcel->trackingCode     = 'ZIDROP' . mt_rand(111111, 999999);
         $store_parcel->note             = $request->note;
         $store_parcel->deliveryCharge   = $deliverycharge;
         $store_parcel->codCharge        = $codcharge;
         $store_parcel->reciveZone       = $request->reciveZone;
-        $store_parcel->merchantAmount   = ($request->cod) - ($deliverycharge + $codcharge);
-        $store_parcel->merchantDue      = ($request->cod) - ($deliverycharge + $codcharge);
-        $store_parcel->orderType        = $request->orderType;
+        $store_parcel->merchantAmount   = $merchantAmount;
+        $store_parcel->merchantDue      = $merchantDue;
+        $store_parcel->orderType        = $request->package;
         $store_parcel->codType          = 1;
         $store_parcel->status           = 1;
         $store_parcel->save();
+
+        if ($request->payment_option == 1) {
+            RemainTopup::create([
+                'parcel_id'     => $store_parcel->id,
+                'parcel_status' => 1,
+                'merchant_id'   => $store_parcel->merchantId,
+                'amount'        => $deliverycharge,
+            ]);
+        }
 
         $history            = new History();
         $history->name      = "Customer: " . $store_parcel->recipientName . "<br><b>(Created By: )</b>" . auth()->user()->name;
@@ -780,20 +833,42 @@ class ParcelManageController extends Controller {
         $merchants = Merchant::orderBy('id', 'DESC')->get();
         $delivery  = Deliverycharge::where('status', 1)->get();
 
-        return view('backEnd.addparcel.edit', compact('edit_data', 'merchants', 'delivery'));
+        return view('backEnd.addparcel.edit_new', compact('edit_data', 'merchants', 'delivery'));
     }
 
     public function parcelupdate(Request $request) {
+        // return $request->all();
         $this->validate($request, [
-            'cod'         => 'required',
-            'name'        => 'required',
-            'percelType'  => 'required',
-            'address'     => 'required',
-            'weight'      => 'required',
-            'phonenumber' => 'required',
+            'percelType'     => 'required',
+            'name'           => 'required',
+            'address'        => 'required',
+            'phonenumber'    => 'required',
+            'productName'    => 'required',
+            'productQty'     => 'required',
+            'cod'            => 'required',
+            'payment_option' => 'required',
+            'weight'         => 'required',
+            'note'           => 'required',
+            'reciveZone'     => 'required',
         ]);
 
         $update_parcel                   = Parcel::find($request->hidden_id);
+        
+        if ($request->payment_option == 1) {
+            
+            $merchant = Merchant::find($request->merchantId);
+
+            if ($merchant->balance < $request->deliveryCharge) {
+                Toastr::error('Error!', 'Wallet Balance is low. Please
+                top up.');
+                
+                return redirect()->back();
+            }
+            $merchant->balance = $merchant->balance - $request->deliveryCharge;
+            $merchant->save();
+        }
+
+        
         $update_parcel->invoiceNo        = $request->invoiceno;
         $update_parcel->merchantId       = $request->merchantId;
         $update_parcel->cod              = $request->cod;
@@ -801,6 +876,9 @@ class ParcelManageController extends Controller {
         $update_parcel->recipientName    = $request->name;
         $update_parcel->recipientAddress = $request->address;
         $update_parcel->recipientPhone   = $request->phonenumber;
+        $update_parcel->productName      = $request->productName;
+        $update_parcel->productQty       = $request->productQty;
+        $update_parcel->productColor     = $request->productColor;
         $update_parcel->productWeight    = $request->weight;
         $update_parcel->note             = $request->note;
         $update_parcel->deliveryCharge   = $request->deliveryCharge;
@@ -809,11 +887,19 @@ class ParcelManageController extends Controller {
         $update_parcel->merchantDue      = ($request->cod) - ($request->deliveryCharge + $request->codCharge);
         $update_parcel->orderType        = $request->orderType;
         $update_parcel->save();
-        Toastr::success('Success!', 'Thanks! your parcel update successfully');
+        
+        if ($request->payment_option == 1) {
+            RemainTopup::create([
+                'parcel_id'     => $update_parcel->id,
+                'parcel_status' => 1,
+                'merchant_id'   => $update_parcel->merchantId,
+                'amount'        => $request->deliveryCharge,
+            ]);
+        }
 
         //Save to History table
         $parcel = Parcel::find($request->hidden_id);
-
+        
         $history            = new History();
         $history->name      = $parcel->recipientName;
         $history->parcel_id = $request->hidden_id;
@@ -823,7 +909,9 @@ class ParcelManageController extends Controller {
         $history->date      = $parcel->updated_at;
         $history->save();
 
-        return redirect()->back();
+        Toastr::success('Success!', 'Thanks! your parcel update successfully');
+
+        return back();
     }
 
 }

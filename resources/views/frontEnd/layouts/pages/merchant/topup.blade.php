@@ -60,7 +60,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="tab-inner">
             <h5>Wallet History</h5>
-            <table id="" class="table table-responsive table-striped">
+            <table id="" class="table table-striped">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -80,6 +80,39 @@
                             <td>N{{ number_format($item->amount, 2) }}</td>
                             <td>{{ $item->reference }}</td>
                             <td>{{ $item->status }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="tab-inner">
+            <h5>Used Wallet History</h5>
+            <table id="" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>##</th>
+                        <th>Parcel Recepient Info</th>
+                        <th>Transaction Amount</th>
+                        <th>Created_at</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($usedtopup as $key => $item)
+                        <tr>
+                            <td>{{ ++$key }}</td>
+                            <td>
+                                @if($item->parcel)
+                                {{ $item->parcel->recipientName }} <br>
+                                {{ $item->parcel->parceltype->title }}
+                                @else
+                                <b style="color: red">Parcel Deleted by Admin.</b>
+                                @endif
+                            </td>
+                            <td>N{{ number_format($item->amount, 2) }}</td>
+                            <td>{{ $item->created_at }}</td>
                         </tr>
                     @endforeach
                 </tbody>

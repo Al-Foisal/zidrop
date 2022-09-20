@@ -208,14 +208,20 @@
                                 <div class="form-group">
                                     <select name="status"  onchange="percelDelivery(this)" class="form-control" id="">
                                         @foreach($aparceltypes as $key=>$ptvalue)
-                                          <option value="{{$ptvalue->id}}"@if($value->status==$ptvalue->id) selected="selected" @endif @if($value->status > $ptvalue->id) disabled @endif>{{$ptvalue->title}}</option>
+                                        @php
+                                            if($ptvalue->id == 9)
+                                            {
+                                              continue;
+                                            }
+                                        @endphp
+                                          <option value="{{$ptvalue->id}}"@if($value->status==$ptvalue->id) selected="selected" @endif @if($value->status > $ptvalue->id) disabled @endif>{{$ptvalue->title}} {{ $ptvalue->id }}</option>
                                           @endforeach
                                   </select>
                                 </div>                                    
                                 <!-- form group end -->
-                                <!--<div class="form-group mrt-15">-->
-                                <!--  <textarea name="note" class="form-control" cols="30" placeholder="Note" ></textarea>-->
-                                <!--</div>-->
+                                <div class="form-group mrt-15">
+                                  <textarea name="note" class="form-control" cols="30" placeholder="Note" ></textarea>
+                                </div>
                                  <!-- form group end -->
                                 <div class="form-group">
                                   <div id="customerpaid" style="display: none;">

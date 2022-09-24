@@ -314,22 +314,23 @@ class MerchantController extends Controller {
 
     public function parcelstore(Request $request) {
         $this->validate($request, [
-            'percelType'  => 'required',
-            'name'        => 'required',
-            'address'     => 'required',
-            'phonenumber' => 'required',
-            'productName' => 'required',
-            'productQty'  => 'required',
-            'cod'          => 'required',
-            'payment_option'=> 'required',
-            'weight'        => 'required',
-            'note'          => 'required',
-            'reciveZone'    => 'required',
-            'package'       => 'required'
+            'percelType'     => 'required',
+            'name'           => 'required',
+            'address'        => 'required',
+            'phonenumber'    => 'required',
+            'productName'    => 'required',
+            'productQty'     => 'required',
+            'cod'            => 'required',
+            'payment_option' => 'required',
+            'weight'         => 'required',
+            'note'           => 'required',
+            'reciveZone'     => 'required',
+            'package'        => 'required',
         ]);
 
         $state = Deliverycharge::find($request->package);
         $area  = Nearestzone::find($request->reciveZone);
+
         if ($request->weight > 1 || $request->weight != NULL) {
             $extraweight    = $request->weight - 1;
             $deliverycharge = $state->deliverycharge + $area->extradeliverycharge + ($extraweight * $state->extradeliverycharge);
@@ -367,7 +368,6 @@ class MerchantController extends Controller {
             $merchantAmount = 0;
             $merchantDue    = 0;
         }
-        
 
         $store_parcel                   = new Parcel();
         $store_parcel->invoiceNo        = $request->invoiceno;
@@ -563,7 +563,7 @@ class MerchantController extends Controller {
             ->join('nearestzones', 'parcels.reciveZone', '=', 'nearestzones.id')
             ->where('parcels.id', $id)
             ->join('deliverycharges', 'deliverycharges.id', '=', 'nearestzones.state')
-            ->select('parcels.*','deliverycharges.title', 'nearestzones.zonename','nearestzones.state', 'merchants.firstName', 'merchants.lastName', 'merchants.phoneNumber', 'merchants.emailAddress', 'merchants.companyName', 'merchants.status as mstatus', 'merchants.id as mid')
+            ->select('parcels.*', 'deliverycharges.title', 'nearestzones.zonename', 'nearestzones.state', 'merchants.firstName', 'merchants.lastName', 'merchants.phoneNumber', 'merchants.emailAddress', 'merchants.companyName', 'merchants.status as mstatus', 'merchants.id as mid')
             ->first();
 
         if ($show_data != NULL) {
@@ -598,18 +598,18 @@ class MerchantController extends Controller {
 
     public function parcelupdate(Request $request) {
         $this->validate($request, [
-            'percelType'  => 'required',
-            'name'        => 'required',
-            'address'     => 'required',
-            'phonenumber' => 'required',
-            'productName' => 'required',
-            'productQty'  => 'required',
-            'cod'          => 'required',
-            'payment_option'=> 'required',
-            'weight'        => 'required',
-            'note'          => 'required',
-            'reciveZone'    => 'required',
-            'package'       => 'required'
+            'percelType'     => 'required',
+            'name'           => 'required',
+            'address'        => 'required',
+            'phonenumber'    => 'required',
+            'productName'    => 'required',
+            'productQty'     => 'required',
+            'cod'            => 'required',
+            'payment_option' => 'required',
+            'weight'         => 'required',
+            'note'           => 'required',
+            'reciveZone'     => 'required',
+            'package'        => 'required',
         ]);
 
 // fixed delivery charge
@@ -685,7 +685,7 @@ class MerchantController extends Controller {
 
     public function payments() {
         $merchantInvoice = Merchantpayment::where('merchantId', Session::get('merchantId'))->get();
-
+dd($merchantInvoice);
         return view('frontEnd.layouts.pages.merchant.payments', compact('merchantInvoice'));
     }
 

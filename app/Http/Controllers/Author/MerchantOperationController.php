@@ -18,6 +18,11 @@ use Illuminate\Http\Request;
 class MerchantOperationController extends Controller {
     public function delete(Request $request, $id) {
         $merchant = Merchant::findOrFail($id);
+        $parcel = Parcel::where('merchantId',$id)->get();
+        foreach($parcel as $item){
+            $item->merchantId = null;
+            $item->save();
+        }
         $merchant->delete();
         Toastr::success('message', 'Merchant  Deleted successfully!');
 

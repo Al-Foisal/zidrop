@@ -191,9 +191,10 @@ class AgentManageController extends Controller {
         $parcel     = Parcel::where('agentId', $destroy_id->id)->get();
 
         foreach ($parcel as $item) {
-            $item->update(['agentId' => null]);
+            $item->agentId = null;
+            $item->save();
         }
-
+        
         $destroy_id->delete();
         Toastr::success('message', 'Agent delete successfully!');
 

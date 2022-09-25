@@ -32,47 +32,45 @@
                       <tbody>
                           
                         @foreach($merchantInvoice as $key=>$value)
-                         @php
-                            $cod = App\Parcel::where(['merchantId'=>$value->merchantId,'paymentInvoice'=>$value->id])->whereNotNull('merchantpayStatus')->sum('cod');
-                            $deliverycharge = App\Parcel::where(['merchantId'=>$value->merchantId,'paymentInvoice'=>$value->id])->whereNotNull('merchantpayStatus')->sum('deliveryCharge');
-                            $codcharge = App\Parcel::where(['merchantId'=>$value->merchantId,'paymentInvoice'=>$value->id])->whereNotNull('merchantpayStatus')->sum('codCharge');
-                            $totalinvoice = App\Parcel::where(['merchantId'=>$value->merchantId,'paymentInvoice'=>$value->id])->whereNotNull('merchantpayStatus')->count();
-                         @endphp
                         <tr>
                            
                           <td><p style="font-size:25px">{{$loop->iteration}}</p></td>
                           <td><p style="font-size:25px">
                              
-                              {{$value->done_by}}
+                              @php 
+                              $m=DB::table('merchantpayments')->where('updated_at',$value->updated_at)->get();
+                               @endphp
+                               @foreach($m as $key=>$n)
+                               @php
+                               if($key>0){
+                               continue;
+                               }
+                               @endphp
+                              {{$n->done_by}}
+                              @endforeach
                              
                           </p></td>
                           
-                          <td><p style="font-size:25px">{{date('d M Y', strtotime($value->created_at))}}</p></td>
-                          <td><p style="font-size:25px">{{date("g:i a", strtotime($value->created_at))}}</p></td>
-                          <td><p style="font-size:25px">{{$totalinvoice}}</p></td>
-                          <td><p style="font-size:25px">{{$cod-($deliverycharge+$codcharge)}}</p></td>
+                          <td><p style="font-size:25px">{{date('d M Y', strtotime($value->updated_at))}}</p></td>
+                          <td><p style="font-size:25px">{{date("g:i a", strtotime($value->updated_at))}}</p></td>
+                          <td><p style="font-size:25px">{{$value->total_parcel}}</p></td>
+                          <td><p style="font-size:25px">{{$value->total}}</p></td>
 
 
                           <td>
                                 <ul>
-                                  <li>
-                                      <a href="{{url('author/merchant/payment/invoice-details/'.$value->id)}}" title="View Payment Invoice"> <p style="font-size:25px"><i class="fa fa-eye"></i> View Invoice</p></a>
-                                  </li>
+                                    <li>
+                                      <form action="{{ url('author/merchant/payment/invoice-details') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" value="{{ $value->updated_at }}" name="update">
+                                        <button class="btn btn-primary" type="submit"><i class="fa fa-eye"></i> View</button>
+                                    </form>
+                                    </li>
                               </ul>
                         </td>
 
 
-<!--                          <td>
-                            <ul class="action_buttons dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Action Button
-                                <span class="caret"></span></button>
-                                
-                                <ul class="dropdown-menu">
-                                  <li>
-                                      <a class="edit_icon" href="{{url('author/merchant/payment/invoice-details/'.$value->id)}}" title="View"><i class="fa fa-eye"></i> View</a>
-                                  </li>
-                              </ul>
-                          </td>--------------------------------------------->
+
 
                           
                         </tr>

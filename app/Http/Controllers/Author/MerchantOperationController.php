@@ -207,17 +207,24 @@ class MerchantOperationController extends Controller {
     }
 
     public function paymentinvoice($id) {
-        $merchantInvoice = Merchantpayment::where('merchantId', $id)->get();
+        // $merchantInvoice = Merchantpayment::where('merchantId', $id)->get();
+    $merchantInvoice =DB::table('merchantpayments')
+        ->join('parcels','parcels.id','merchantpayments.parcelId')
+        ->selectRaw('count(merchantpayments.id) as total_parcel,sum(parcels.merchantPaid) as total, merchantpayments.updated_at')
+        ->groupBy('merchantpayments.updated_at')
+        ->where('merchantpayments.merchantId', $id)
+        ->get();
 
         return view('backEnd.merchant.paymentinvoice', compact('merchantInvoice'));
     }
 
-    public function inovicedetails($id) {
-        $invoiceInfo    = Merchantpayment::find($id);
-        $inovicedetails = Parcel::where(['paymentInvoice' => $id, 'merchantId' => $invoiceInfo->merchantId])->get();
-        $merchantInfo   = Merchant::find($invoiceInfo->merchantId);
+    public function inovicedetails(Request $request) {
+        $update = $request->update;
+        
+        $parcelId = Merchantpayment::where('updated_at', $update)->pluck('parcelId')->toArray();
+        $parcels   = DB::table('parcels')->whereIn('id', $parcelId)->get();
 
-        return view('backEnd.merchant.inovicedetails', compact('inovicedetails', 'invoiceInfo', 'merchantInfo'));
+        return view('backEnd.merchant.inovicedetails', compact('parcels'));
     }
 
 }

@@ -13,6 +13,7 @@ use App\Parcel;
 use App\Parcelnote;
 use App\Parceltype;
 use App\RemainTopup;
+use App\Merchantpayment;
 use Auth;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
@@ -42,7 +43,7 @@ class ParcelManageController extends Controller {
     public function merchantconfirmpayment(Request $request) {
 
         if ($request->startDate && $request->endDate) {
-            $parcels = Parcel::whereIn('merchantId', $request->parcel_id)->whereDate('updated_at', '>=', request()->startDate)->whereDate('updated_at', '<=', request()->endDate)->where('status', 4)->get();
+            $parcels = Parcel::whereIn('merchantId', $request->parcel_id)->whereDate('updated_at', '>=', request()->startDate)->whereDate('updated_at', '<=', request()->endDate)->where('merchantpayStatus', null)->where('status', 4)->get();
 
             foreach ($parcels as $parcel) {
                 $due                       = $parcel->merchantDue;
@@ -51,10 +52,13 @@ class ParcelManageController extends Controller {
                 $parcel->merchantPaid      = $due;
                 $parcel->save();
 
+                $payment = new Merchantpayment();
+                $payment->merchantId = $parcel->merchantId;                $payment->parcelId = $parcel->id;                $payment->done_by = auth()->user()->name;
+                $payment->save();
             }
 
         } else {
-            $parcels = Parcel::whereIn('merchantId', $request->parcel_id)->where('status', 4)->get();
+            $parcels = Parcel::whereIn('merchantId', $request->parcel_id)->where('merchantpayStatus', null)->where('status', 4)->get();
 
             foreach ($parcels as $parcel) {
                 $due                       = $parcel->merchantDue;
@@ -63,6 +67,9 @@ class ParcelManageController extends Controller {
                 $parcel->merchantPaid      = $due;
                 $parcel->save();
 
+                $payment = new Merchantpayment();
+                $payment->merchantId = $parcel->merchantId;                $payment->parcelId = $parcel->id;                $payment->done_by = auth()->user()->name;
+                $payment->save();
             }
 
         }
@@ -767,7 +774,7 @@ class ParcelManageController extends Controller {
             $merchant = Merchant::find($request->merchantId);
 
             if ($merchant->balance < $deliverycharge) {
-                Toastr::error('Error!', 'Wallet Balance is low. Please
+                session()->flash('message','Wallet Balance is low. Please
                 top up.');
 
                 return redirect()->back();
@@ -859,7 +866,7 @@ class ParcelManageController extends Controller {
             $merchant = Merchant::find($request->merchantId);
 
             if ($merchant->balance < $request->deliveryCharge) {
-                Toastr::error('Error!', 'Wallet Balance is low. Please
+                session()->flash('message','Wallet Balance is low. Please
                 top up.');
                 
                 return redirect()->back();

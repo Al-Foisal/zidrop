@@ -40,8 +40,16 @@
                             <div class="col-12">
                                 <h3 class="card-title">Add Parcel Info</h3>
                             </div>
+                            
                             <div class="col-lg-7 col-md-7 col-sm-12">
                                     <!-- /.card-header -->
+                                    @if(session()->has('message'))
+                                        <div class="alert alert-danger">
+                                            
+                                            {{ session('message') }}
+                                            
+                                        </div>
+                                    @endif
                                     <!-- form start -->
                                 <form role="form" action="{{ url('editor/parcel/store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf

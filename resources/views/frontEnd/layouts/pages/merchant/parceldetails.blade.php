@@ -45,7 +45,7 @@
 				                      $parcelstatus = App\Parceltype::find($parceldetails->status);
 				                   @endphp
 				                    
-									<h6>{{$parcelstatus->title}}</h6>
+									<h6>{{@$parcelstatus->title}}</h6>
 								</div>
 								
 							</div>

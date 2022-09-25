@@ -735,7 +735,6 @@ echo " " . date("h:i:sa");
 
   <footer class="main-footer">
     <strong>Copyright &copy;<a href="{{url('/')}}">Zidrop Logistics</a></strong>
-    All rights reserved__Design and Development(Md.Robiul Awal),Any Problem Just Call: 01748-340718 . 
   </footer>
 
 <!-- jQuery -->

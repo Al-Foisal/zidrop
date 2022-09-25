@@ -19,21 +19,19 @@
                                     <th>More</th>
                                 </tr>
                                 @foreach ($merchantInvoice as $key => $value)
-                                    @php
-                                        $cod = App\Parcel::where('id', $value->parcelId)->where('merchantId', $value->merchantId)->sum('cod');
-                                        $deliverycharge = App\Parcel::where('id', $value->parcelId)->where('merchantId', $value->merchantId)->sum('deliveryCharge');
-                                        $codcharge = App\Parcel::where('id', $value->parcelId)->where('merchantId', $value->merchantId)->sum('codCharge');
-                                        $totalinvoice = App\Parcel::where('id', $value->parcelId)->where('merchantId', $value->merchantId)->count();
-                                    @endphp
-                                    <tr>
+                                
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $value->created_at }}</td>
-                                        <td>{{ $totalinvoice }}</td>
-                                        <td>{{ $cod - ($deliverycharge + $codcharge) }}</td>
-                                        <td> <a class="btn btn-primary"
-                                                href="{{ url('merchant/payment/invoice-details/' . $value->id) }}"
-                                                title="View"><i class="fa fa-eye"></i> View</a></td>
+                                        <td>{{ $value->updated_at }}</td>
+                                        <td>{{ $value->total_parcel }}</td>
+                                        <td>{{ $value->total }}N</td>
+                                        <td>
+                                            <form action="{{ url('merchant/payment/invoice-details') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" value="{{ $value->updated_at }}" name="update">
+                                                <button class="btn btn-primary" type="submit"><i class="fa fa-eye"></i> View</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </table>

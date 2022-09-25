@@ -142,15 +142,7 @@ border-radius: 5px;"><i class="fa fa-print"></i></button>
                                 @endforeach
                             </td>
                             
-                            <td>
-                                @php $merchantInfo = App\Merchant::find(Session::get('merchantId')); @endphp
-                               <p> Invoice #: {{$invoiceInfo->id}}</p>
-                                <p> Date : {{date('F d, Y', strtotime($invoiceInfo->created_at))}}</p>
-                                <p> Time:  {{date('h:i:s a', strtotime($invoiceInfo->created_at))}}</p>
-                                <p>Merchant Name : {{$merchantInfo->companyName}}</p>
-                                <p>Merchant Phone : {{$merchantInfo->phoneNumber}}</p>
-                                <p></p>
-                            </td>
+                            
                         </tr>
                     </table>
                 </td>
@@ -170,18 +162,18 @@ border-radius: 5px;"><i class="fa fa-print"></i></button>
             @php
               $total = 0;
             @endphp
-            @foreach($inovicedetails as $key=>$value)
+            @foreach($parcels as $key=>$value)
             <tr>
                 <td>{{$value->trackingCode}}</td>
                 <td>{{$value->recipientName}}</td>
                 <td>{{$value->recipientPhone}}</td>
-                <td> {{$value->cod}}</td>
-                <td> {{$value->deliveryCharge+$value->codCharge}}</td>
-                <td> {{$value->cod-($value->deliveryCharge+$value->codCharge)}}</td>
-                <td>{{$value->cod-($value->deliveryCharge+$value->codCharge)}} /-</td>
+                <td> {{$value->cod}}N</td>
+                <td> {{ $value->cod - $value->merchantPaid }}N</td>
+                <td> {{ $value->merchantPaid }}N </td>
+                <td>{{ $value->merchantPaid }}N </td>
             </tr>
             @php
-              $total += $value->cod-($value->deliveryCharge+$value->codCharge);
+              $total += $value->merchantPaid;
             @endphp
             @endforeach
 
@@ -192,7 +184,7 @@ border-radius: 5px;"><i class="fa fa-print"></i></button>
                 <td></td>
                 <td></td>
                 <td>Total</td>
-                <td>{{$total}} /-</td>
+                <td>{{$total}}N</td>
             </tr>
           </tbody>
         </table>

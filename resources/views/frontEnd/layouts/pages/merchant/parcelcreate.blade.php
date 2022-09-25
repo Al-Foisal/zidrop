@@ -64,6 +64,13 @@
 					</div>
 				
 				    <div class="col-lg-7 col-md-7 col-sm-12">
+				        @if(session()->has('message'))
+                            <div class="alert alert-danger">
+                                
+                                {{ session('message') }}
+                                
+                            </div>
+                        @endif
 					    <div class="fraud-search">
 							<form action="{{url('merchant/add/parcel')}}" method="POST">
 							@csrf

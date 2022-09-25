@@ -109,7 +109,7 @@ Route::group(['namespace' => 'FrontEnd', 'middleware' => ['merchantauth']], func
     Route::post('merchant/parcel/export', 'MerchantController@export');
     Route::get('merchant/new-order/{slug}', 'MerchantController@parcelcreate');
     Route::get('merchant/pricing/{slug}', 'MerchantController@pricing');
-    Route::get('merchant/payment/invoice-details/{id}', 'MerchantController@inovicedetails');
+    Route::post('merchant/payment/invoice-details', 'MerchantController@inovicedetails');
     Route::get('merchant/profile', 'MerchantController@profile');
     Route::get('merchant/profile/edit', 'MerchantController@profileEdit');
     Route::post('merchant/profile/edit', 'MerchantController@profileUpdate');
@@ -475,7 +475,7 @@ Route::group(['as' => 'author.', 'prefix' => 'author', 'namespace' => 'Author', 
     Route::delete('merchant/delete/{id}', 'MerchantOperationController@delete');
     Route::post('merchant/get/payment', 'MerchantOperationController@payment');
     Route::get('/merchant/payment/invoice/{id}', 'MerchantOperationController@paymentinvoice');
-    Route::get('/merchant/payment/invoice-details/{id}', 'MerchantOperationController@inovicedetails');
+    Route::post('/merchant/payment/invoice-details', 'MerchantOperationController@inovicedetails');
     Route::post('merchant/charge-setup', 'MerchantOperationController@chargesetup');
     
         // Department Route

@@ -56,8 +56,7 @@
                 <tbody>
              @foreach($allparcel as $key=>$value)
                  <tr>
-                   {{-- <td>{{$loop->iteration}}</td> --}}
-                   <td>{{$value->id}}</td>
+                   <td>{{$loop->iteration}}</td>
                    <td>{{$value->trackingCode}}</td>
                    <td>{{$value->created_at}}</td>
                    <td>{{$value->recipientName}}</td>

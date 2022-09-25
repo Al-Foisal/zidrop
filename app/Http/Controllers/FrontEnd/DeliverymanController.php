@@ -98,56 +98,69 @@ class DeliverymanController extends Controller
        if($request->trackId!=NULL){
         $allparcel = DB::table('parcels')
         ->join('merchants', 'merchants.id','=','parcels.merchantId')
+        ->join('nearestzones', 'nearestzones.id', '=', 'parcels.reciveZone')
+        ->join('deliverycharges', 'deliverycharges.id','=','parcels.orderType')
         ->where('parcels.deliverymanId',Session::get('deliverymanId'))
         ->orWhere('parcels.pickupmanId',Session::get('deliverymanId'))
         ->where('parcels.trackingCode',$request->trackId)
-        ->select('parcels.*','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
+        ->select('parcels.*','deliverycharges.title','nearestzones.zonename','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
         ->orderBy('id','DESC')
         ->get();
        }elseif($request->phoneNumber!=NULL){
         $allparcel = DB::table('parcels')
         ->join('merchants', 'merchants.id','=','parcels.merchantId')
+        ->join('nearestzones', 'nearestzones.id', '=', 'parcels.reciveZone')
+        ->join('deliverycharges', 'deliverycharges.id','=','parcels.orderType')
         ->where('parcels.deliverymanId',Session::get('deliverymanId'))
         ->orWhere('parcels.pickupmanId',Session::get('deliverymanId'))
         ->where('parcels.recipientPhone',$request->phoneNumber)
-        ->select('parcels.*','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
+        ->select('parcels.*','deliverycharges.title','nearestzones.zonename','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
         ->orderBy('id','DESC')
         ->get();
        }elseif($request->startDate!=NULL && $request->endDate!=NULL){
         $allparcel = DB::table('parcels')
         ->join('merchants', 'merchants.id','=','parcels.merchantId')
+        ->join('nearestzones', 'nearestzones.id', '=', 'parcels.reciveZone')
+        ->join('deliverycharges', 'deliverycharges.id','=','parcels.orderType')
         ->where('parcels.deliverymanId',Session::get('deliverymanId'))
         ->orWhere('parcels.pickupmanId',Session::get('deliverymanId'))
         ->whereBetween('parcels.created_at',[$request->startDate, $request->endDate])
-        ->select('parcels.*','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
+        ->select('parcels.*','deliverycharges.title','nearestzones.zonename','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
         ->orderBy('id','DESC')
         ->get();
        }elseif($request->phoneNumber!=NULL || $request->phoneNumber!=NULL && $request->startDate!=NULL && $request->endDate!=NULL){
         $allparcel = DB::table('parcels')
         ->join('merchants', 'merchants.id','=','parcels.merchantId')
+        ->join('nearestzones', 'nearestzones.id', '=', 'parcels.reciveZone')
+        ->join('deliverycharges', 'deliverycharges.id','=','parcels.orderType')
         ->where('parcels.deliverymanId',Session::get('deliverymanId'))
         ->orWhere('parcels.pickupmanId',Session::get('deliverymanId'))
         ->where('parcels.recipientPhone',$request->phoneNumber)
         ->whereBetween('parcels.created_at',[$request->startDate, $request->endDate])
-        ->select('parcels.*','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
+        ->select('parcels.*','deliverycharges.title','nearestzones.zonename','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
         ->orderBy('id','DESC')
         ->get();
        }else{
         $allparcel = DB::table('parcels')
         ->join('merchants', 'merchants.id','=','parcels.merchantId')
+        ->join('nearestzones', 'nearestzones.id', '=', 'parcels.reciveZone')
+        ->join('deliverycharges', 'deliverycharges.id','=','parcels.orderType')
         ->where('parcels.deliverymanId',Session::get('deliverymanId'))
         ->orWhere('parcels.pickupmanId',Session::get('deliverymanId'))
-        ->select('parcels.*','merchants.companyName','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress')
+        ->select('parcels.*','deliverycharges.title','nearestzones.zonename','merchants.companyName','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress')
         ->orderBy('id','DESC')
         ->get();
        }
+    //   return $allparcel;
       return view('frontEnd.layouts.pages.deliveryman.parcels',compact('allparcel'));
   }
     public function parcelstatus($slug){
          $parceltype = Parceltype::where('slug',$slug)->first();
          $allparcel = DB::table('parcels')
          ->join('merchants', 'merchants.id','=','parcels.merchantId')
-         ->select('parcels.*','merchants.companyName','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress')
+         ->join('nearestzones', 'nearestzones.id', '=', 'parcels.reciveZone')
+        ->join('deliverycharges', 'deliverycharges.id','=','parcels.orderType')
+         ->select('parcels.*','nearestzones.zonename','deliverycharges.title','merchants.companyName','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress')
             ->where(function ($query) use ($parceltype) {
                 $query->where('parcels.deliverymanId',Session::get('deliverymanId'));
                 $query->orWhere('parcels.pickupmanId',Session::get('deliverymanId'));

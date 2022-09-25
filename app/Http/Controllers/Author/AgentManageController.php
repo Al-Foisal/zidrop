@@ -194,7 +194,7 @@ class AgentManageController extends Controller {
             $item->agentId = null;
             $item->save();
         }
-        
+
         $destroy_id->delete();
         Toastr::success('message', 'Agent delete successfully!');
 

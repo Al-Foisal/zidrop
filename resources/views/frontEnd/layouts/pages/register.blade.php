@@ -32,15 +32,15 @@
                         <h5>Register Now</h5>
                     </div>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <!--<li class="nav-item">-->
+                        <!--    <a class="nav-link" id="phone-tab" data-toggle="tab" href="#phone" role="tab" aria-controls="phone" aria-selected="true">Mobile register</a>-->
+                        <!--</li>-->
                         <li class="nav-item">
-                            <a class="nav-link active" id="phone-tab" data-toggle="tab" href="#phone" role="tab" aria-controls="phone" aria-selected="true">Mobile register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="email-tab" data-toggle="tab" href="#email" role="tab" aria-controls="email" aria-selected="false">Email register</a>
+                            <a class="nav-link active" id="email-tab" data-toggle="tab" href="#email" role="tab" aria-controls="email" aria-selected="false">Email register</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="phone" role="tabpanel" aria-labelledby="phone-tab">
+                        <div class="tab-pane fade" id="phone" role="tabpanel" aria-labelledby="phone-tab">
                             <div class="text-center">
                                 <h3 class="h5 text-muted text-uppercase">become a merchant</h3>
                             </div>
@@ -84,7 +84,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="email" role="tabpanel" aria-labelledby="email-tab">
+                        <div class="tab-pane fade show active" id="email" role="tabpanel" aria-labelledby="email-tab">
                             <div class="text-center">
                                 <h3 class="h5 text-muted text-uppercase">become a merchant</h3>
                             </div>

@@ -32,15 +32,15 @@
                         <h5>Login Now</h5>
                     </div>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <!--<li class="nav-item">-->
+                        <!--    <a class="nav-link" id="phone-tab" data-toggle="tab" href="#phone" role="tab" aria-controls="phone" aria-selected="true">Mobile login</a>-->
+                        <!--</li>-->
                         <li class="nav-item">
-                            <a class="nav-link active" id="phone-tab" data-toggle="tab" href="#phone" role="tab" aria-controls="phone" aria-selected="true">Mobile login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="email-tab" data-toggle="tab" href="#email" role="tab" aria-controls="email" aria-selected="false">Email login</a>
+                            <a class="nav-link active" id="email-tab" data-toggle="tab" href="#email" role="tab" aria-controls="email" aria-selected="false">Email login</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="phone" role="tabpanel" aria-labelledby="phone-tab">
+                        <div class="tab-pane fade" id="phone" role="tabpanel" aria-labelledby="phone-tab">
                             <div class="mobile-register-area">
                                 <form action="{{url('merchant/login')}}" method="POST">
                                     @csrf
@@ -56,7 +56,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="email" role="tabpanel" aria-labelledby="email-tab">
+                        <div class="tab-pane fade show active" id="email" role="tabpanel" aria-labelledby="email-tab">
                             <div class="mobile-register-area">
                                 <form action="{{url('merchant/login')}}" method="POST">
                                     @csrf                                    

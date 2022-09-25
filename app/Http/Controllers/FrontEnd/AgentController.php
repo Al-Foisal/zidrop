@@ -86,45 +86,56 @@ class AgentController extends Controller
        if($request->trackId!=NULL){
         $allparcel = DB::table('parcels')
         ->join('merchants', 'merchants.id','=','parcels.merchantId')
+        ->join('nearestzones', 'nearestzones.id', '=', 'parcels.reciveZone')
+        ->join('deliverycharges', 'deliverycharges.id','=','parcels.orderType')
         ->where('parcels.agentId',Session::get('agentId'))
         ->where('parcels.trackingCode',$request->trackId)
-        ->select('parcels.*','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
+        ->select('parcels.*','deliverycharges.title','nearestzones.zonename','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
         ->orderBy('id','DESC')
         ->get();
        }elseif($request->phoneNumber!=NULL){
         $allparcel = DB::table('parcels')
         ->join('merchants', 'merchants.id','=','parcels.merchantId')
+        ->join('deliverycharges', 'deliverycharges.id','=','parcels.orderType')
+        ->join('nearestzones', 'nearestzones.id', '=', 'parcels.reciveZone')
         ->where('parcels.agentId',Session::get('agentId'))
         ->where('parcels.recipientPhone',$request->phoneNumber)
-        ->select('parcels.*','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
+        ->select('parcels.*','deliverycharges.title','nearestzones.zonename','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
         ->orderBy('id','DESC')
         ->get();
        }elseif($request->startDate!=NULL && $request->endDate!=NULL){
         $allparcel = DB::table('parcels')
         ->join('merchants', 'merchants.id','=','parcels.merchantId')
+        ->join('deliverycharges', 'deliverycharges.id','=','parcels.orderType')
+        ->join('nearestzones', 'nearestzones.id', '=', 'parcels.reciveZone')
         ->where('parcels.agentId',Session::get('agentId'))
         ->whereBetween('parcels.created_at',[$request->startDate, $request->endDate])
-        ->select('parcels.*','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
+        ->select('parcels.*','deliverycharges.title','nearestzones.zonename','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
         ->orderBy('id','DESC')
         ->get();
        }elseif($request->phoneNumber!=NULL || $request->phoneNumber!=NULL && $request->startDate!=NULL && $request->endDate!=NULL){
         $allparcel = DB::table('parcels')
         ->join('merchants', 'merchants.id','=','parcels.merchantId')
+        ->join('deliverycharges', 'deliverycharges.id','=','parcels.orderType')
+        ->join('nearestzones', 'nearestzones.id', '=', 'parcels.reciveZone')
         ->where('parcels.agentId',Session::get('agentId'))
         ->where('parcels.recipientPhone',$request->phoneNumber)
         ->whereBetween('parcels.created_at',[$request->startDate, $request->endDate])
-        ->select('parcels.*','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
+        ->select('parcels.*','deliverycharges.title','nearestzones.zonename','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress','merchants.companyName','merchants.status as mstatus','merchants.id as mid')
         ->orderBy('id','DESC')
         ->get();
        }else{
         $allparcel = DB::table('parcels')
         ->join('merchants', 'merchants.id','=','parcels.merchantId')
+        ->join('deliverycharges', 'deliverycharges.id','=','parcels.orderType')
+        ->join('nearestzones', 'nearestzones.id', '=', 'parcels.reciveZone')
         ->where('parcels.agentId',Session::get('agentId'))
-        ->select('parcels.*','merchants.companyName','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress')
+        ->select('parcels.*', 'deliverycharges.title','nearestzones.zonename','merchants.companyName','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress')
         ->orderBy('parcels.id','DESC')
         ->get();
        }
        $aparceltypes = Parceltype::limit(3)->get();
+    //   return $allparcel;
       return view('frontEnd.layouts.pages.agent.parcels',compact('allparcel','aparceltypes'));
   }
   
@@ -132,9 +143,11 @@ class AgentController extends Controller
       $parceltype = Parceltype::where('slug',$slug)->first();
       $allparcel = DB::table('parcels')
         ->join('merchants', 'merchants.id','=','parcels.merchantId')
+                ->join('deliverycharges', 'deliverycharges.id','=','parcels.orderType')
+        ->join('nearestzones', 'nearestzones.id', '=', 'parcels.reciveZone')
         ->where('parcels.agentId',Session::get('agentId'))
         ->where('parcels.status',$parceltype->id)
-        ->select('parcels.*','merchants.companyName','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress')
+        ->select('parcels.*','deliverycharges.title','nearestzones.zonename','merchants.companyName','merchants.firstName','merchants.lastName','merchants.phoneNumber','merchants.emailAddress')
         ->orderBy('parcels.id','DESC')
         ->get();
         return view('frontEnd.layouts.pages.agent.parcels',compact('allparcel'));

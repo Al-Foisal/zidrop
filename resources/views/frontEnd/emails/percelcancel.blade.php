@@ -34,7 +34,7 @@
                                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; color: #3f5db3; font-size: 14px; vertical-align: top; margin: 0; padding: 10px 10px;" valign="top">Percel assign notification.</td>
                                     </tr>
                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                        <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 10px 10px;" valign="top">Dear Merchant,Your parcel ({{$trackingCode}}) is cancelled,Thanks for using Zuri Express</td>
+                                        <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 10px 10px;" valign="top">Dear Merchant,Your parcel ({{$parcel->trackingCode}}) is {{ $parcel->parceltype->title }},Thanks for using Zidrop</td>
                                     </tr>
                                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; padding-top: 5px; text-align: center; vertical-align: top;text-align: center; margin: 0; text-align: right;" valign="top"><b>Developed By</b> - <a href="http://quicktechit-ltd.com"></a></td>

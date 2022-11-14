@@ -21,6 +21,7 @@ use App\Parcelnote;
 use App\Parceltype;
 use App\Deliveryman;
 use App\Agent;
+use App\Topup;
 use Session;
 use DB;
 use Mail;
@@ -30,6 +31,26 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ApiMerchant extends Controller{
 
+  public function storePayment(Request $request) {
+    $topup = Topup::create([
+        'merchant_id' => $request->merchant_id,
+        'email'       => $request->email,
+        'amount'      => $request->amount / 100,
+        'reference'   => $request->reference,
+        'status'      => $request->status,
+        'channel'     => $request->channel,
+        'currency'    => $request->currency,
+        'mobile'      => $request->mobile,
+    ]);
+
+    $merchant          = Merchant::find($request->merchant_id);
+    $merchant->balance = $merchant->balance + ($request->amount / 100);
+    $merchant->save();
+
+    $count = Topup::where('merchant_id', $request->merchant_id)->count();
+
+    return response()->json(['status' => true, 'top' => $topup, 'count' => $count]);
+  }
   function register(Request $request){
 
     $marchentCheck=Merchant::where('phoneNumber', $request->phoneNumber)->orWhere('emailAddress',$request->emailAddress)->first();

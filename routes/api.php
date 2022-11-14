@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\ApiDeliveryman;
 // });
 
 Route::post('merchant/login', [ApiMerchant::class,"login"]);
+Route::post('merchant/store-payment', [ApiMerchant::class,"storePayment"]);
 Route::post('merchant/otpverify', [ApiMerchant::class,"phoneVerify"]);
 Route::post('merchant/register', [ApiMerchant::class,"register"]);
 Route::post('merchant/password/reset', [ApiMerchant::class,"passwordReset"]);

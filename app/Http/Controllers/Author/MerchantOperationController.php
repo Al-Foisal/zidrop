@@ -219,10 +219,10 @@ class MerchantOperationController extends Controller {
     }
 
     public function inovicedetails(Request $request) {
-        $update = $request->update;
-        
-        $parcelId = Merchantpayment::where('updated_at', $update)->pluck('parcelId')->toArray();
-        $parcels   = DB::table('parcels')->whereIn('id', $parcelId)->get();
+            $update = $request->update;
+            
+            $parcelId = Merchantpayment::where('updated_at', $update)->pluck('parcelId')->toArray();
+            $parcels   = DB::table('parcels')->whereIn('id', $parcelId)->get();
 
         return view('backEnd.merchant.inovicedetails', compact('parcels'));
     }
